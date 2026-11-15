@@ -1,0 +1,127 @@
+{
+ "generated": "2026-11-14",
+ "region": "kafkasya",
+ "method": "ratio of sums (sum VIIRS S-NPP / sum MODIS), one coefficient per calendar month; gap days excluded",
+ "calibration_years": [
+  2012,
+  2022
+ ],
+ "calibration_note": "Terra and Aqua overpass times are stable through 2022; 2023-2025 (orbit drift) used only as an independent test",
+ "viirs_start": "2012-02-01",
+ "noaa20_start": "2026-11-01",
+ "modis_to_snpp": {
+  "1": 4.234,
+  "2": 3.363,
+  "3": 3.413,
+  "4": 4.24,
+  "5": 4.465,
+  "6": 3.804,
+  "7": 3.983,
+  "8": 4.127,
+  "9": 4.258,
+  "10": 3.383,
+  "11": 4.004,
+  "12": 5.407
+ },
+ "noaa20_to_snpp": {
+  "by_month": false,
+  "k": {
+   "1": 0.986,
+   "2": 0.986,
+   "3": 0.986,
+   "4": 0.986,
+   "5": 0.986,
+   "6": 0.986,
+   "7": 0.986,
+   "8": 0.986,
+   "9": 0.986,
+   "10": 0.986,
+   "11": 0.986,
+   "12": 0.986
+  },
+  "k_constant": 0.986,
+  "k_region_own": 0.997,
+  "years": [
+   2023,
+   2025
+  ]
+ },
+ "uncertainty": {
+  "modis_months_actual_over_estimate_p16_p84": [
+   0.87,
+   1.24
+  ],
+  "noaa20_months_actual_over_estimate_p16_p84": [
+   0.9,
+   1.09
+  ],
+  "out_of_range_months_p05_p95": [
+   0.76,
+   1.43
+  ],
+  "note": "68% of months in leave-one-year-out testing fall inside the p16-p84 band; months above the tested MODIS range get the wider p05-p95 band and are probably overestimates; not a formal confidence interval"
+ },
+ "out_of_tested_range_months": [
+  {
+   "month": "2002-11",
+   "modis": 676,
+   "tested_max": 498,
+   "times_tested_max": 1.36
+  },
+  {
+   "month": "2003-05",
+   "modis": 180,
+   "tested_max": 101,
+   "times_tested_max": 1.78
+  },
+  {
+   "month": "2004-01",
+   "modis": 243,
+   "tested_max": 199,
+   "times_tested_max": 1.22
+  },
+  {
+   "month": "2004-08",
+   "modis": 1321,
+   "tested_max": 1296,
+   "times_tested_max": 1.02
+  },
+  {
+   "month": "2006-08",
+   "modis": 1801,
+   "tested_max": 1296,
+   "times_tested_max": 1.39
+  },
+  {
+   "month": "2007-05",
+   "modis": 229,
+   "tested_max": 101,
+   "times_tested_max": 2.27
+  },
+  {
+   "month": "2008-12",
+   "modis": 468,
+   "tested_max": 265,
+   "times_tested_max": 1.77
+  },
+  {
+   "month": "2010-08",
+   "modis": 1379,
+   "tested_max": 1296,
+   "times_tested_max": 1.06
+  },
+  {
+   "month": "2010-11",
+   "modis": 1459,
+   "tested_max": 498,
+   "times_tested_max": 2.93
+  },
+  {
+   "month": "2010-12",
+   "modis": 741,
+   "tested_max": 265,
+   "times_tested_max": 2.8
+  }
+ ],
+ "out_of_tested_range_zone_months": []
+}

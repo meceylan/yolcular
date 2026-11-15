@@ -1,0 +1,625 @@
+{
+ "yearly": {
+  "2002": {
+   "modis_raw": 5661,
+   "modis_no_static": 5432,
+   "modis_filtered": 5279,
+   "viirs_raw": null,
+   "viirs_filtered": null
+  },
+  "2003": {
+   "modis_raw": 7733,
+   "modis_no_static": 6977,
+   "modis_filtered": 6757,
+   "viirs_raw": null,
+   "viirs_filtered": null
+  },
+  "2004": {
+   "modis_raw": 7901,
+   "modis_no_static": 7199,
+   "modis_filtered": 6997,
+   "viirs_raw": null,
+   "viirs_filtered": null
+  },
+  "2005": {
+   "modis_raw": 8303,
+   "modis_no_static": 7536,
+   "modis_filtered": 7297,
+   "viirs_raw": null,
+   "viirs_filtered": null
+  },
+  "2006": {
+   "modis_raw": 9459,
+   "modis_no_static": 8730,
+   "modis_filtered": 8460,
+   "viirs_raw": null,
+   "viirs_filtered": null
+  },
+  "2007": {
+   "modis_raw": 8791,
+   "modis_no_static": 8059,
+   "modis_filtered": 7816,
+   "viirs_raw": null,
+   "viirs_filtered": null
+  },
+  "2008": {
+   "modis_raw": 6164,
+   "modis_no_static": 5444,
+   "modis_filtered": 5231,
+   "viirs_raw": null,
+   "viirs_filtered": null
+  },
+  "2009": {
+   "modis_raw": 19979,
+   "modis_no_static": 19112,
+   "modis_filtered": 18488,
+   "viirs_raw": null,
+   "viirs_filtered": null
+  },
+  "2010": {
+   "modis_raw": 13653,
+   "modis_no_static": 12883,
+   "modis_filtered": 12513,
+   "viirs_raw": null,
+   "viirs_filtered": null
+  },
+  "2011": {
+   "modis_raw": 18465,
+   "modis_no_static": 17731,
+   "modis_filtered": 17153,
+   "viirs_raw": null,
+   "viirs_filtered": null
+  },
+  "2012": {
+   "modis_raw": 7119,
+   "modis_no_static": 6431,
+   "modis_filtered": 6226,
+   "viirs_raw": 35462,
+   "viirs_filtered": 21445
+  },
+  "2013": {
+   "modis_raw": 11528,
+   "modis_no_static": 10792,
+   "modis_filtered": 10440,
+   "viirs_raw": 52089,
+   "viirs_filtered": 35142
+  },
+  "2014": {
+   "modis_raw": 6829,
+   "modis_no_static": 6118,
+   "modis_filtered": 5897,
+   "viirs_raw": 33276,
+   "viirs_filtered": 19556
+  },
+  "2015": {
+   "modis_raw": 18095,
+   "modis_no_static": 17150,
+   "modis_filtered": 16584,
+   "viirs_raw": 66801,
+   "viirs_filtered": 49675
+  },
+  "2016": {
+   "modis_raw": 13599,
+   "modis_no_static": 12941,
+   "modis_filtered": 12507,
+   "viirs_raw": 57581,
+   "viirs_filtered": 41475
+  },
+  "2017": {
+   "modis_raw": 9607,
+   "modis_no_static": 8757,
+   "modis_filtered": 8446,
+   "viirs_raw": 43688,
+   "viirs_filtered": 27886
+  },
+  "2018": {
+   "modis_raw": 8112,
+   "modis_no_static": 7377,
+   "modis_filtered": 7114,
+   "viirs_raw": 37316,
+   "viirs_filtered": 22725
+  },
+  "2019": {
+   "modis_raw": 8355,
+   "modis_no_static": 7701,
+   "modis_filtered": 7426,
+   "viirs_raw": 39859,
+   "viirs_filtered": 25850
+  },
+  "2020": {
+   "modis_raw": 8855,
+   "modis_no_static": 8210,
+   "modis_filtered": 7869,
+   "viirs_raw": 44396,
+   "viirs_filtered": 28831
+  },
+  "2021": {
+   "modis_raw": 10063,
+   "modis_no_static": 9348,
+   "modis_filtered": 9005,
+   "viirs_raw": 42993,
+   "viirs_filtered": 26873
+  },
+  "2022": {
+   "modis_raw": 5703,
+   "modis_no_static": 5069,
+   "modis_filtered": 4873,
+   "viirs_raw": 26567,
+   "viirs_filtered": 14204
+  },
+  "2023": {
+   "modis_raw": 9067,
+   "modis_no_static": 8283,
+   "modis_filtered": 7986,
+   "viirs_raw": 39155,
+   "viirs_filtered": 25795
+  },
+  "2024": {
+   "modis_raw": 12090,
+   "modis_no_static": 11218,
+   "modis_filtered": 10809,
+   "viirs_raw": 47005,
+   "viirs_filtered": 32070
+  },
+  "2025": {
+   "modis_raw": 9499,
+   "modis_no_static": 8520,
+   "modis_filtered": 8138,
+   "viirs_raw": 39421,
+   "viirs_filtered": 24415
+  },
+  "2026": {
+   "modis_raw": 8322,
+   "modis_no_static": 7286,
+   "modis_filtered": 6851,
+   "viirs_raw": 31119,
+   "viirs_filtered": 23290
+  }
+ },
+ "gaps": {
+  "modis_2002_zero_days_jul_oct": [],
+  "modis_2007_zero_days_aug15_oct": [],
+  "modis_2009_04_21_22_rows": 6,
+  "modis_summer_zero_runs_ge2": [
+   [
+    "2014-09-28",
+    "2014-09-29",
+    2
+   ]
+  ],
+  "terra_summer_zero_runs_ge3": [],
+  "aqua_summer_zero_runs_ge3": [
+   [
+    "2002-07-30",
+    "2002-08-07",
+    9
+   ],
+   [
+    "2020-08-30",
+    "2020-09-02",
+    4
+   ]
+  ],
+  "viirs_summer_zero_runs_ge1": [
+   [
+    "2022-07-27",
+    "2022-08-10",
+    15
+   ],
+   [
+    "2024-05-30",
+    "2024-06-03",
+    5
+   ],
+   [
+    "2024-07-10",
+    "2024-07-15",
+    6
+   ],
+   [
+    "2024-07-25",
+    "2024-07-28",
+    4
+   ],
+   [
+    "2024-09-26",
+    "2024-09-26",
+    1
+   ],
+   [
+    "2025-07-06",
+    "2025-07-07",
+    2
+   ],
+   [
+    "2026-06-01",
+    "2026-06-02",
+    2
+   ],
+   [
+    "2026-07-11",
+    "2026-07-16",
+    6
+   ]
+  ],
+  "modis_zero_days_per_year": {
+   "2002": 20,
+   "2003": 60,
+   "2004": 63,
+   "2005": 41,
+   "2006": 44,
+   "2007": 31,
+   "2008": 31,
+   "2009": 46,
+   "2010": 42,
+   "2011": 43,
+   "2012": 75,
+   "2013": 47,
+   "2014": 52,
+   "2015": 50,
+   "2016": 54,
+   "2017": 30,
+   "2018": 61,
+   "2019": 46,
+   "2020": 41,
+   "2021": 40,
+   "2022": 53,
+   "2023": 41,
+   "2024": 44,
+   "2025": 25,
+   "2026": 40
+  }
+ },
+ "modis_aug_2022": {
+  "modis_filtered": 107,
+  "viirs_filtered": 545,
+  "modis_days_with_data": 29
+ },
+ "peak_2021": {
+  "modis_jul_aug_2021": 2625,
+  "modis_jul_aug_median_other_years": 141.5,
+  "modis_rank_2021": 1,
+  "viirs_jul_aug_2021": 6975,
+  "viirs_jul_aug_median_other_years": 425.0,
+  "viirs_rank_2021": 1,
+  "modis_frp_2021_MW": 397221.7,
+  "modis_frp_median_other_MW": 6949.700000000001,
+  "modis_peak_day": [
+   "2021-07-31",
+   349
+  ],
+  "viirs_peak_day": [
+   "2021-08-01",
+   1175
+  ],
+  "modis_28jul_12aug": 2591,
+  "viirs_28jul_12aug": 6885
+ },
+ "excess_filters": {
+  "ham": {
+   "mean_2009_2011": 17366.0,
+   "mean_2012_2025": 9894.0,
+   "max_2012_2025": 18095,
+   "ratio": 1.76
+  },
+  "sabit kaynak ve deniz çıkarılmış": {
+   "mean_2009_2011": 16575.0,
+   "mean_2012_2025": 9137.0,
+   "max_2012_2025": 17150,
+   "ratio": 1.81
+  },
+  "düşük güven de çıkarılmış": {
+   "mean_2009_2011": 16051.0,
+   "mean_2012_2025": 8809.0,
+   "max_2012_2025": 16584,
+   "ratio": 1.82
+  },
+  "yalnızca yüksek güven": {
+   "mean_2009_2011": 4452.0,
+   "mean_2012_2025": 2239.0,
+   "max_2012_2025": 4874,
+   "ratio": 1.99
+  },
+  "yalnızca gündüz (filtreli)": {
+   "mean_2009_2011": 12856.0,
+   "mean_2012_2025": 7226.0,
+   "max_2012_2025": 13307,
+   "ratio": 1.78
+  }
+ },
+ "filter_removed_share": {
+  "2009_2011": 0.076,
+  "2012_2025": 0.115
+ },
+ "aug_oct_by_region": {
+  "2003": {
+   "Güneydoğu": 474,
+   "İç Anadolu": 503,
+   "Çukurova": 708,
+   "Ege-Akdeniz kıyısı": 408,
+   "Diğer": 788
+  },
+  "2004": {
+   "Güneydoğu": 545,
+   "İç Anadolu": 1310,
+   "Çukurova": 1106,
+   "Ege-Akdeniz kıyısı": 403,
+   "Diğer": 1064
+  },
+  "2005": {
+   "Güneydoğu": 637,
+   "İç Anadolu": 855,
+   "Çukurova": 1194,
+   "Ege-Akdeniz kıyısı": 363,
+   "Diğer": 1075
+  },
+  "2006": {
+   "Güneydoğu": 726,
+   "İç Anadolu": 1846,
+   "Çukurova": 859,
+   "Ege-Akdeniz kıyısı": 626,
+   "Diğer": 978
+  },
+  "2007": {
+   "Güneydoğu": 1282,
+   "İç Anadolu": 244,
+   "Çukurova": 1291,
+   "Ege-Akdeniz kıyısı": 353,
+   "Diğer": 1148
+  },
+  "2008": {
+   "Güneydoğu": 147,
+   "İç Anadolu": 52,
+   "Çukurova": 1212,
+   "Ege-Akdeniz kıyısı": 525,
+   "Diğer": 718
+  },
+  "2009": {
+   "Güneydoğu": 3652,
+   "İç Anadolu": 4231,
+   "Çukurova": 1129,
+   "Ege-Akdeniz kıyısı": 1138,
+   "Diğer": 2912
+  },
+  "2010": {
+   "Güneydoğu": 1586,
+   "İç Anadolu": 1816,
+   "Çukurova": 1078,
+   "Ege-Akdeniz kıyısı": 534,
+   "Diğer": 1701
+  },
+  "2011": {
+   "Güneydoğu": 1558,
+   "İç Anadolu": 4984,
+   "Çukurova": 1485,
+   "Ege-Akdeniz kıyısı": 901,
+   "Diğer": 2961
+  },
+  "2012": {
+   "Güneydoğu": 381,
+   "İç Anadolu": 75,
+   "Çukurova": 1190,
+   "Ege-Akdeniz kıyısı": 203,
+   "Diğer": 872
+  },
+  "2013": {
+   "Güneydoğu": 1593,
+   "İç Anadolu": 1128,
+   "Çukurova": 1609,
+   "Ege-Akdeniz kıyısı": 420,
+   "Diğer": 1189
+  },
+  "2014": {
+   "Güneydoğu": 1008,
+   "İç Anadolu": 44,
+   "Çukurova": 825,
+   "Ege-Akdeniz kıyısı": 191,
+   "Diğer": 695
+  },
+  "2015": {
+   "Güneydoğu": 3133,
+   "İç Anadolu": 1342,
+   "Çukurova": 1399,
+   "Ege-Akdeniz kıyısı": 414,
+   "Diğer": 1434
+  },
+  "2016": {
+   "Güneydoğu": 2376,
+   "İç Anadolu": 818,
+   "Çukurova": 1196,
+   "Ege-Akdeniz kıyısı": 231,
+   "Diğer": 1764
+  },
+  "2017": {
+   "Güneydoğu": 1305,
+   "İç Anadolu": 215,
+   "Çukurova": 864,
+   "Ege-Akdeniz kıyısı": 205,
+   "Diğer": 981
+  },
+  "2018": {
+   "Güneydoğu": 668,
+   "İç Anadolu": 458,
+   "Çukurova": 955,
+   "Ege-Akdeniz kıyısı": 232,
+   "Diğer": 1105
+  },
+  "2019": {
+   "Güneydoğu": 1007,
+   "İç Anadolu": 220,
+   "Çukurova": 687,
+   "Ege-Akdeniz kıyısı": 236,
+   "Diğer": 1179
+  },
+  "2020": {
+   "Güneydoğu": 1116,
+   "İç Anadolu": 167,
+   "Çukurova": 793,
+   "Ege-Akdeniz kıyısı": 204,
+   "Diğer": 1176
+  },
+  "2021": {
+   "Güneydoğu": 345,
+   "İç Anadolu": 55,
+   "Çukurova": 271,
+   "Ege-Akdeniz kıyısı": 1726,
+   "Diğer": 590
+  },
+  "2022": {
+   "Güneydoğu": 158,
+   "İç Anadolu": 54,
+   "Çukurova": 310,
+   "Ege-Akdeniz kıyısı": 78,
+   "Diğer": 642
+  },
+  "2023": {
+   "Güneydoğu": 794,
+   "İç Anadolu": 324,
+   "Çukurova": 473,
+   "Ege-Akdeniz kıyısı": 230,
+   "Diğer": 1080
+  },
+  "2024": {
+   "Güneydoğu": 1876,
+   "İç Anadolu": 406,
+   "Çukurova": 179,
+   "Ege-Akdeniz kıyısı": 441,
+   "Diğer": 1727
+  },
+  "2025": {
+   "Güneydoğu": 338,
+   "İç Anadolu": 100,
+   "Çukurova": 199,
+   "Ege-Akdeniz kıyısı": 332,
+   "Diğer": 1068
+  }
+ },
+ "rest_of_year_filtered": {
+  "mean_2009_2011": 5496.0,
+  "mean_2012_2025": 5015.785714285715
+ },
+ "excess_region": {
+  "Güneydoğu": {
+   "mean_2009_2011": 2265,
+   "mean_2012_2025": 1150,
+   "max_2012_2025": 3133,
+   "max_year": 2015
+  },
+  "İç Anadolu": {
+   "mean_2009_2011": 3677,
+   "mean_2012_2025": 386,
+   "max_2012_2025": 1342,
+   "max_year": 2015
+  },
+  "Çukurova": {
+   "mean_2009_2011": 1231,
+   "mean_2012_2025": 782,
+   "max_2012_2025": 1609,
+   "max_year": 2013
+  },
+  "Ege-Akdeniz kıyısı": {
+   "mean_2009_2011": 858,
+   "mean_2012_2025": 367,
+   "max_2012_2025": 1726,
+   "max_year": 2021
+  },
+  "Diğer": {
+   "mean_2009_2011": 2525,
+   "mean_2012_2025": 1107,
+   "max_2012_2025": 1764,
+   "max_year": 2016
+  }
+ },
+ "viirs_modis_ratio_aug_oct": {
+  "Güneydoğu": {
+   "ratio_of_sums": 3.69,
+   "mean_of_yearly_ratios": 3.99,
+   "min": 3.17,
+   "max": 4.84
+  },
+  "İç Anadolu": {
+   "ratio_of_sums": 4.29,
+   "mean_of_yearly_ratios": 4.67,
+   "min": 3.56,
+   "max": 7.13
+  },
+  "Çukurova": {
+   "ratio_of_sums": 3.72,
+   "mean_of_yearly_ratios": 4.16,
+   "min": 3.13,
+   "max": 6.16
+  },
+  "Ege-Akdeniz kıyısı": {
+   "ratio_of_sums": 3.89,
+   "mean_of_yearly_ratios": 4.37,
+   "min": 2.71,
+   "max": 5.58
+  },
+  "Diğer": {
+   "ratio_of_sums": 4.33,
+   "mean_of_yearly_ratios": 4.35,
+   "min": 3.69,
+   "max": 5.11
+  }
+ },
+ "viirs_modis_ratio_annual": {
+  "2012": 3.44,
+  "2013": 3.37,
+  "2014": 3.32,
+  "2015": 3.0,
+  "2016": 3.32,
+  "2017": 3.3,
+  "2018": 3.19,
+  "2019": 3.48,
+  "2020": 3.66,
+  "2021": 2.98,
+  "2022": 2.91,
+  "2023": 3.23,
+  "2024": 2.97,
+  "2025": 3.0
+ },
+ "traits_gd_ia_aug_oct": {
+  "2009_2011": {
+   "n": 17827,
+   "frp_median": 20.4,
+   "night_pct": 21.1,
+   "terra_pct": 53.7,
+   "high_conf_pct": 31.2,
+   "scan_mean": 1.64,
+   "days_with_fire_per_year": 90.0
+  },
+  "2013_2015_2016": {
+   "n": 10390,
+   "frp_median": 19.3,
+   "night_pct": 13.9,
+   "terra_pct": 52.8,
+   "high_conf_pct": 30.2,
+   "scan_mean": 1.56,
+   "days_with_fire_per_year": 91.0
+  },
+  "2003_2008": {
+   "n": 8621,
+   "frp_median": 18.0,
+   "night_pct": 17.1,
+   "terra_pct": 54.9,
+   "high_conf_pct": 28.5,
+   "scan_mean": 1.53,
+   "days_with_fire_per_year": 84.0
+  },
+  "other_2012_2025": {
+   "n": 11114,
+   "frp_median": 15.5,
+   "night_pct": 13.4,
+   "terra_pct": 53.1,
+   "high_conf_pct": 23.2,
+   "scan_mean": 1.47,
+   "days_with_fire_per_year": 81.0
+  }
+ },
+ "cell_correlation": {
+  "modis0911_vs_modis131516": 0.81,
+  "modis0911_vs_viirs131516": 0.82,
+  "modis131516_vs_viirs131516": 0.98
+ },
+ "duplicates_modis": 0
+}

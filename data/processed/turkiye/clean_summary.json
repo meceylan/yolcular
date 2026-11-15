@@ -1,0 +1,257 @@
+{
+ "generated": "2026-11-14",
+ "rows_read": 1204561,
+ "unknown_satellite_dropped": 0,
+ "nrt_dropped_sp_exists": 0,
+ "duplicates_dropped": 876,
+ "modis_before_first_date_dropped": 114,
+ "rows_out": 1203571,
+ "rows_keep": 747062,
+ "archive_points_inside_natural_earth_border": 0.9799255506430328,
+ "by_source": [
+  {
+   "source": "MODIS_NRT",
+   "origin": "api",
+   "rows": 4107,
+   "in_country": 2677,
+   "first": "2026-09-01T00:00:00.000",
+   "last": "2026-11-13T00:00:00.000"
+  },
+  {
+   "source": "MODIS_SP",
+   "origin": "api",
+   "rows": 132078,
+   "in_country": 111695,
+   "first": "2002-07-04T00:00:00.000",
+   "last": "2026-08-31T00:00:00.000"
+  },
+  {
+   "source": "MODIS_SP",
+   "origin": "archive",
+   "rows": 138521,
+   "in_country": 138521,
+   "first": "2012-01-03T00:00:00.000",
+   "last": "2025-12-29T00:00:00.000"
+  },
+  {
+   "source": "VIIRS_NOAA20_NRT",
+   "origin": "api",
+   "rows": 33499,
+   "in_country": 20236,
+   "first": "2026-08-01T00:00:00.000",
+   "last": "2026-11-14T00:00:00.000"
+  },
+  {
+   "source": "VIIRS_NOAA20_SP",
+   "origin": "api",
+   "rows": 237447,
+   "in_country": 143581,
+   "first": "2023-01-01T00:00:00.000",
+   "last": "2026-07-31T00:00:00.000"
+  },
+  {
+   "source": "VIIRS_SNPP_NRT",
+   "origin": "api",
+   "rows": 30861,
+   "in_country": 18260,
+   "first": "2026-08-01T00:00:00.000",
+   "last": "2026-10-31T00:00:00.000"
+  },
+  {
+   "source": "VIIRS_SNPP_SP",
+   "origin": "api",
+   "rows": 21449,
+   "in_country": 12859,
+   "first": "2026-01-01T00:00:00.000",
+   "last": "2026-07-31T00:00:00.000"
+  },
+  {
+   "source": "VIIRS_SNPP_SP",
+   "origin": "archive",
+   "rows": 605609,
+   "in_country": 605609,
+   "first": "2012-01-20T00:00:00.000",
+   "last": "2025-12-31T00:00:00.000"
+  }
+ ],
+ "by_year_keep": {
+  "2002": {
+   "Aqua": 2256,
+   "NOAA20": 0,
+   "SNPP": 0,
+   "Terra": 2970
+  },
+  "2003": {
+   "Aqua": 3223,
+   "NOAA20": 0,
+   "SNPP": 0,
+   "Terra": 3534
+  },
+  "2004": {
+   "Aqua": 3357,
+   "NOAA20": 0,
+   "SNPP": 0,
+   "Terra": 3640
+  },
+  "2005": {
+   "Aqua": 3518,
+   "NOAA20": 0,
+   "SNPP": 0,
+   "Terra": 3779
+  },
+  "2006": {
+   "Aqua": 3974,
+   "NOAA20": 0,
+   "SNPP": 0,
+   "Terra": 4486
+  },
+  "2007": {
+   "Aqua": 3628,
+   "NOAA20": 0,
+   "SNPP": 0,
+   "Terra": 4188
+  },
+  "2008": {
+   "Aqua": 2629,
+   "NOAA20": 0,
+   "SNPP": 0,
+   "Terra": 2602
+  },
+  "2009": {
+   "Aqua": 8745,
+   "NOAA20": 0,
+   "SNPP": 0,
+   "Terra": 9743
+  },
+  "2010": {
+   "Aqua": 5995,
+   "NOAA20": 0,
+   "SNPP": 0,
+   "Terra": 6518
+  },
+  "2011": {
+   "Aqua": 8631,
+   "NOAA20": 0,
+   "SNPP": 0,
+   "Terra": 8522
+  },
+  "2012": {
+   "Aqua": 3052,
+   "NOAA20": 0,
+   "SNPP": 21445,
+   "Terra": 3174
+  },
+  "2013": {
+   "Aqua": 5273,
+   "NOAA20": 0,
+   "SNPP": 35142,
+   "Terra": 5167
+  },
+  "2014": {
+   "Aqua": 2938,
+   "NOAA20": 0,
+   "SNPP": 19556,
+   "Terra": 2959
+  },
+  "2015": {
+   "Aqua": 7876,
+   "NOAA20": 0,
+   "SNPP": 49675,
+   "Terra": 8708
+  },
+  "2016": {
+   "Aqua": 6094,
+   "NOAA20": 0,
+   "SNPP": 41475,
+   "Terra": 6413
+  },
+  "2017": {
+   "Aqua": 4105,
+   "NOAA20": 0,
+   "SNPP": 27886,
+   "Terra": 4341
+  },
+  "2018": {
+   "Aqua": 3470,
+   "NOAA20": 0,
+   "SNPP": 22725,
+   "Terra": 3644
+  },
+  "2019": {
+   "Aqua": 3923,
+   "NOAA20": 0,
+   "SNPP": 25850,
+   "Terra": 3503
+  },
+  "2020": {
+   "Aqua": 3800,
+   "NOAA20": 0,
+   "SNPP": 28831,
+   "Terra": 4069
+  },
+  "2021": {
+   "Aqua": 4486,
+   "NOAA20": 0,
+   "SNPP": 26873,
+   "Terra": 4519
+  },
+  "2022": {
+   "Aqua": 2720,
+   "NOAA20": 0,
+   "SNPP": 14204,
+   "Terra": 2153
+  },
+  "2023": {
+   "Aqua": 4635,
+   "NOAA20": 26290,
+   "SNPP": 25795,
+   "Terra": 3351
+  },
+  "2024": {
+   "Aqua": 5485,
+   "NOAA20": 35063,
+   "SNPP": 32070,
+   "Terra": 5324
+  },
+  "2025": {
+   "Aqua": 4774,
+   "NOAA20": 23783,
+   "SNPP": 24415,
+   "Terra": 3364
+  },
+  "2026": {
+   "Aqua": 3156,
+   "NOAA20": 20762,
+   "SNPP": 19238,
+   "Terra": 3570
+  }
+ },
+ "flags_among_in_country": {
+  "flag_low_conf": 79740,
+  "flag_static": 219884,
+  "flag_offshore": 5649,
+  "flag_no_type": 41173,
+  "flag_mask": 8916,
+  "flag_bad_value": 154,
+  "modis_v61_label": 36301
+ },
+ "static_mask_cells": 1518,
+ "in_series_by_satellite": {
+  "Aqua": {
+   "False": 0,
+   "True": 111743
+  },
+  "NOAA20": {
+   "False": 105408,
+   "True": 490
+  },
+  "SNPP": {
+   "False": 56,
+   "True": 415124
+  },
+  "Terra": {
+   "False": 0,
+   "True": 114241
+  }
+ }
+}

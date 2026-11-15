@@ -1,0 +1,235 @@
+<!doctype html>
+<!-- AI-assisted: generated with Claude (Anthropic) -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Burn Calendar – monthly satellite fire detections since 2002</title>
+  <meta name="description" content="How many fires satellites saw each month since 2002 (MODIS and VIIRS, NASA FIRMS), harmonized into one comparable series, and whether this month is unusual.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Burn Calendar – monthly satellite fire detections since 2002">
+  <meta property="og:description" content="Year-by-month calendar of MODIS and VIIRS fire detections (NASA FIRMS), harmonized into one comparable series, with this month compared to the typical month.">
+  <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css?v=tt1">
+</head>
+<body>
+  <header class="top wrap">
+    <div class="brand">
+      <h1>Burn Calendar</h1>
+      <p class="lede">How many fires satellites saw each month since 2002, and whether this month is unusual.</p>
+    </div>
+    <section class="howto" aria-labelledby="howto-title">
+      <h2 id="howto-title">How to read this</h2>
+      <p>One square = one month. Brighter = more fires.<br>Dashed = estimate, hatched = no data.</p>
+    </section>
+  </header>
+
+  <main class="wrap">
+    <p id="load-error" class="load-error" role="alert" hidden></p>
+    <div class="ctx-bar">
+      <p id="cards-ctx" class="ctx" aria-live="polite">Loading data…</p>
+      <div class="share">
+        <button id="copy-link" type="button" aria-describedby="copy-help">Copy link</button>
+        <span id="copy-help" class="sr-only">Copies a link to this view: region, area, period and selected month.</span>
+        <span id="copy-status" class="sub share-status" role="status" aria-live="polite"></span>
+      </div>
+    </div>
+    <section class="cards" aria-label="Summary">
+      <div class="card stat">
+        <label class="stat-pick"><span class="sr-only">Month to compare</span><select id="compare-month"></select></label>
+        <div id="compare" role="status" aria-live="polite"></div>
+      </div>
+      <div id="card-partial" class="card stat"></div>
+      <div id="card-peak" class="card stat"></div>
+      <div id="card-est" class="card stat"></div>
+    </section>
+
+    <div class="layout">
+      <div class="side">
+        <section class="card panel" aria-labelledby="area-title">
+          <h2 id="area-title"><span class="step" aria-hidden="true">1</span> Choose area</h2>
+          <label class="field region-field">Region
+            <select id="region"></select>
+          </label>
+          <p id="bbox-help" class="sub">Draw a rectangle on the map or type coordinates; the 0.25° grid cells whose centre is inside are added up.</p>
+          <div id="map" class="map" role="region" aria-label="Map for selecting an area. Drawing needs a pointer; keyboard and screen reader users can type the coordinates in the boxes instead." aria-describedby="bbox-help"></div>
+          <div class="bbox-buttons">
+            <button id="draw-btn" type="button" aria-pressed="false">Draw on map</button>
+            <button id="reset-btn" type="button">Whole region</button>
+          </div>
+          <details class="coords">
+            <summary>Type coordinates</summary>
+            <form id="bbox-form" class="bbox-form" aria-label="Area coordinates (degrees)">
+              <label>North <input id="b-north" type="number" step="any" inputmode="decimal" required></label>
+              <label>South <input id="b-south" type="number" step="any" inputmode="decimal" required></label>
+              <label>West <input id="b-west" type="number" step="any" inputmode="decimal" required></label>
+              <label>East <input id="b-east" type="number" step="any" inputmode="decimal" required></label>
+              <button type="submit" class="primary">Apply</button>
+            </form>
+          </details>
+          <p id="bbox-status" class="sub status" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="card panel" aria-labelledby="period-title">
+          <h2 id="period-title"><span class="step" aria-hidden="true">2</span> Choose period</h2>
+          <fieldset class="period">
+            <legend class="sr-only">Period</legend>
+            <div class="prow">
+              <span class="plabel" aria-hidden="true">From</span>
+              <label><span class="sr-only">From month</span><select id="from-month"></select></label>
+              <label><span class="sr-only">From year</span><select id="from-year"></select></label>
+            </div>
+            <div class="prow">
+              <span class="plabel" aria-hidden="true">To</span>
+              <label><span class="sr-only">To month</span><select id="to-month"></select></label>
+              <label><span class="sr-only">To year</span><select id="to-year"></select></label>
+            </div>
+          </fieldset>
+          <p id="period-note" class="sub status" role="status" aria-live="polite"></p>
+          <div class="period-buttons">
+            <button id="period-reset" type="button">Full period</button>
+            <button id="csv-btn" type="button" class="primary">Download CSV</button>
+          </div>
+          <p id="csv-status" class="sub status" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="card panel heat" aria-labelledby="heat-title">
+          <h2 id="heat-title">Fire density on the map</h2>
+          <div id="heat-controls" class="heat-controls">
+            <label class="check"><input id="heat-on" type="checkbox" checked> Show layer</label>
+            <label class="field inline">Show
+              <select id="heat-mode">
+                <option value="month">Selected month</option>
+                <option value="period">Period total</option>
+              </select>
+            </label>
+          </div>
+          <div class="heat-controls play" role="group" aria-label="Playback of the months in the selected period">
+            <button id="heat-prev" type="button" aria-label="Previous month">◀</button>
+            <button id="heat-play" type="button" aria-label="Play the months of the selected period">Play</button>
+            <button id="heat-next" type="button" aria-label="Next month">▶</button>
+            <label class="field inline">Speed
+              <select id="heat-speed">
+                <option value="slow">Slow</option>
+                <option value="normal" selected>Normal</option>
+                <option value="fast">Fast</option>
+              </select>
+            </label>
+          </div>
+          <p id="heat-motion" class="sub" hidden>Reduced motion is on: playback starts slow and never loops.</p>
+          <div id="heat-legend" class="heat-legend" role="group"></div>
+          <p id="heat-readout" class="sub status" role="status" aria-live="polite">Hover or tap a cell to see its count. With the keyboard, focus the map and use the arrow keys: the cell under the centre cross is read out.</p>
+          <p id="heat-desc" class="sub heat-desc" aria-live="polite"></p>
+          <details class="heat-more">
+            <summary><span id="heat-top-title">Most active cells</span></summary>
+            <ol id="heat-top" class="heat-top" aria-labelledby="heat-top-title"></ol>
+          </details>
+        </section>
+      </div>
+
+      <div class="main-col">
+        <section class="card panel explore" aria-labelledby="chart-title">
+          <div class="explore-head">
+            <h2 id="chart-title" tabindex="-1"><span class="step" aria-hidden="true">3</span> Explore</h2>
+            <div class="explore-tools">
+              <label class="field">Series
+                <select id="series" aria-describedby="series-help">
+                  <option value="h">Harmonized (VIIRS S-NPP equivalent)</option>
+                  <option value="m">MODIS (raw, not harmonized)</option>
+                  <option value="v">VIIRS (raw, not harmonized)</option>
+                </select>
+              </label>
+              <button id="toggle-table" type="button" aria-pressed="false">Show as table</button>
+            </div>
+          </div>
+          <p id="series-help" class="sub"></p>
+          <p id="notice" class="notice" hidden></p>
+          <p id="exp-banner" class="exp-banner" role="note" hidden><strong>Experimental:</strong> values before 2012 are rough, and recent values may include some unflagged industrial sources.</p>
+          <section id="findings" class="findings" aria-labelledby="findings-title"></section>
+          <div class="cal-wrap">
+            <div id="calendar" class="calendar"><p class="loading">Loading data…</p></div>
+            <div class="cal-side">
+              <div id="legend" class="legend" aria-label="Color legend"></div>
+              <section id="climate" class="climate" aria-labelledby="climate-title" hidden></section>
+            </div>
+          </div>
+          <p class="sub hint">Keyboard: Tab to the calendar, arrow keys move between months, Home and End jump within a year, Enter or Space selects a month to compare.</p>
+          <div id="table-wrap" class="table-wrap" hidden></div>
+        </section>
+        <div class="charts">
+          <section class="card panel" aria-labelledby="line-title">
+            <h2 id="line-title">Month by month</h2>
+            <p id="line-sub" class="sub"></p>
+            <div id="line-chart" class="chart"></div>
+            <div id="line-legend" class="chart-legend"></div>
+          </section>
+          <section class="card panel" aria-labelledby="bar-title">
+            <h2 id="bar-title">Yearly totals</h2>
+            <p id="bar-sub" class="sub"></p>
+            <div id="bar-chart" class="chart"></div>
+            <div id="bar-legend" class="chart-legend"></div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+
+    <details class="card about">
+      <summary><h2>About the data</h2></summary>
+      <div id="about-body" class="about-body">
+        <h3>What is counted and how the series is made</h3>
+        <p>Active fire detections (hot pixels seen during one satellite pass, not single fires) from MODIS (since July 2002) and VIIRS (S-NPP since 2012, then NOAA-20), from NASA FIRMS, added up per calendar month (UTC) on a 0.25° grid. <span id="about-filters"></span></p>
+        <p>VIIRS sees several times more fires than MODIS, and the ratio is not universal: overall 3.25 in Türkiye, up to 7.07 in the Eastern Mediterranean box. So each region has its own factor for each calendar month: VIIRS total divided by MODIS total in 2012–2022 (days without data excluded). Before February 2012 the value is MODIS × factor (an estimate); from February 2012 it is the VIIRS S-NPP count itself; from November 2026 it is VIIRS NOAA-20 × 0.986 (same in all regions).</p>
+        <h3>How accurate are the estimates</h3>
+        <p>Tested by leaving each year of 2012–2022 out in turn, and independently on 2023–2025. About two thirds of months fall inside the "likely range" shown in the tooltips and charts.</p>
+        <div class="table-scroll"><table class="val-table">
+          <caption class="sr-only">Estimate error by region</caption>
+          <thead><tr><th scope="col">Region</th><th scope="col">Typical error, month</th><th scope="col">Typical error, year</th><th scope="col">Worst year</th><th scope="col">Test 2023–2025</th><th scope="col">Likely range</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Türkiye</th><td>11.8%</td><td>4.6%</td><td>11.3%</td><td>+1.5%</td><td>0.85–1.34 ×</td></tr>
+            <tr><th scope="row">Balkans box</th><td>8.7%</td><td>3.1%</td><td>5.2%</td><td>+3.8%</td><td>0.88–1.27 ×</td></tr>
+            <tr><th scope="row">Caucasus box</th><td>12.0%</td><td>5.5%</td><td>16.6% (2015)</td><td>+0.7%</td><td>0.87–1.24 ×</td></tr>
+            <tr><th scope="row">Eastern Mediterranean box (experimental)</th><td>23.7%</td><td>15.4%</td><td>43.6% (2020)</td><td>+18.7%</td><td>0.87–1.69 ×</td></tr>
+            <tr><th scope="row">California box</th><td>10.2%</td><td>7.3%</td><td>18.4% (2016)</td><td>0.0%</td><td>0.80–1.22 ×</td></tr>
+            <tr><th scope="row">Amazon arc box</th><td>6.8%</td><td>2.5%</td><td>10.0% (2021)</td><td>−0.3%</td><td>0.69–1.23 ×</td></tr>
+            <tr><th scope="row">Southeast Australia box (experimental)</th><td>14.6%</td><td>12.1%</td><td>36.0% (2012)</td><td>+8.2%</td><td>0.76–1.35 ×</td></tr>
+          </tbody>
+        </table></div>
+        <h3>Limits</h3>
+        <ul>
+          <li>All values before February 2012 are estimates, rough for small drawn areas. Busy months tend to be overestimated, quiet months underestimated.</li>
+          <li>Months busier than any tested month are marked and probably too high (in Türkiye August–October 2009 to 2011: read the 2009 and 2011 totals as upper bounds).</li>
+          <li>Experimental: the Eastern Mediterranean box (few MODIS detections; about 15% of recent VIIRS detections are probably unflagged industrial sources) and the Southeast Australia box (quiet years can be about a third too high before 2012).</li>
+          <li>Amazon arc box: 2003 and 2004 may be up to a fifth too low (doubtful static-source flags in MODIS). Raw MODIS counts from 2023 are low (orbit drift) and are not used for estimates.</li>
+          <li>Boxes are land-only rectangles, not country totals. The Balkans, Caucasus and Eastern Mediterranean boxes overlap Türkiye; for Turkish territory use the Türkiye view.</li>
+          <li>Months with 3 or more days without satellite data are marked (small triangle) and likely too low; hatched squares have no data for the chosen series.</li>
+        </ul>
+        <h3>Climate context</h3>
+        <p>Monthly 2&nbsp;m air temperature and precipitation (NASA POWER) as the difference from the 2002–2025 average of the same month: a fire-weighted average of 5 inland points per region, placed where most detections occurred in 2012–2025 (in Türkiye: Southeast Anatolia and Çukurova, not the Aegean). Shown alongside the fire counts without any claim that one explains the other. The data was obtained from National Aeronautics and Space Administration (NASA) Langley Research Center's Prediction Of Worldwide Energy Resources (POWER) project funded through the NASA Earth Science Division. The data was obtained from the POWER Project's Monthly 2.10.0 version on 2026/11/15.</p>
+        <h3>Sources and use of AI</h3>
+        <p>NASA FIRMS (fire), <a href="https://power.larc.nasa.gov" rel="noopener">NASA POWER</a> (climate), <a href="https://www.naturalearthdata.com" rel="noopener">Natural Earth</a> (borders, land mask), inferno colour scale (matplotlib, CC0), Leaflet and OpenStreetMap (map). Details: <a href="https://github.com/meceylan/yolcular/blob/main/docs/method.md" rel="noopener">full method</a>, <a href="https://github.com/meceylan/yolcular/blob/main/docs/references.md" rel="noopener">all references</a>. Code and documentation were generated with AI assistance (Claude, Anthropic) and checked by the team.</p>
+      </div>
+    </details>
+  </main>
+
+  <div id="tooltip" class="tooltip" aria-hidden="true" hidden></div>
+
+  <footer class="foot wrap">
+    <p id="ack"></p>
+    <p>Data are provided "as is" by NASA LANCE/FIRMS; not for tactical decisions or local-scale conditions.
+      <a href="https://firms.modaps.eosdis.nasa.gov/download/Readme.txt" rel="noopener">Full disclaimer</a> ·
+      <a href="https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-policy" rel="noopener">Data use policy</a></p>
+    <p>Map: <a href="https://leafletjs.com" rel="noopener">Leaflet</a>; map data © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap</a> contributors.</p>
+    <p>About: built by team Yolcular for NASA Space Apps Challenge 2026. Code and documentation were generated with AI assistance (Claude, Anthropic).</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" crossorigin="anonymous"></script>
+  <script src="maplayer.js?v=a11y1"></script>
+  <script src="share.js?v=sl1"></script>
+  <script src="findings.js?v=kf1"></script>
+  <script src="climate.js?v=pf1"></script>
+  <script src="app.js?v=fp1"></script>
+</body>
+</html>

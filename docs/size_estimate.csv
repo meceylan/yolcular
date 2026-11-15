@@ -1,0 +1,15 @@
+area,sensor,cell_deg,cells,sample_rows_per_year,calibrated_rows_per_year,raw_MB_per_year
+turkiye_kutu,MODIS,0.25,2028,12745,9499,0.7
+turkiye_kutu,VIIRS,0.25,2028,56119,39421,3.2
+balkanlar,MODIS,0.25,2176,8000,5962,0.5
+balkanlar,VIIRS,0.25,2176,45199,31750,2.5
+kafkasya,MODIS,0.25,1248,8273,6166,0.5
+kafkasya,VIIRS,0.25,1248,28288,19871,1.6
+orta_dogu,MODIS,0.25,12064,89486,66697,5.2
+orta_dogu,VIIRS,0.25,12064,584426,410534,32.9
+dogu_akdeniz,MODIS,0.25,1904,2494,1859,0.1
+dogu_akdeniz,VIIRS,0.25,1904,26219,18418,1.5
+S3_avrupa_akdeniz_kafrika,MODIS,0.5,15960,168630,125686,9.8
+S3_avrupa_akdeniz_kafrika,VIIRS,0.5,15960,780096,547984,44.0
+S4_dunya,MODIS,1.0,64800,3363262,2506761,196.3
+S4_dunya,VIIRS,1.0,64800,17305258,12156197,975.2

@@ -1,0 +1,325 @@
+{
+ "period": [
+  "2012-02-01",
+  "2025-12-31"
+ ],
+ "gap_days_excluded": 56,
+ "cell_months": 59318,
+ "modis_total": 122476,
+ "viirs_total": 394864,
+ "ratio_of_sums": 3.224,
+ "ratio_by_year": {
+  "2012": 3.46,
+  "2013": 3.37,
+  "2014": 3.32,
+  "2015": 3.0,
+  "2016": 3.32,
+  "2017": 3.3,
+  "2018": 3.19,
+  "2019": 3.48,
+  "2020": 3.59,
+  "2021": 2.98,
+  "2022": 2.95,
+  "2023": 3.23,
+  "2024": 3.13,
+  "2025": 3.01
+ },
+ "ratio_by_year_gaps_included": {
+  "2012": 3.46,
+  "2013": 3.37,
+  "2014": 3.32,
+  "2015": 3.0,
+  "2016": 3.32,
+  "2017": 3.3,
+  "2018": 3.19,
+  "2019": 3.48,
+  "2020": 3.66,
+  "2021": 2.98,
+  "2022": 2.91,
+  "2023": 3.23,
+  "2024": 2.97,
+  "2025": 3.0
+ },
+ "ratio_by_month": {
+  "1": {
+   "all": 3.26,
+   "stable_2012_2022": 3.31,
+   "drift_2023_2025": 3.2,
+   "modis": 3290,
+   "viirs": 10738
+  },
+  "2": {
+   "all": 3.19,
+   "stable_2012_2022": 3.24,
+   "drift_2023_2025": 3.1,
+   "modis": 2514,
+   "viirs": 8025
+  },
+  "3": {
+   "all": 3.84,
+   "stable_2012_2022": 3.73,
+   "drift_2023_2025": 4.2,
+   "modis": 2475,
+   "viirs": 9505
+  },
+  "4": {
+   "all": 4.27,
+   "stable_2012_2022": 4.48,
+   "drift_2023_2025": 3.43,
+   "modis": 1810,
+   "viirs": 7729
+  },
+  "5": {
+   "all": 2.12,
+   "stable_2012_2022": 2.69,
+   "drift_2023_2025": 1.15,
+   "modis": 2731,
+   "viirs": 5791
+  },
+  "6": {
+   "all": 2.02,
+   "stable_2012_2022": 1.98,
+   "drift_2023_2025": 2.16,
+   "modis": 21931,
+   "viirs": 44286
+  },
+  "7": {
+   "all": 2.98,
+   "stable_2012_2022": 3.16,
+   "drift_2023_2025": 2.43,
+   "modis": 13223,
+   "viirs": 39410
+  },
+  "8": {
+   "all": 3.88,
+   "stable_2012_2022": 3.91,
+   "drift_2023_2025": 3.75,
+   "modis": 16554,
+   "viirs": 64225
+  },
+  "9": {
+   "all": 4.2,
+   "stable_2012_2022": 4.16,
+   "drift_2023_2025": 4.47,
+   "modis": 18747,
+   "viirs": 78796
+  },
+  "10": {
+   "all": 3.78,
+   "stable_2012_2022": 3.69,
+   "drift_2023_2025": 4.08,
+   "modis": 17573,
+   "viirs": 66442
+  },
+  "11": {
+   "all": 2.62,
+   "stable_2012_2022": 2.62,
+   "drift_2023_2025": 2.62,
+   "modis": 15813,
+   "viirs": 41399
+  },
+  "12": {
+   "all": 3.18,
+   "stable_2012_2022": 3.13,
+   "drift_2023_2025": 3.33,
+   "modis": 5815,
+   "viirs": 18518
+  }
+ },
+ "ratio_by_zone": {
+  "Diğer": {
+   "ratio": 3.57,
+   "modis": 34041
+  },
+  "Ege-Akdeniz kıyısı": {
+   "ratio": 3.53,
+   "modis": 8996
+  },
+  "Güneydoğu": {
+   "ratio": 2.78,
+   "modis": 53303
+  },
+  "Çukurova": {
+   "ratio": 3.69,
+   "modis": 14622
+  },
+  "İç Anadolu": {
+   "ratio": 3.4,
+   "modis": 11514
+  }
+ },
+ "ratio_day_night": {
+  "day": 2.75,
+  "night": 5.38,
+  "modis_night_share_pct": 17.9,
+  "viirs_night_share_pct": 29.9
+ },
+ "ratio_periods": {
+  "stable_2012_2022": 3.25,
+  "drift_2023_2025": 3.13,
+  "2012_2020": 3.3,
+  "2021_2022": 2.97
+ },
+ "by_modis_level": {
+  "0": {
+   "cell_months": 33732,
+   "modis": 0,
+   "viirs": 81157,
+   "viirs_share_pct": 20.6,
+   "ratio": null
+  },
+  "1": {
+   "cell_months": 11048,
+   "modis": 11048,
+   "viirs": 29839,
+   "viirs_share_pct": 7.6,
+   "ratio": 2.7
+  },
+  "2-4": {
+   "cell_months": 9133,
+   "modis": 23891,
+   "viirs": 54357,
+   "viirs_share_pct": 13.8,
+   "ratio": 2.28
+  },
+  "5-9": {
+   "cell_months": 2966,
+   "modis": 19113,
+   "viirs": 47819,
+   "viirs_share_pct": 12.1,
+   "ratio": 2.5
+  },
+  "10-19": {
+   "cell_months": 1395,
+   "modis": 18472,
+   "viirs": 52728,
+   "viirs_share_pct": 13.4,
+   "ratio": 2.85
+  },
+  "20-49": {
+   "cell_months": 746,
+   "modis": 22071,
+   "viirs": 61513,
+   "viirs_share_pct": 15.6,
+   "ratio": 2.79
+  },
+  "50-+": {
+   "cell_months": 298,
+   "modis": 27881,
+   "viirs": 67451,
+   "viirs_share_pct": 17.1,
+   "ratio": 2.42
+  }
+ },
+ "cell_month_correlation": {
+  "pearson": 0.891,
+  "spearman": 0.297,
+  "log_pearson_both_positive": 0.734,
+  "cell_months_modis_only": 6173,
+  "cell_months_viirs_only": 33732,
+  "cell_months_both": 19413
+ },
+ "region_month_correlation": {
+  "pearson": 0.923,
+  "log_pearson": 0.949,
+  "months": 167
+ },
+ "cell_year_correlation": 0.93,
+ "matching_by_radius": {
+  "1 km": {
+   "modis_with_viirs_pct": 35.1,
+   "aqua_with_viirs_pct": 45.7,
+   "terra_with_viirs_pct": 24.1,
+   "viirs_with_modis_pct": 20.6
+  },
+  "2 km": {
+   "modis_with_viirs_pct": 44.8,
+   "aqua_with_viirs_pct": 56.6,
+   "terra_with_viirs_pct": 32.7,
+   "viirs_with_modis_pct": 26.5
+  },
+  "3 km": {
+   "modis_with_viirs_pct": 49.0,
+   "aqua_with_viirs_pct": 60.4,
+   "terra_with_viirs_pct": 37.3,
+   "viirs_with_modis_pct": 29.4
+  }
+ },
+ "matching_detail": {
+  "radius_km": 2.0,
+  "n_modis": 122476,
+  "n_viirs": 394864,
+  "day": {
+   "modis_with_viirs_pct": 43.3,
+   "aqua_with_viirs_pct": 53.9,
+   "terra_with_viirs_pct": 29.0,
+   "viirs_with_modis_pct": 26.5
+  },
+  "night": {
+   "modis_with_viirs_pct": 52.0,
+   "aqua_with_viirs_pct": 88.4,
+   "terra_with_viirs_pct": 41.9,
+   "viirs_with_modis_pct": 26.6
+  },
+  "2012_2022": {
+   "modis_with_viirs_pct": 47.3,
+   "aqua_with_viirs_pct": 60.3,
+   "terra_with_viirs_pct": 34.4,
+   "viirs_with_modis_pct": 27.5
+  },
+  "2023_2025": {
+   "modis_with_viirs_pct": 36.0,
+   "aqua_with_viirs_pct": 44.4,
+   "terra_with_viirs_pct": 25.4,
+   "viirs_with_modis_pct": 22.9
+  },
+  "aqua_with_viirs_pct_by_year": {
+   "2012": 60.2,
+   "2013": 62.9,
+   "2014": 59.6,
+   "2015": 65.4,
+   "2016": 63.6,
+   "2017": 60.4,
+   "2018": 55.2,
+   "2019": 55.3,
+   "2020": 56.7,
+   "2021": 63.8,
+   "2022": 46.8,
+   "2023": 48.5,
+   "2024": 44.7,
+   "2025": 40.0
+  },
+  "terra_with_viirs_pct_by_year": {
+   "2012": 34.9,
+   "2013": 36.2,
+   "2014": 29.2,
+   "2015": 36.8,
+   "2016": 36.3,
+   "2017": 32.4,
+   "2018": 29.9,
+   "2019": 28.6,
+   "2020": 32.0,
+   "2021": 47.2,
+   "2022": 19.3,
+   "2023": 19.1,
+   "2024": 23.8,
+   "2025": 34.1
+  },
+  "viirs_with_modis_pct_by_year": {
+   "2012": 26.4,
+   "2013": 26.1,
+   "2014": 24.9,
+   "2015": 31.7,
+   "2016": 27.8,
+   "2017": 25.7,
+   "2018": 24.2,
+   "2019": 23.0,
+   "2020": 22.9,
+   "2021": 41.8,
+   "2022": 19.7,
+   "2023": 18.9,
+   "2024": 21.5,
+   "2025": 28.7
+  }
+ }
+}

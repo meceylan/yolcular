@@ -1,0 +1,11 @@
+.env
+data/raw/*
+!data/raw/.gitkeep
+__pycache__/
+*.pyc
+data/processed/**/*.parquet
+data/boundaries/ne_10m_land.geojson
+
+.claude/
+CLAUDE.md
+PLAN.md

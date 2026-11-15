@@ -1,0 +1,416 @@
+{
+ "balkanlar": {
+  "method": "monthly",
+  "coefficients": {
+   "1": 5.759,
+   "2": 3.422,
+   "3": 3.709,
+   "4": 4.209,
+   "5": 4.285,
+   "6": 3.216,
+   "7": 3.677,
+   "8": 3.84,
+   "9": 3.568,
+   "10": 3.212,
+   "11": 3.495,
+   "12": 6.096
+  },
+  "cv_month_weighted_abs_err_pct": 8.7,
+  "cv_year_mean_abs_err_pct": 3.1,
+  "cv_year_max_abs_err_pct": 5.2,
+  "test_2023_2025_total_err_pct": 3.8,
+  "test_2023_2025_year_err_pct": {
+   "2023": 11.6,
+   "2024": -0.5,
+   "2025": 1.3
+  },
+  "uncertainty_p16_p84": [
+   0.88,
+   1.27
+  ],
+  "uncertainty_p05_p95": [
+   0.72,
+   1.54
+  ],
+  "level_effect": {
+   "lt_0.5x": {
+    "months": 23,
+    "actual_over_predicted": 1.11
+   },
+   "0.5_1.5x": {
+    "months": 75,
+    "actual_over_predicted": 1.01
+   },
+   "1.5_2.5x": {
+    "months": 19,
+    "actual_over_predicted": 0.96
+   },
+   "gt_2.5x": {
+    "months": 14,
+    "actual_over_predicted": 0.98
+   }
+  },
+  "junction_2012": {
+   "viirs": 56254,
+   "predicted": 54513,
+   "err_pct": -3.1
+  },
+  "level_ratio_after_over_before": {
+   "raw_combined": 2.47,
+   "harmonized": 0.67,
+   "modis_alone": 0.7
+  },
+  "change_2011_to_2012_pct": {
+   "modis_alone": 9.6,
+   "harmonized": 14.3,
+   "raw_combined": 312.2
+  },
+  "overlap_monthly_corr_estimate_vs_viirs": 0.99,
+  "out_of_range_months": [
+   "2006-07",
+   "2006-11",
+   "2007-01",
+   "2007-06",
+   "2007-07",
+   "2007-08",
+   "2010-11",
+   "2011-10",
+   "2011-11"
+  ],
+  "yearly_h": {
+   "2003": 25028,
+   "2004": 38323,
+   "2005": 33819,
+   "2006": 36022,
+   "2007": 76339,
+   "2008": 43028,
+   "2009": 22809,
+   "2010": 22691,
+   "2011": 49442,
+   "2012": 56530,
+   "2013": 25494,
+   "2014": 19051,
+   "2015": 22518,
+   "2016": 29232,
+   "2017": 35547,
+   "2018": 19083,
+   "2019": 35304,
+   "2020": 20451,
+   "2021": 31642,
+   "2022": 15645,
+   "2023": 20889,
+   "2024": 24870,
+   "2025": 23454
+  },
+  "modis_2002_2011_total": 97287
+ },
+ "kafkasya": {
+  "method": "monthly",
+  "coefficients": {
+   "1": 4.234,
+   "2": 3.363,
+   "3": 3.413,
+   "4": 4.24,
+   "5": 4.465,
+   "6": 3.804,
+   "7": 3.983,
+   "8": 4.127,
+   "9": 4.258,
+   "10": 3.383,
+   "11": 4.004,
+   "12": 5.407
+  },
+  "cv_month_weighted_abs_err_pct": 12.0,
+  "cv_year_mean_abs_err_pct": 5.5,
+  "cv_year_max_abs_err_pct": 16.6,
+  "test_2023_2025_total_err_pct": 0.7,
+  "test_2023_2025_year_err_pct": {
+   "2023": 3.6,
+   "2024": 3.7,
+   "2025": -2.6
+  },
+  "uncertainty_p16_p84": [
+   0.87,
+   1.24
+  ],
+  "uncertainty_p05_p95": [
+   0.76,
+   1.43
+  ],
+  "level_effect": {
+   "lt_0.5x": {
+    "months": 15,
+    "actual_over_predicted": 1.23
+   },
+   "0.5_1.5x": {
+    "months": 80,
+    "actual_over_predicted": 1.04
+   },
+   "1.5_2.5x": {
+    "months": 23,
+    "actual_over_predicted": 0.98
+   },
+   "gt_2.5x": {
+    "months": 13,
+    "actual_over_predicted": 0.92
+   }
+  },
+  "junction_2012": {
+   "viirs": 20951,
+   "predicted": 20960,
+   "err_pct": 0.0
+  },
+  "level_ratio_after_over_before": {
+   "raw_combined": 4.21,
+   "harmonized": 1.05,
+   "modis_alone": 1.05
+  },
+  "change_2011_to_2012_pct": {
+   "modis_alone": 51.0,
+   "harmonized": 49.9,
+   "raw_combined": 465.5
+  },
+  "overlap_monthly_corr_estimate_vs_viirs": 0.982,
+  "out_of_range_months": [
+   "2002-11",
+   "2003-05",
+   "2004-01",
+   "2004-08",
+   "2006-08",
+   "2007-05",
+   "2008-12",
+   "2010-08",
+   "2010-11",
+   "2010-12"
+  ],
+  "yearly_h": {
+   "2003": 16420,
+   "2004": 18637,
+   "2005": 14747,
+   "2006": 19152,
+   "2007": 13299,
+   "2008": 14995,
+   "2009": 10052,
+   "2010": 26805,
+   "2011": 14454,
+   "2012": 21671,
+   "2013": 15823,
+   "2014": 15601,
+   "2015": 20434,
+   "2016": 17074,
+   "2017": 22769,
+   "2018": 15025,
+   "2019": 19196,
+   "2020": 14390,
+   "2021": 10245,
+   "2022": 10719,
+   "2023": 8517,
+   "2024": 8997,
+   "2025": 15933
+  },
+  "modis_2002_2011_total": 40676
+ },
+ "dogu_akdeniz": {
+  "method": "shrunk",
+  "coefficients": {
+   "1": 8.111,
+   "2": 9.069,
+   "3": 10.566,
+   "4": 11.942,
+   "5": 7.723,
+   "6": 6.043,
+   "7": 6.07,
+   "8": 7.002,
+   "9": 7.125,
+   "10": 6.385,
+   "11": 6.353,
+   "12": 7.729
+  },
+  "cv_month_weighted_abs_err_pct": 23.7,
+  "cv_year_mean_abs_err_pct": 15.4,
+  "cv_year_max_abs_err_pct": 43.6,
+  "test_2023_2025_total_err_pct": 18.7,
+  "test_2023_2025_year_err_pct": {
+   "2023": 8.4,
+   "2024": 3.1,
+   "2025": 51.1
+  },
+  "uncertainty_p16_p84": [
+   0.87,
+   1.69
+  ],
+  "uncertainty_p05_p95": [
+   0.7,
+   2.41
+  ],
+  "level_effect": {
+   "lt_0.5x": {
+    "months": 7,
+    "actual_over_predicted": 1.52
+   },
+   "0.5_1.5x": {
+    "months": 92,
+    "actual_over_predicted": 1.2
+   },
+   "1.5_2.5x": {
+    "months": 23,
+    "actual_over_predicted": 0.88
+   },
+   "gt_2.5x": {
+    "months": 9,
+    "actual_over_predicted": 0.65
+   }
+  },
+  "junction_2012": {
+   "viirs": 9337,
+   "predicted": 9958,
+   "err_pct": 6.7
+  },
+  "level_ratio_after_over_before": {
+   "raw_combined": 9.77,
+   "harmonized": 1.42,
+   "modis_alone": 1.57
+  },
+  "change_2011_to_2012_pct": {
+   "modis_alone": 71.0,
+   "harmonized": 63.8,
+   "raw_combined": 1007.2
+  },
+  "overlap_monthly_corr_estimate_vs_viirs": 0.914,
+  "out_of_range_months": [
+   "2010-11",
+   "2010-12"
+  ],
+  "yearly_h": {
+   "2003": 5003,
+   "2004": 4733,
+   "2005": 5389,
+   "2006": 7976,
+   "2007": 7994,
+   "2008": 5630,
+   "2009": 6121,
+   "2010": 9241,
+   "2011": 5796,
+   "2012": 9491,
+   "2013": 11692,
+   "2014": 8449,
+   "2015": 9774,
+   "2016": 10435,
+   "2017": 8062,
+   "2018": 6151,
+   "2019": 7780,
+   "2020": 8991,
+   "2021": 7802,
+   "2022": 5873,
+   "2023": 8627,
+   "2024": 7859,
+   "2025": 6517
+  },
+  "modis_2002_2011_total": 8980
+ },
+ "turkiye": {
+  "method": "monthly",
+  "coefficients": {
+   "1": 3.31,
+   "2": 3.236,
+   "3": 3.732,
+   "4": 4.476,
+   "5": 2.694,
+   "6": 1.981,
+   "7": 3.163,
+   "8": 3.907,
+   "9": 4.159,
+   "10": 3.692,
+   "11": 2.618,
+   "12": 3.128
+  },
+  "cv_month_weighted_abs_err_pct": 11.8,
+  "cv_year_mean_abs_err_pct": 4.6,
+  "cv_year_max_abs_err_pct": 11.3,
+  "test_2023_2025_total_err_pct": 1.5,
+  "test_2023_2025_year_err_pct": {
+   "2023": 0.2,
+   "2024": 1.8,
+   "2025": 2.6
+  },
+  "uncertainty_p16_p84": [
+   0.85,
+   1.34
+  ],
+  "uncertainty_p05_p95": [
+   0.68,
+   1.7
+  ],
+  "level_effect": {
+   "lt_0.5x": {
+    "months": 13,
+    "actual_over_predicted": 1.38
+   },
+   "0.5_1.5x": {
+    "months": 81,
+    "actual_over_predicted": 1.05
+   },
+   "1.5_2.5x": {
+    "months": 30,
+    "actual_over_predicted": 0.94
+   },
+   "gt_2.5x": {
+    "months": 7,
+    "actual_over_predicted": 0.85
+   }
+  },
+  "junction_2012": {
+   "viirs": 21389,
+   "predicted": 21602,
+   "err_pct": 1.0
+  },
+  "level_ratio_after_over_before": {
+   "raw_combined": 3.37,
+   "harmonized": 1.0,
+   "modis_alone": 1.03
+  },
+  "change_2011_to_2012_pct": {
+   "modis_alone": -63.7,
+   "harmonized": -64.8,
+   "raw_combined": 25.0
+  },
+  "overlap_monthly_corr_estimate_vs_viirs": 0.985,
+  "out_of_range_months": [
+   "2006-08",
+   "2009-08",
+   "2009-09",
+   "2009-10",
+   "2010-08",
+   "2011-08",
+   "2011-09",
+   "2011-10",
+   "2011-12"
+  ],
+  "yearly_h": {
+   "2003": 21135,
+   "2004": 24404,
+   "2005": 24654,
+   "2006": 28890,
+   "2007": 26493,
+   "2008": 17212,
+   "2009": 65656,
+   "2010": 42387,
+   "2011": 61117,
+   "2012": 21541,
+   "2013": 35142,
+   "2014": 19556,
+   "2015": 49675,
+   "2016": 41475,
+   "2017": 27886,
+   "2018": 22725,
+   "2019": 25850,
+   "2020": 28831,
+   "2021": 26873,
+   "2022": 14204,
+   "2023": 25795,
+   "2024": 32070,
+   "2025": 24415
+  },
+  "modis_2002_2011_total": 95984
+ }
+}

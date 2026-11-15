@@ -1,0 +1,601 @@
+{
+ "confidence": {
+  "modis_type0_share": {
+   "lt30": 3.6,
+   "30_79": 71.9,
+   "ge80": 24.5
+  },
+  "viirs_type0_share": {
+   "low": 11.1,
+   "nominal": 82.9,
+   "high": 6.0
+  },
+  "modis_static_share_by_class": {
+   "low": 24.3,
+   "nominal": 8.3,
+   "high": 2.5
+  },
+  "viirs_static_share_by_class": {
+   "low": 7.4,
+   "nominal": 29.7,
+   "high": 0.5
+  },
+  "viirs_low_day_share": 100.0,
+  "modis_low_day_share": 78.4
+ },
+ "options": {
+  "Ham": {
+   "modis_kept": 138521,
+   "modis_kept_pct": 100.0,
+   "viirs_kept": 605609,
+   "viirs_kept_pct": 100.0,
+   "ratio_of_sums": 4.37,
+   "ratio_year_min": 3.69,
+   "ratio_year_max": 5.01,
+   "ratio_year_cv_pct": 8.9,
+   "ratio_month_cv_pct": 36.5,
+   "monthly_corr": 0.895,
+   "modis_min_month": 11,
+   "modis_months_lt50": 1
+  },
+  "Gevşek": {
+   "modis_kept": 127915,
+   "modis_kept_pct": 92.3,
+   "viirs_kept": 445576,
+   "viirs_kept_pct": 73.6,
+   "ratio_of_sums": 3.48,
+   "ratio_year_min": 3.07,
+   "ratio_year_max": 3.95,
+   "ratio_year_cv_pct": 8.2,
+   "ratio_month_cv_pct": 34.3,
+   "monthly_corr": 0.907,
+   "modis_min_month": 10,
+   "modis_months_lt50": 4
+  },
+  "Orta": {
+   "modis_kept": 123320,
+   "modis_kept_pct": 89.0,
+   "viirs_kept": 395942,
+   "viirs_kept_pct": 65.4,
+   "ratio_of_sums": 3.21,
+   "ratio_year_min": 2.91,
+   "ratio_year_max": 3.66,
+   "ratio_year_cv_pct": 7.1,
+   "ratio_month_cv_pct": 32.6,
+   "monthly_corr": 0.919,
+   "modis_min_month": 10,
+   "modis_months_lt50": 4
+  },
+  "Sıkı": {
+   "modis_kept": 31346,
+   "modis_kept_pct": 22.6,
+   "viirs_kept": 26651,
+   "viirs_kept_pct": 4.4,
+   "ratio_of_sums": 0.85,
+   "ratio_year_min": 0.67,
+   "ratio_year_max": 1.11,
+   "ratio_year_cv_pct": 15.8,
+   "ratio_month_cv_pct": 37.2,
+   "monthly_corr": 0.878,
+   "modis_min_month": 0,
+   "modis_months_lt50": 84
+  }
+ },
+ "modis_threshold_scan": {
+  "0": {
+   "modis_kept": 127915,
+   "ratio": 3.1,
+   "cv_pct": 7.1
+  },
+  "20": {
+   "modis_kept": 126187,
+   "ratio": 3.14,
+   "cv_pct": 7.1
+  },
+  "30": {
+   "modis_kept": 123320,
+   "ratio": 3.21,
+   "cv_pct": 7.1
+  },
+  "40": {
+   "modis_kept": 117028,
+   "ratio": 3.38,
+   "cv_pct": 6.8
+  },
+  "50": {
+   "modis_kept": 105495,
+   "ratio": 3.75,
+   "cv_pct": 6.6
+  }
+ },
+ "mask_test": {
+  "min_days=1, r_viirs=0, r_modis=1": {
+   "mask_cells": 4891,
+   "2025_MODIS_static_caught_pct": 92.8,
+   "2025_MODIS_fire_lost_pct": 9.9,
+   "2025_VIIRS_static_caught_pct": 97.7,
+   "2025_VIIRS_fire_lost_pct": 5.7,
+   "2026_jan_jul_MODIS_static_caught_pct": 94.9,
+   "2026_jan_jul_MODIS_fire_lost_pct": 14.7,
+   "2026_jan_jul_VIIRS_static_caught_pct": 95.0,
+   "2026_jan_jul_VIIRS_fire_lost_pct": 9.9
+  },
+  "min_days=1, r_viirs=1, r_modis=1": {
+   "mask_cells": 4891,
+   "2025_MODIS_static_caught_pct": 92.8,
+   "2025_MODIS_fire_lost_pct": 9.9,
+   "2025_VIIRS_static_caught_pct": 99.3,
+   "2025_VIIRS_fire_lost_pct": 13.9,
+   "2026_jan_jul_MODIS_static_caught_pct": 94.9,
+   "2026_jan_jul_MODIS_fire_lost_pct": 14.7,
+   "2026_jan_jul_VIIRS_static_caught_pct": 97.7,
+   "2026_jan_jul_VIIRS_fire_lost_pct": 22.2
+  },
+  "min_days=1, r_viirs=1, r_modis=2": {
+   "mask_cells": 4891,
+   "2025_MODIS_static_caught_pct": 94.8,
+   "2025_MODIS_fire_lost_pct": 17.6,
+   "2025_VIIRS_static_caught_pct": 99.3,
+   "2025_VIIRS_fire_lost_pct": 13.9,
+   "2026_jan_jul_MODIS_static_caught_pct": 95.9,
+   "2026_jan_jul_MODIS_fire_lost_pct": 25.2,
+   "2026_jan_jul_VIIRS_static_caught_pct": 97.7,
+   "2026_jan_jul_VIIRS_fire_lost_pct": 22.2
+  },
+  "min_days=2, r_viirs=0, r_modis=1": {
+   "mask_cells": 2067,
+   "2025_MODIS_static_caught_pct": 84.7,
+   "2025_MODIS_fire_lost_pct": 6.9,
+   "2025_VIIRS_static_caught_pct": 97.5,
+   "2025_VIIRS_fire_lost_pct": 4.3,
+   "2026_jan_jul_MODIS_static_caught_pct": 87.5,
+   "2026_jan_jul_MODIS_fire_lost_pct": 10.2,
+   "2026_jan_jul_VIIRS_static_caught_pct": 94.9,
+   "2026_jan_jul_VIIRS_fire_lost_pct": 7.6
+  },
+  "min_days=2, r_viirs=1, r_modis=1": {
+   "mask_cells": 2067,
+   "2025_MODIS_static_caught_pct": 84.7,
+   "2025_MODIS_fire_lost_pct": 6.9,
+   "2025_VIIRS_static_caught_pct": 99.1,
+   "2025_VIIRS_fire_lost_pct": 10.5,
+   "2026_jan_jul_MODIS_static_caught_pct": 87.5,
+   "2026_jan_jul_MODIS_fire_lost_pct": 10.2,
+   "2026_jan_jul_VIIRS_static_caught_pct": 97.6,
+   "2026_jan_jul_VIIRS_fire_lost_pct": 17.2
+  },
+  "min_days=2, r_viirs=1, r_modis=2": {
+   "mask_cells": 2067,
+   "2025_MODIS_static_caught_pct": 88.6,
+   "2025_MODIS_fire_lost_pct": 12.2,
+   "2025_VIIRS_static_caught_pct": 99.1,
+   "2025_VIIRS_fire_lost_pct": 10.5,
+   "2026_jan_jul_MODIS_static_caught_pct": 90.6,
+   "2026_jan_jul_MODIS_fire_lost_pct": 17.6,
+   "2026_jan_jul_VIIRS_static_caught_pct": 97.6,
+   "2026_jan_jul_VIIRS_fire_lost_pct": 17.2
+  },
+  "min_days=3, r_viirs=0, r_modis=1": {
+   "mask_cells": 1352,
+   "2025_MODIS_static_caught_pct": 79.4,
+   "2025_MODIS_fire_lost_pct": 5.6,
+   "2025_VIIRS_static_caught_pct": 97.4,
+   "2025_VIIRS_fire_lost_pct": 3.8,
+   "2026_jan_jul_MODIS_static_caught_pct": 79.0,
+   "2026_jan_jul_MODIS_fire_lost_pct": 8.1,
+   "2026_jan_jul_VIIRS_static_caught_pct": 94.9,
+   "2026_jan_jul_VIIRS_fire_lost_pct": 6.3
+  },
+  "min_days=3, r_viirs=1, r_modis=1": {
+   "mask_cells": 1352,
+   "2025_MODIS_static_caught_pct": 79.4,
+   "2025_MODIS_fire_lost_pct": 5.6,
+   "2025_VIIRS_static_caught_pct": 99.0,
+   "2025_VIIRS_fire_lost_pct": 8.5,
+   "2026_jan_jul_MODIS_static_caught_pct": 79.0,
+   "2026_jan_jul_MODIS_fire_lost_pct": 8.1,
+   "2026_jan_jul_VIIRS_static_caught_pct": 97.6,
+   "2026_jan_jul_VIIRS_fire_lost_pct": 13.8
+  },
+  "min_days=3, r_viirs=1, r_modis=2": {
+   "mask_cells": 1352,
+   "2025_MODIS_static_caught_pct": 83.4,
+   "2025_MODIS_fire_lost_pct": 9.9,
+   "2025_VIIRS_static_caught_pct": 99.0,
+   "2025_VIIRS_fire_lost_pct": 8.5,
+   "2026_jan_jul_MODIS_static_caught_pct": 82.1,
+   "2026_jan_jul_MODIS_fire_lost_pct": 14.3,
+   "2026_jan_jul_VIIRS_static_caught_pct": 97.6,
+   "2026_jan_jul_VIIRS_fire_lost_pct": 13.8
+  },
+  "min_days=5, r_viirs=0, r_modis=1": {
+   "mask_cells": 913,
+   "2025_MODIS_static_caught_pct": 76.0,
+   "2025_MODIS_fire_lost_pct": 4.1,
+   "2025_VIIRS_static_caught_pct": 97.2,
+   "2025_VIIRS_fire_lost_pct": 3.2,
+   "2026_jan_jul_MODIS_static_caught_pct": 73.4,
+   "2026_jan_jul_MODIS_fire_lost_pct": 6.4,
+   "2026_jan_jul_VIIRS_static_caught_pct": 94.6,
+   "2026_jan_jul_VIIRS_fire_lost_pct": 5.2
+  },
+  "min_days=5, r_viirs=1, r_modis=1": {
+   "mask_cells": 913,
+   "2025_MODIS_static_caught_pct": 76.0,
+   "2025_MODIS_fire_lost_pct": 4.1,
+   "2025_VIIRS_static_caught_pct": 99.0,
+   "2025_VIIRS_fire_lost_pct": 6.8,
+   "2026_jan_jul_MODIS_static_caught_pct": 73.4,
+   "2026_jan_jul_MODIS_fire_lost_pct": 6.4,
+   "2026_jan_jul_VIIRS_static_caught_pct": 97.5,
+   "2026_jan_jul_VIIRS_fire_lost_pct": 10.2
+  },
+  "min_days=5, r_viirs=1, r_modis=2": {
+   "mask_cells": 913,
+   "2025_MODIS_static_caught_pct": 79.7,
+   "2025_MODIS_fire_lost_pct": 7.4,
+   "2025_VIIRS_static_caught_pct": 99.0,
+   "2025_VIIRS_fire_lost_pct": 6.8,
+   "2026_jan_jul_MODIS_static_caught_pct": 76.5,
+   "2026_jan_jul_MODIS_fire_lost_pct": 10.7,
+   "2026_jan_jul_VIIRS_static_caught_pct": 97.5,
+   "2026_jan_jul_VIIRS_fire_lost_pct": 10.2
+  }
+ },
+ "mask_final": {
+  "min_days": 3,
+  "r_viirs_cells": 0,
+  "r_modis_cells": 1,
+  "cell_deg": 0.01,
+  "mask_cells": 1518,
+  "MODIS_monthly_mask_vs_type_ratio": 0.953,
+  "MODIS_monthly_corr": 0.9985,
+  "SNPP_monthly_mask_vs_type_ratio": 0.951,
+  "SNPP_monthly_corr": 0.9996,
+  "NOAA20_monthly_mask_vs_type_ratio": 0.955,
+  "NOAA20_monthly_corr": 0.9996
+ },
+ "nrt_months": {
+  "2026-08": {
+   "modis_raw": 0,
+   "viirs_raw": 4285,
+   "ratio_raw": 4285.0,
+   "modis_masked_pct": NaN,
+   "viirs_masked_pct": 38.6,
+   "modis_orta": 0,
+   "viirs_orta": 2331,
+   "ratio_orta": 2331.0,
+   "viirs_satellite": "SNPP"
+  },
+  "2026-09": {
+   "modis_raw": 1580,
+   "viirs_raw": 8173,
+   "ratio_raw": 5.17,
+   "modis_masked_pct": 6.1,
+   "viirs_masked_pct": 17.9,
+   "modis_orta": 1422,
+   "viirs_orta": 5825,
+   "ratio_orta": 4.1,
+   "viirs_satellite": "SNPP"
+  },
+  "2026-10": {
+   "modis_raw": 1027,
+   "viirs_raw": 5802,
+   "ratio_raw": 5.65,
+   "modis_masked_pct": 3.7,
+   "viirs_masked_pct": 18.3,
+   "modis_orta": 944,
+   "viirs_orta": 4405,
+   "ratio_orta": 4.67,
+   "viirs_satellite": "SNPP"
+  },
+  "2026-11": {
+   "modis_raw": 70,
+   "viirs_raw": 721,
+   "ratio_raw": 10.3,
+   "modis_masked_pct": 8.6,
+   "viirs_masked_pct": 31.1,
+   "modis_orta": 60,
+   "viirs_orta": 490,
+   "ratio_orta": 8.17,
+   "viirs_satellite": "NOAA20"
+  }
+ },
+ "november_1_13_context": {
+  "2012": {
+   "modis": 150,
+   "viirs_snpp": 397,
+   "ratio": 2.65
+  },
+  "2013": {
+   "modis": 550,
+   "viirs_snpp": 1553,
+   "ratio": 2.82
+  },
+  "2014": {
+   "modis": 333,
+   "viirs_snpp": 830,
+   "ratio": 2.49
+  },
+  "2015": {
+   "modis": 1151,
+   "viirs_snpp": 3134,
+   "ratio": 2.72
+  },
+  "2016": {
+   "modis": 844,
+   "viirs_snpp": 1979,
+   "ratio": 2.34
+  },
+  "2017": {
+   "modis": 258,
+   "viirs_snpp": 822,
+   "ratio": 3.19
+  },
+  "2018": {
+   "modis": 957,
+   "viirs_snpp": 2159,
+   "ratio": 2.26
+  },
+  "2019": {
+   "modis": 714,
+   "viirs_snpp": 1966,
+   "ratio": 2.75
+  },
+  "2020": {
+   "modis": 526,
+   "viirs_snpp": 1482,
+   "ratio": 2.82
+  },
+  "2021": {
+   "modis": 751,
+   "viirs_snpp": 1946,
+   "ratio": 2.59
+  },
+  "2022": {
+   "modis": 510,
+   "viirs_snpp": 1326,
+   "ratio": 2.6
+  },
+  "2023": {
+   "modis": 597,
+   "viirs_snpp": 1865,
+   "ratio": 3.12,
+   "viirs_noaa20": 2018
+  },
+  "2024": {
+   "modis": 920,
+   "viirs_snpp": 1653,
+   "ratio": 1.8,
+   "viirs_noaa20": 2498
+  },
+  "2025": {
+   "modis": 547,
+   "viirs_snpp": 1304,
+   "ratio": 2.38,
+   "viirs_noaa20": 1514
+  }
+ },
+ "november_2026_1_13": {
+  "modis_raw": 70,
+  "viirs_raw": 708,
+  "modis_after_mask": 64,
+  "viirs_after_mask": 491,
+  "modis_orta": 60,
+  "viirs_orta": 484,
+  "modis_days": 11,
+  "viirs_days": 13,
+  "modis_by_sat": {
+   "Aqua": 45,
+   "Terra": 25
+  },
+  "viirs_night_pct_after": 2.6
+ },
+ "typical_ratio_by_month": {
+  "9": {
+   "min": 3.86,
+   "median": 4.21,
+   "max": 6.42
+  },
+  "10": {
+   "min": 3.21,
+   "median": 3.82,
+   "max": 4.98
+  },
+  "11": {
+   "min": 2.06,
+   "median": 2.73,
+   "max": 3.26
+  }
+ },
+ "modis_day_pass_utc_sep_nov": {
+  "Terra": {
+   "2005": 8.6,
+   "2012": 8.6,
+   "2018": 8.8,
+   "2021": 8.4,
+   "2023": 8.1,
+   "2024": 7.7,
+   "2025": 7.5,
+   "2026": 7.0
+  },
+  "Aqua": {
+   "2005": 10.8,
+   "2012": 10.9,
+   "2018": 10.8,
+   "2021": 10.7,
+   "2023": 11.1,
+   "2024": 11.4,
+   "2025": 12.0,
+   "2026": 12.8
+  }
+ },
+ "terra_share_sep_nov": {
+  "2018": 0.44,
+  "2019": 0.45,
+  "2020": 0.44,
+  "2021": 0.47,
+  "2022": 0.35,
+  "2023": 0.39,
+  "2024": 0.43,
+  "2025": 0.31,
+  "2026": 0.37
+ },
+ "noaa20_over_snpp_november": {
+  "2023": 1.14,
+  "2024": 1.38,
+  "2025": 1.03
+ },
+ "august_2022": {
+  "days_in_month": 31,
+  "modis": {
+   "raw": 156,
+   "filtered": 107,
+   "days_with_any_detection": 29
+  },
+  "terra": {
+   "raw": 88,
+   "filtered": 61,
+   "days_with_any_detection": 27
+  },
+  "aqua": {
+   "raw": 68,
+   "filtered": 46,
+   "days_with_any_detection": 22
+  },
+  "viirs": {
+   "raw": 1453,
+   "filtered": 545,
+   "days_with_any_detection": 21
+  },
+  "other_years_median": {
+   "modis": 1023.0,
+   "viirs": 4665.0
+  },
+  "modis_days_1_10": 36,
+  "modis_days_11_31": 64,
+  "viirs_days_1_10": 0,
+  "viirs_days_11_31": 521,
+  "viirs_estimate_if_no_gap": 814,
+  "july_2022": {
+   "modis_27_31": 24,
+   "modis_1_26": 581,
+   "viirs_1_26": 1208
+  }
+ },
+ "december_2018": {
+  "days_in_month": 31,
+  "modis": {
+   "raw": 11,
+   "filtered": 10,
+   "days_with_any_detection": 5
+  },
+  "terra": {
+   "raw": 1,
+   "filtered": 0,
+   "days_with_any_detection": 1
+  },
+  "aqua": {
+   "raw": 10,
+   "filtered": 10,
+   "days_with_any_detection": 4
+  },
+  "viirs": {
+   "raw": 394,
+   "filtered": 111,
+   "days_with_any_detection": 30
+  },
+  "other_years_median": {
+   "modis": 446.0,
+   "viirs": 1380.0
+  },
+  "december_by_year": {
+   "2012": {
+    "modis": 123,
+    "viirs": 716
+   },
+   "2013": {
+    "modis": 298,
+    "viirs": 869
+   },
+   "2014": {
+    "modis": 73,
+    "viirs": 386
+   },
+   "2015": {
+    "modis": 774,
+    "viirs": 2216
+   },
+   "2016": {
+    "modis": 126,
+    "viirs": 684
+   },
+   "2017": {
+    "modis": 712,
+    "viirs": 1758
+   },
+   "2018": {
+    "modis": 10,
+    "viirs": 111
+   },
+   "2019": {
+    "modis": 354,
+    "viirs": 1230
+   },
+   "2020": {
+    "modis": 587,
+    "viirs": 1824
+   },
+   "2021": {
+    "modis": 451,
+    "viirs": 1380
+   },
+   "2022": {
+    "modis": 680,
+    "viirs": 1928
+   },
+   "2023": {
+    "modis": 772,
+    "viirs": 2472
+   },
+   "2024": {
+    "modis": 446,
+    "viirs": 1332
+   },
+   "2025": {
+    "modis": 409,
+    "viirs": 1612
+   }
+  },
+  "static_days": {
+   "modis": 1,
+   "viirs": 29
+  },
+  "static_count": {
+   "modis": 1,
+   "viirs": 283
+  }
+ },
+ "gap_days_by_month": {
+  "VIIRS": {
+   "2022-07": 5,
+   "2022-08": 10,
+   "2024-05": 2,
+   "2024-06": 3,
+   "2024-07": 10,
+   "2024-09": 1,
+   "2025-07": 2,
+   "2026-06": 2,
+   "2026-07": 6
+  },
+  "Aqua": {
+   "2002-07": 2,
+   "2002-08": 7,
+   "2020-08": 2,
+   "2020-09": 2
+  },
+  "MODIS": {
+   "2014-09": 2
+  }
+ }
+}

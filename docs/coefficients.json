@@ -1,0 +1,367 @@
+{
+ "generated": "2026-11-14",
+ "region": "turkiye",
+ "method": "ratio of sums (sum VIIRS S-NPP / sum MODIS), one coefficient per calendar month; gap days excluded",
+ "calibration_years": [
+  2012,
+  2022
+ ],
+ "calibration_note": "Terra and Aqua overpass times are stable through 2022; 2023-2025 (orbit drift) used only as an independent test",
+ "viirs_start": "2012-02-01",
+ "noaa20_start": "2026-11-01",
+ "modis_to_snpp": {
+  "1": 3.31,
+  "2": 3.236,
+  "3": 3.732,
+  "4": 4.476,
+  "5": 2.694,
+  "6": 1.981,
+  "7": 3.163,
+  "8": 3.907,
+  "9": 4.159,
+  "10": 3.692,
+  "11": 2.618,
+  "12": 3.128
+ },
+ "noaa20_to_snpp": {
+  "by_month": false,
+  "k": {
+   "1": 0.986,
+   "2": 0.986,
+   "3": 0.986,
+   "4": 0.986,
+   "5": 0.986,
+   "6": 0.986,
+   "7": 0.986,
+   "8": 0.986,
+   "9": 0.986,
+   "10": 0.986,
+   "11": 0.986,
+   "12": 0.986
+  },
+  "k_constant": 0.986,
+  "k_region_own": 0.986,
+  "years": [
+   2023,
+   2025
+  ]
+ },
+ "uncertainty": {
+  "modis_months_actual_over_estimate_p16_p84": [
+   0.85,
+   1.34
+  ],
+  "noaa20_months_actual_over_estimate_p16_p84": [
+   0.93,
+   1.08
+  ],
+  "out_of_range_months_p05_p95": [
+   0.68,
+   1.7
+  ],
+  "note": "68% of months in leave-one-year-out testing fall inside the p16-p84 band; months above the tested MODIS range get the wider p05-p95 band and are probably overestimates; not a formal confidence interval"
+ },
+ "out_of_tested_range_months": [
+  {
+   "month": "2006-08",
+   "modis": 2251,
+   "tested_max": 2116,
+   "times_tested_max": 1.06
+  },
+  {
+   "month": "2009-08",
+   "modis": 4025,
+   "tested_max": 2116,
+   "times_tested_max": 1.9
+  },
+  {
+   "month": "2009-09",
+   "modis": 4867,
+   "tested_max": 3610,
+   "times_tested_max": 1.35
+  },
+  {
+   "month": "2009-10",
+   "modis": 4170,
+   "tested_max": 2052,
+   "times_tested_max": 2.03
+  },
+  {
+   "month": "2010-08",
+   "modis": 2775,
+   "tested_max": 2116,
+   "times_tested_max": 1.31
+  },
+  {
+   "month": "2011-08",
+   "modis": 2901,
+   "tested_max": 2116,
+   "times_tested_max": 1.37
+  },
+  {
+   "month": "2011-09",
+   "modis": 5452,
+   "tested_max": 3610,
+   "times_tested_max": 1.51
+  },
+  {
+   "month": "2011-10",
+   "modis": 3536,
+   "tested_max": 2052,
+   "times_tested_max": 1.72
+  },
+  {
+   "month": "2011-12",
+   "modis": 777,
+   "tested_max": 774,
+   "times_tested_max": 1.0
+  }
+ ],
+ "out_of_tested_range_zone_months": [
+  {
+   "month": "2003-11",
+   "zone": "Çukurova",
+   "modis": 539,
+   "tested_max": 103,
+   "times_tested_max": 5.23
+  },
+  {
+   "month": "2003-06",
+   "zone": "Çukurova",
+   "modis": 1531,
+   "tested_max": 298,
+   "times_tested_max": 5.14
+  },
+  {
+   "month": "2004-10",
+   "zone": "Çukurova",
+   "modis": 503,
+   "tested_max": 125,
+   "times_tested_max": 4.02
+  },
+  {
+   "month": "2011-08",
+   "zone": "İç Anadolu",
+   "modis": 1726,
+   "tested_max": 475,
+   "times_tested_max": 3.63
+  },
+  {
+   "month": "2009-08",
+   "zone": "İç Anadolu",
+   "modis": 1682,
+   "tested_max": 475,
+   "times_tested_max": 3.54
+  },
+  {
+   "month": "2009-10",
+   "zone": "İç Anadolu",
+   "modis": 1477,
+   "tested_max": 430,
+   "times_tested_max": 3.43
+  },
+  {
+   "month": "2004-11",
+   "zone": "Çukurova",
+   "modis": 345,
+   "tested_max": 103,
+   "times_tested_max": 3.35
+  },
+  {
+   "month": "2009-06",
+   "zone": "Çukurova",
+   "modis": 971,
+   "tested_max": 298,
+   "times_tested_max": 3.26
+  },
+  {
+   "month": "2011-10",
+   "zone": "İç Anadolu",
+   "modis": 1360,
+   "tested_max": 430,
+   "times_tested_max": 3.16
+  },
+  {
+   "month": "2006-06",
+   "zone": "Çukurova",
+   "modis": 898,
+   "tested_max": 298,
+   "times_tested_max": 3.01
+  },
+  {
+   "month": "2009-10",
+   "zone": "Çukurova",
+   "modis": 374,
+   "tested_max": 125,
+   "times_tested_max": 2.99
+  },
+  {
+   "month": "2011-09",
+   "zone": "İç Anadolu",
+   "modis": 2002,
+   "tested_max": 689,
+   "times_tested_max": 2.91
+  },
+  {
+   "month": "2005-06",
+   "zone": "Çukurova",
+   "modis": 851,
+   "tested_max": 298,
+   "times_tested_max": 2.86
+  },
+  {
+   "month": "2011-09",
+   "zone": "Ege-Akdeniz kıyısı",
+   "modis": 349,
+   "tested_max": 130,
+   "times_tested_max": 2.68
+  },
+  {
+   "month": "2009-09",
+   "zone": "Ege-Akdeniz kıyısı",
+   "modis": 343,
+   "tested_max": 130,
+   "times_tested_max": 2.64
+  },
+  {
+   "month": "2006-08",
+   "zone": "İç Anadolu",
+   "modis": 1162,
+   "tested_max": 475,
+   "times_tested_max": 2.45
+  },
+  {
+   "month": "2004-06",
+   "zone": "Çukurova",
+   "modis": 713,
+   "tested_max": 298,
+   "times_tested_max": 2.39
+  },
+  {
+   "month": "2010-08",
+   "zone": "İç Anadolu",
+   "modis": 940,
+   "tested_max": 475,
+   "times_tested_max": 1.98
+  },
+  {
+   "month": "2007-06",
+   "zone": "Çukurova",
+   "modis": 572,
+   "tested_max": 298,
+   "times_tested_max": 1.92
+  },
+  {
+   "month": "2011-09",
+   "zone": "Diğer",
+   "modis": 1261,
+   "tested_max": 688,
+   "times_tested_max": 1.83
+  },
+  {
+   "month": "2009-09",
+   "zone": "İç Anadolu",
+   "modis": 1217,
+   "tested_max": 689,
+   "times_tested_max": 1.77
+  },
+  {
+   "month": "2008-06",
+   "zone": "Çukurova",
+   "modis": 511,
+   "tested_max": 298,
+   "times_tested_max": 1.71
+  },
+  {
+   "month": "2009-08",
+   "zone": "Diğer",
+   "modis": 848,
+   "tested_max": 564,
+   "times_tested_max": 1.5
+  },
+  {
+   "month": "2011-10",
+   "zone": "Diğer",
+   "modis": 1123,
+   "tested_max": 764,
+   "times_tested_max": 1.47
+  },
+  {
+   "month": "2009-09",
+   "zone": "Güneydoğu",
+   "modis": 1650,
+   "tested_max": 1134,
+   "times_tested_max": 1.46
+  },
+  {
+   "month": "2009-09",
+   "zone": "Diğer",
+   "modis": 994,
+   "tested_max": 688,
+   "times_tested_max": 1.44
+  },
+  {
+   "month": "2009-10",
+   "zone": "Diğer",
+   "modis": 1067,
+   "tested_max": 764,
+   "times_tested_max": 1.4
+  },
+  {
+   "month": "2010-08",
+   "zone": "Diğer",
+   "modis": 750,
+   "tested_max": 564,
+   "times_tested_max": 1.33
+  },
+  {
+   "month": "2009-08",
+   "zone": "Güneydoğu",
+   "modis": 1020,
+   "tested_max": 776,
+   "times_tested_max": 1.31
+  },
+  {
+   "month": "2010-06",
+   "zone": "Çukurova",
+   "modis": 335,
+   "tested_max": 298,
+   "times_tested_max": 1.12
+  },
+  {
+   "month": "2010-09",
+   "zone": "İç Anadolu",
+   "modis": 745,
+   "tested_max": 689,
+   "times_tested_max": 1.08
+  },
+  {
+   "month": "2004-09",
+   "zone": "İç Anadolu",
+   "modis": 733,
+   "tested_max": 689,
+   "times_tested_max": 1.06
+  },
+  {
+   "month": "2011-08",
+   "zone": "Diğer",
+   "modis": 600,
+   "tested_max": 564,
+   "times_tested_max": 1.06
+  },
+  {
+   "month": "2011-09",
+   "zone": "Çukurova",
+   "modis": 1149,
+   "tested_max": 1089,
+   "times_tested_max": 1.06
+  },
+  {
+   "month": "2011-06",
+   "zone": "Çukurova",
+   "modis": 302,
+   "tested_max": 298,
+   "times_tested_max": 1.01
+  }
+ ]
+}

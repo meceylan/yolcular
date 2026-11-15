@@ -1,0 +1,490 @@
+{
+ "models_leave_one_year_out": {
+  "A sabit": {
+   "month_median_abs_err_pct": 25.3,
+   "month_weighted_abs_err_pct": 27.5,
+   "year_mean_abs_err_pct": 16.0,
+   "year_max_abs_err_pct": 47.0,
+   "zone_month_weighted_abs_err_pct": 27.5,
+   "test_2023_2025_month_weighted_abs_err_pct": 38.5,
+   "test_2023_2025_year_err_pct": {
+    "2023": 13.9,
+    "2024": 6.0,
+    "2025": 53.9
+   },
+   "test_2023_2025_total_err_pct": 22.5
+  },
+  "B ay": {
+   "month_median_abs_err_pct": 21.4,
+   "month_weighted_abs_err_pct": 23.9,
+   "year_mean_abs_err_pct": 15.1,
+   "year_max_abs_err_pct": 45.6,
+   "zone_month_weighted_abs_err_pct": 23.9,
+   "test_2023_2025_month_weighted_abs_err_pct": 30.3,
+   "test_2023_2025_year_err_pct": {
+    "2023": 10.6,
+    "2024": 7.5,
+    "2025": 57.4
+   },
+   "test_2023_2025_total_err_pct": 22.8
+  },
+  "C ay + gündüz/gece": {
+   "month_median_abs_err_pct": 27.5,
+   "month_weighted_abs_err_pct": 35.9,
+   "year_mean_abs_err_pct": 22.8,
+   "year_max_abs_err_pct": 106.3,
+   "zone_month_weighted_abs_err_pct": 35.9,
+   "test_2023_2025_month_weighted_abs_err_pct": 39.4,
+   "test_2023_2025_year_err_pct": {
+    "2023": 15.7,
+    "2024": 9.2,
+    "2025": 70.7
+   },
+   "test_2023_2025_total_err_pct": 29.1
+  },
+  "D ay + alt bölge": {
+   "month_median_abs_err_pct": 21.4,
+   "month_weighted_abs_err_pct": 23.9,
+   "year_mean_abs_err_pct": 15.1,
+   "year_max_abs_err_pct": 45.6,
+   "zone_month_weighted_abs_err_pct": 23.9,
+   "test_2023_2025_month_weighted_abs_err_pct": 30.3,
+   "test_2023_2025_year_err_pct": {
+    "2023": 10.6,
+    "2024": 7.5,
+    "2025": 57.4
+   },
+   "test_2023_2025_total_err_pct": 22.8
+  },
+  "seçilen: aylık, yıllık orana çekilmiş (λ=300)": {
+   "month_median_abs_err_pct": 20.1,
+   "month_weighted_abs_err_pct": 23.7,
+   "year_mean_abs_err_pct": 15.4,
+   "year_max_abs_err_pct": 43.6,
+   "test_2023_2025_month_weighted_abs_err_pct": 29.5,
+   "test_2023_2025_year_err_pct": {
+    "2023": 8.4,
+    "2024": 3.1,
+    "2025": 51.1
+   },
+   "test_2023_2025_total_err_pct": 18.7
+  }
+ },
+ "uncertainty": {
+  "p16": 0.87,
+  "p84": 1.69,
+  "p05": 0.7,
+  "p95": 2.41,
+  "p16_busy_months": 0.77,
+  "p84_busy_months": 1.31
+ },
+ "level_effect": {
+  "lt_0.5x": {
+   "months": 7,
+   "actual_over_predicted": 1.52
+  },
+  "0.5_1.5x": {
+   "months": 92,
+   "actual_over_predicted": 1.2
+  },
+  "1.5_2.5x": {
+   "months": 23,
+   "actual_over_predicted": 0.88
+  },
+  "gt_2.5x": {
+   "months": 9,
+   "actual_over_predicted": 0.65
+  }
+ },
+ "coef_calibration_2012_2022": {
+  "all": {
+   "1": 8.11,
+   "2": 9.07,
+   "3": 10.57,
+   "4": 11.94,
+   "5": 7.72,
+   "6": 6.04,
+   "7": 6.07,
+   "8": 7.0,
+   "9": 7.12,
+   "10": 6.39,
+   "11": 6.35,
+   "12": 7.73
+  }
+ },
+ "coef_if_all_years_2012_2025": {
+  "all": {
+   "1": 8.05,
+   "2": 9.34,
+   "3": 10.28,
+   "4": 12.34,
+   "5": 7.6,
+   "6": 5.93,
+   "7": 5.13,
+   "8": 6.45,
+   "9": 6.92,
+   "10": 6.38,
+   "11": 6.0,
+   "12": 7.37
+  }
+ },
+ "calibration_counts": {
+  "1": {
+   "modis_day": 186,
+   "modis_night": 21
+  },
+  "2": {
+   "modis_day": 193,
+   "modis_night": 29
+  },
+  "3": {
+   "modis_day": 154,
+   "modis_night": 30
+  },
+  "4": {
+   "modis_day": 162,
+   "modis_night": 85
+  },
+  "5": {
+   "modis_day": 756,
+   "modis_night": 256
+  },
+  "6": {
+   "modis_day": 1208,
+   "modis_night": 469
+  },
+  "7": {
+   "modis_day": 1094,
+   "modis_night": 404
+  },
+  "8": {
+   "modis_day": 1125,
+   "modis_night": 313
+  },
+  "9": {
+   "modis_day": 1919,
+   "modis_night": 396
+  },
+  "10": {
+   "modis_day": 2987,
+   "modis_night": 405
+  },
+  "11": {
+   "modis_day": 691,
+   "modis_night": 103
+  },
+  "12": {
+   "modis_day": 266,
+   "modis_night": 32
+  }
+ },
+ "cv_year_actual_vs_predicted": {
+  "2012": {
+   "viirs": 9337,
+   "predicted": 9958,
+   "err_pct": 6.7
+  },
+  "2013": {
+   "viirs": 11692,
+   "predicted": 12664,
+   "err_pct": 8.3
+  },
+  "2014": {
+   "viirs": 8339,
+   "predicted": 7120,
+   "err_pct": -14.6
+  },
+  "2015": {
+   "viirs": 9774,
+   "predicted": 9721,
+   "err_pct": -0.5
+  },
+  "2016": {
+   "viirs": 10435,
+   "predicted": 10863,
+   "err_pct": 4.1
+  },
+  "2017": {
+   "viirs": 8062,
+   "predicted": 6223,
+   "err_pct": -22.8
+  },
+  "2018": {
+   "viirs": 6151,
+   "predicted": 4038,
+   "err_pct": -34.4
+  },
+  "2019": {
+   "viirs": 7780,
+   "predicted": 6802,
+   "err_pct": -12.6
+  },
+  "2020": {
+   "viirs": 8721,
+   "predicted": 12523,
+   "err_pct": 43.6
+  },
+  "2021": {
+   "viirs": 7802,
+   "predicted": 7624,
+   "err_pct": -2.3
+  },
+  "2022": {
+   "viirs": 5873,
+   "predicted": 4719,
+   "err_pct": -19.6
+  }
+ },
+ "noaa20": {
+  "snpp_total": 23003,
+  "noaa20_total": 23606,
+  "k_constant": 0.974,
+  "k_by_year": {
+   "2023": 0.988,
+   "2024": 0.988,
+   "2025": 0.941
+  },
+  "k_by_month": {
+   "1": 1.038,
+   "2": 0.997,
+   "3": 0.968,
+   "4": 1.018,
+   "5": 0.927,
+   "6": 1.056,
+   "7": 0.854,
+   "8": 0.986,
+   "9": 1.007,
+   "10": 0.994,
+   "11": 0.915,
+   "12": 0.971
+  },
+  "k_day": 0.98,
+  "k_night": 0.967,
+  "cv_month_weighted_abs_err_pct": {
+   "constant": 6.6,
+   "by_month": 6.7
+  },
+  "monthly_actual_over_predicted_p16_p84": [
+   0.94,
+   1.09
+  ]
+ },
+ "effect_of_drift_years_on_2002_2011_total_pct": -3.1,
+ "yearly": {
+  "2002": {
+   "h": 3348,
+   "m": 501,
+   "v": 0,
+   "h_lo": 2913,
+   "h_hi": 5658
+  },
+  "2003": {
+   "h": 5003,
+   "m": 744,
+   "v": 0,
+   "h_lo": 4352,
+   "h_hi": 8455
+  },
+  "2004": {
+   "h": 4733,
+   "m": 691,
+   "v": 0,
+   "h_lo": 4118,
+   "h_hi": 8000
+  },
+  "2005": {
+   "h": 5389,
+   "m": 779,
+   "v": 0,
+   "h_lo": 4688,
+   "h_hi": 9108
+  },
+  "2006": {
+   "h": 7976,
+   "m": 1178,
+   "v": 0,
+   "h_lo": 6939,
+   "h_hi": 13478
+  },
+  "2007": {
+   "h": 7995,
+   "m": 1191,
+   "v": 0,
+   "h_lo": 6955,
+   "h_hi": 13511
+  },
+  "2008": {
+   "h": 5630,
+   "m": 806,
+   "v": 0,
+   "h_lo": 4898,
+   "h_hi": 9514
+  },
+  "2009": {
+   "h": 6121,
+   "m": 894,
+   "v": 0,
+   "h_lo": 5325,
+   "h_hi": 10344
+  },
+  "2010": {
+   "h": 9241,
+   "m": 1332,
+   "v": 0,
+   "h_lo": 7641,
+   "h_hi": 17310
+  },
+  "2011": {
+   "h": 5796,
+   "m": 845,
+   "v": 0,
+   "h_lo": 5042,
+   "h_hi": 9795
+  },
+  "2012": {
+   "h": 9491,
+   "m": 1445,
+   "v": 9337,
+   "h_lo": 9471,
+   "h_hi": 9597
+  },
+  "2013": {
+   "h": 11692,
+   "m": 1818,
+   "v": 11692,
+   "h_lo": 11692,
+   "h_hi": 11692
+  },
+  "2014": {
+   "h": 8449,
+   "m": 1049,
+   "v": 8449,
+   "h_lo": 8449,
+   "h_hi": 8449
+  },
+  "2015": {
+   "h": 9774,
+   "m": 1419,
+   "v": 9774,
+   "h_lo": 9774,
+   "h_hi": 9774
+  },
+  "2016": {
+   "h": 10435,
+   "m": 1574,
+   "v": 10435,
+   "h_lo": 10435,
+   "h_hi": 10435
+  },
+  "2017": {
+   "h": 8062,
+   "m": 902,
+   "v": 8062,
+   "h_lo": 8062,
+   "h_hi": 8062
+  },
+  "2018": {
+   "h": 6151,
+   "m": 600,
+   "v": 6151,
+   "h_lo": 6151,
+   "h_hi": 6151
+  },
+  "2019": {
+   "h": 7780,
+   "m": 994,
+   "v": 7780,
+   "h_lo": 7780,
+   "h_hi": 7780
+  },
+  "2020": {
+   "h": 8991,
+   "m": 1754,
+   "v": 8991,
+   "h_lo": 8991,
+   "h_hi": 8991
+  },
+  "2021": {
+   "h": 7802,
+   "m": 1096,
+   "v": 7802,
+   "h_lo": 7802,
+   "h_hi": 7802
+  },
+  "2022": {
+   "h": 5873,
+   "m": 706,
+   "v": 5873,
+   "h_lo": 5873,
+   "h_hi": 5873
+  },
+  "2023": {
+   "h": 8627,
+   "m": 1389,
+   "v": 8627,
+   "h_lo": 8627,
+   "h_hi": 8627
+  },
+  "2024": {
+   "h": 7859,
+   "m": 1267,
+   "v": 7859,
+   "h_lo": 7859,
+   "h_hi": 7859
+  },
+  "2025": {
+   "h": 6517,
+   "m": 1476,
+   "v": 6517,
+   "h_lo": 6517,
+   "h_hi": 6517
+  },
+  "2026": {
+   "h": 4485,
+   "m": 630,
+   "v": 4487,
+   "h_lo": 4476,
+   "h_hi": 4498
+  }
+ },
+ "out_of_range_months": [
+  {
+   "month": "2010-11",
+   "modis": 174,
+   "tested_max": 171,
+   "times_tested_max": 1.02
+  },
+  {
+   "month": "2010-12",
+   "modis": 161,
+   "tested_max": 45,
+   "times_tested_max": 3.58
+  }
+ ],
+ "out_of_range_zone_months": [],
+ "nov_2026": [
+  {
+   "h": 144.9,
+   "h_lo": 136.2,
+   "h_hi": 158.0,
+   "m": 23,
+   "v": 147
+  }
+ ],
+ "single_constant_coefficient": 7.074,
+ "effect_of_monthly_vs_constant_by_year_pct": {
+  "2002": -5.5,
+  "2003": -4.9,
+  "2004": -3.2,
+  "2005": -2.2,
+  "2006": -4.3,
+  "2007": -5.1,
+  "2008": -1.3,
+  "2009": -3.2,
+  "2010": -1.9,
+  "2011": -3.0,
+  "2012": 14.7
+ },
+ "method": "shrunk",
+ "k_n20_used": 0.986
+}

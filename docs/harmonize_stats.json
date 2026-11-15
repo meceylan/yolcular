@@ -1,0 +1,751 @@
+{
+ "models_leave_one_year_out": {
+  "A sabit": {
+   "month_median_abs_err_pct": 21.1,
+   "month_weighted_abs_err_pct": 24.6,
+   "year_mean_abs_err_pct": 6.0,
+   "year_max_abs_err_pct": 10.6,
+   "zone_month_weighted_abs_err_pct": 28.1,
+   "test_2023_2025_month_weighted_abs_err_pct": 26.7,
+   "test_2023_2025_year_err_pct": {
+    "2023": 0.7,
+    "2024": 3.8,
+    "2025": 7.8
+   },
+   "test_2023_2025_total_err_pct": 4.0
+  },
+  "B ay": {
+   "month_median_abs_err_pct": 14.8,
+   "month_weighted_abs_err_pct": 11.8,
+   "year_mean_abs_err_pct": 4.6,
+   "year_max_abs_err_pct": 11.3,
+   "zone_month_weighted_abs_err_pct": 20.2,
+   "test_2023_2025_month_weighted_abs_err_pct": 14.1,
+   "test_2023_2025_year_err_pct": {
+    "2023": 0.2,
+    "2024": 1.8,
+    "2025": 2.6
+   },
+   "test_2023_2025_total_err_pct": 1.5
+  },
+  "C ay + gündüz/gece": {
+   "month_median_abs_err_pct": 15.2,
+   "month_weighted_abs_err_pct": 14.2,
+   "year_mean_abs_err_pct": 6.7,
+   "year_max_abs_err_pct": 23.6,
+   "zone_month_weighted_abs_err_pct": 23.6,
+   "test_2023_2025_month_weighted_abs_err_pct": 14.6,
+   "test_2023_2025_year_err_pct": {
+    "2023": -0.3,
+    "2024": 12.3,
+    "2025": 9.1
+   },
+   "test_2023_2025_total_err_pct": 7.4
+  },
+  "D ay + alt bölge": {
+   "month_median_abs_err_pct": 13.7,
+   "month_weighted_abs_err_pct": 12.3,
+   "year_mean_abs_err_pct": 6.0,
+   "year_max_abs_err_pct": 15.8,
+   "zone_month_weighted_abs_err_pct": 17.6,
+   "test_2023_2025_month_weighted_abs_err_pct": 15.4,
+   "test_2023_2025_year_err_pct": {
+    "2023": 1.9,
+    "2024": 4.2,
+    "2025": 10.3
+   },
+   "test_2023_2025_total_err_pct": 5.2
+  }
+ },
+ "uncertainty": {
+  "p16": 0.85,
+  "p84": 1.34,
+  "p05": 0.68,
+  "p95": 1.7,
+  "p16_busy_months": 0.89,
+  "p84_busy_months": 1.32
+ },
+ "level_effect": {
+  "lt_0.5x": {
+   "months": 13,
+   "actual_over_predicted": 1.38
+  },
+  "0.5_1.5x": {
+   "months": 81,
+   "actual_over_predicted": 1.05
+  },
+  "1.5_2.5x": {
+   "months": 30,
+   "actual_over_predicted": 0.94
+  },
+  "gt_2.5x": {
+   "months": 7,
+   "actual_over_predicted": 0.85
+  }
+ },
+ "coef_calibration_2012_2022": {
+  "all": {
+   "1": 3.31,
+   "2": 3.24,
+   "3": 3.73,
+   "4": 4.48,
+   "5": 2.69,
+   "6": 1.98,
+   "7": 3.16,
+   "8": 3.91,
+   "9": 4.16,
+   "10": 3.69,
+   "11": 2.62,
+   "12": 3.13
+  },
+  "day": {
+   "1": 3.09,
+   "2": 2.91,
+   "3": 3.29,
+   "4": 3.56,
+   "5": 1.56,
+   "6": 1.57,
+   "7": 2.11,
+   "8": 3.14,
+   "9": 3.32,
+   "10": 3.25,
+   "11": 2.47,
+   "12": 2.98
+  },
+  "night": {
+   "1": 40.27,
+   "2": 29.71,
+   "3": 37.28,
+   "4": 54.73,
+   "5": 14.94,
+   "6": 2.45,
+   "7": 4.96,
+   "8": 6.74,
+   "9": 11.71,
+   "10": 19.52,
+   "11": 27.68,
+   "12": 82.62
+  }
+ },
+ "coef_if_all_years_2012_2025": {
+  "all": {
+   "1": 3.26,
+   "2": 3.19,
+   "3": 3.84,
+   "4": 4.27,
+   "5": 2.12,
+   "6": 2.02,
+   "7": 2.98,
+   "8": 3.88,
+   "9": 4.2,
+   "10": 3.78,
+   "11": 2.62,
+   "12": 3.18
+  },
+  "day": {
+   "1": 3.09,
+   "2": 2.89,
+   "3": 3.39,
+   "4": 3.36,
+   "5": 1.21,
+   "6": 1.55,
+   "7": 2.0,
+   "8": 3.08,
+   "9": 3.36,
+   "10": 3.28,
+   "11": 2.47,
+   "12": 3.05
+  },
+  "night": {
+   "1": 37.41,
+   "2": 23.62,
+   "3": 33.32,
+   "4": 51.91,
+   "5": 14.92,
+   "6": 2.58,
+   "7": 4.63,
+   "8": 6.56,
+   "9": 10.98,
+   "10": 18.44,
+   "11": 24.51,
+   "12": 49.94
+  }
+ },
+ "calibration_counts": {
+  "1": {
+   "modis_day": 1853,
+   "modis_night": 11
+  },
+  "2": {
+   "modis_day": 1703,
+   "modis_night": 21
+  },
+  "3": {
+   "modis_day": 1879,
+   "modis_night": 25
+  },
+  "4": {
+   "modis_day": 1428,
+   "modis_night": 26
+  },
+  "5": {
+   "modis_day": 1569,
+   "modis_night": 146
+  },
+  "6": {
+   "modis_day": 9217,
+   "modis_night": 8070
+  },
+  "7": {
+   "modis_day": 6237,
+   "modis_night": 3672
+  },
+  "8": {
+   "modis_day": 10796,
+   "modis_night": 2920
+  },
+  "9": {
+   "modis_day": 14460,
+   "modis_night": 1607
+  },
+  "10": {
+   "modis_day": 13208,
+   "modis_night": 371
+  },
+  "11": {
+   "modis_day": 12667,
+   "modis_night": 73
+  },
+  "12": {
+   "modis_day": 4180,
+   "modis_night": 8
+  }
+ },
+ "cv_year_actual_vs_predicted": {
+  "2012": {
+   "viirs": 21389,
+   "predicted": 21602,
+   "err_pct": 1.0
+  },
+  "2013": {
+   "viirs": 35142,
+   "predicted": 34960,
+   "err_pct": -0.5
+  },
+  "2014": {
+   "viirs": 19549,
+   "predicted": 19083,
+   "err_pct": -2.4
+  },
+  "2015": {
+   "viirs": 49675,
+   "predicted": 54667,
+   "err_pct": 10.0
+  },
+  "2016": {
+   "viirs": 41475,
+   "predicted": 40962,
+   "err_pct": -1.2
+  },
+  "2017": {
+   "viirs": 27886,
+   "predicted": 27130,
+   "err_pct": -2.7
+  },
+  "2018": {
+   "viirs": 22725,
+   "predicted": 23208,
+   "err_pct": 2.1
+  },
+  "2019": {
+   "viirs": 25850,
+   "predicted": 24292,
+   "err_pct": -6.0
+  },
+  "2020": {
+   "viirs": 27816,
+   "predicted": 24661,
+   "err_pct": -11.3
+  },
+  "2021": {
+   "viirs": 26873,
+   "predicted": 29238,
+   "err_pct": 8.8
+  },
+  "2022": {
+   "viirs": 14204,
+   "predicted": 14846,
+   "err_pct": 4.5
+  }
+ },
+ "noaa20": {
+  "snpp_total": 82280,
+  "noaa20_total": 83478,
+  "k_constant": 0.986,
+  "k_by_year": {
+   "2023": 0.981,
+   "2024": 0.956,
+   "2025": 1.033
+  },
+  "k_by_month": {
+   "1": 0.96,
+   "2": 0.954,
+   "3": 0.995,
+   "4": 1.007,
+   "5": 0.977,
+   "6": 1.096,
+   "7": 1.068,
+   "8": 1.01,
+   "9": 0.981,
+   "10": 0.966,
+   "11": 0.853,
+   "12": 0.972
+  },
+  "k_day": 0.966,
+  "k_night": 1.031,
+  "cv_month_weighted_abs_err_pct": {
+   "constant": 7.7,
+   "by_month": 7.4
+  },
+  "monthly_actual_over_predicted_p16_p84": [
+   0.93,
+   1.08
+  ]
+ },
+ "effect_of_drift_years_on_2002_2011_total_pct": 0.1,
+ "yearly": {
+  "2002": {
+   "h": 19436,
+   "m": 5226,
+   "v": 0,
+   "h_lo": 16520,
+   "h_hi": 26044
+  },
+  "2003": {
+   "h": 21135,
+   "m": 6757,
+   "v": 0,
+   "h_lo": 17965,
+   "h_hi": 28321
+  },
+  "2004": {
+   "h": 24404,
+   "m": 6997,
+   "v": 0,
+   "h_lo": 20743,
+   "h_hi": 32702
+  },
+  "2005": {
+   "h": 24654,
+   "m": 7297,
+   "v": 0,
+   "h_lo": 20956,
+   "h_hi": 33037
+  },
+  "2006": {
+   "h": 28890,
+   "m": 8460,
+   "v": 0,
+   "h_lo": 23061,
+   "h_hi": 41878
+  },
+  "2007": {
+   "h": 26493,
+   "m": 7816,
+   "v": 0,
+   "h_lo": 22519,
+   "h_hi": 35500
+  },
+  "2008": {
+   "h": 17212,
+   "m": 5231,
+   "v": 0,
+   "h_lo": 14630,
+   "h_hi": 23064
+  },
+  "2009": {
+   "h": 65656,
+   "m": 18488,
+   "v": 0,
+   "h_lo": 47075,
+   "h_hi": 106469
+  },
+  "2010": {
+   "h": 42387,
+   "m": 12513,
+   "v": 0,
+   "h_lo": 34186,
+   "h_hi": 60702
+  },
+  "2011": {
+   "h": 61117,
+   "m": 17153,
+   "v": 0,
+   "h_lo": 43535,
+   "h_hi": 99715
+  },
+  "2012": {
+   "h": 21541,
+   "m": 6226,
+   "v": 21389,
+   "h_lo": 21518,
+   "h_hi": 21593
+  },
+  "2013": {
+   "h": 35142,
+   "m": 10440,
+   "v": 35142,
+   "h_lo": 35142,
+   "h_hi": 35142
+  },
+  "2014": {
+   "h": 19556,
+   "m": 5897,
+   "v": 19556,
+   "h_lo": 19556,
+   "h_hi": 19556
+  },
+  "2015": {
+   "h": 49675,
+   "m": 16584,
+   "v": 49675,
+   "h_lo": 49675,
+   "h_hi": 49675
+  },
+  "2016": {
+   "h": 41475,
+   "m": 12507,
+   "v": 41475,
+   "h_lo": 41475,
+   "h_hi": 41475
+  },
+  "2017": {
+   "h": 27886,
+   "m": 8446,
+   "v": 27886,
+   "h_lo": 27886,
+   "h_hi": 27886
+  },
+  "2018": {
+   "h": 22725,
+   "m": 7114,
+   "v": 22725,
+   "h_lo": 22725,
+   "h_hi": 22725
+  },
+  "2019": {
+   "h": 25850,
+   "m": 7426,
+   "v": 25850,
+   "h_lo": 25850,
+   "h_hi": 25850
+  },
+  "2020": {
+   "h": 28831,
+   "m": 7869,
+   "v": 28831,
+   "h_lo": 28831,
+   "h_hi": 28831
+  },
+  "2021": {
+   "h": 26873,
+   "m": 9005,
+   "v": 26873,
+   "h_lo": 26873,
+   "h_hi": 26873
+  },
+  "2022": {
+   "h": 14204,
+   "m": 4873,
+   "v": 14204,
+   "h_lo": 14204,
+   "h_hi": 14204
+  },
+  "2023": {
+   "h": 25795,
+   "m": 7986,
+   "v": 25795,
+   "h_lo": 25795,
+   "h_hi": 25795
+  },
+  "2024": {
+   "h": 32070,
+   "m": 10809,
+   "v": 32070,
+   "h_lo": 32070,
+   "h_hi": 32070
+  },
+  "2025": {
+   "h": 24415,
+   "m": 8138,
+   "v": 24415,
+   "h_lo": 24415,
+   "h_hi": 24415
+  },
+  "2026": {
+   "h": 19721,
+   "m": 6726,
+   "v": 19728,
+   "h_lo": 19687,
+   "h_hi": 19760
+  }
+ },
+ "out_of_range_months": [
+  {
+   "month": "2006-08",
+   "modis": 2251,
+   "tested_max": 2116,
+   "times_tested_max": 1.06
+  },
+  {
+   "month": "2009-08",
+   "modis": 4025,
+   "tested_max": 2116,
+   "times_tested_max": 1.9
+  },
+  {
+   "month": "2009-09",
+   "modis": 4867,
+   "tested_max": 3610,
+   "times_tested_max": 1.35
+  },
+  {
+   "month": "2009-10",
+   "modis": 4170,
+   "tested_max": 2052,
+   "times_tested_max": 2.03
+  },
+  {
+   "month": "2010-08",
+   "modis": 2775,
+   "tested_max": 2116,
+   "times_tested_max": 1.31
+  },
+  {
+   "month": "2011-08",
+   "modis": 2901,
+   "tested_max": 2116,
+   "times_tested_max": 1.37
+  },
+  {
+   "month": "2011-09",
+   "modis": 5452,
+   "tested_max": 3610,
+   "times_tested_max": 1.51
+  },
+  {
+   "month": "2011-10",
+   "modis": 3536,
+   "tested_max": 2052,
+   "times_tested_max": 1.72
+  },
+  {
+   "month": "2011-12",
+   "modis": 777,
+   "tested_max": 774,
+   "times_tested_max": 1.0
+  }
+ ],
+ "out_of_range_zone_months": [
+  {
+   "month": "2003-11",
+   "zone": "Çukurova",
+   "modis": 539,
+   "tested_max": 103,
+   "times_tested_max": 5.23
+  },
+  {
+   "month": "2003-06",
+   "zone": "Çukurova",
+   "modis": 1531,
+   "tested_max": 298,
+   "times_tested_max": 5.14
+  },
+  {
+   "month": "2004-10",
+   "zone": "Çukurova",
+   "modis": 503,
+   "tested_max": 125,
+   "times_tested_max": 4.02
+  },
+  {
+   "month": "2011-08",
+   "zone": "İç Anadolu",
+   "modis": 1726,
+   "tested_max": 475,
+   "times_tested_max": 3.63
+  },
+  {
+   "month": "2009-08",
+   "zone": "İç Anadolu",
+   "modis": 1682,
+   "tested_max": 475,
+   "times_tested_max": 3.54
+  },
+  {
+   "month": "2009-10",
+   "zone": "İç Anadolu",
+   "modis": 1477,
+   "tested_max": 430,
+   "times_tested_max": 3.43
+  },
+  {
+   "month": "2004-11",
+   "zone": "Çukurova",
+   "modis": 345,
+   "tested_max": 103,
+   "times_tested_max": 3.35
+  },
+  {
+   "month": "2009-06",
+   "zone": "Çukurova",
+   "modis": 971,
+   "tested_max": 298,
+   "times_tested_max": 3.26
+  },
+  {
+   "month": "2011-10",
+   "zone": "İç Anadolu",
+   "modis": 1360,
+   "tested_max": 430,
+   "times_tested_max": 3.16
+  },
+  {
+   "month": "2006-06",
+   "zone": "Çukurova",
+   "modis": 898,
+   "tested_max": 298,
+   "times_tested_max": 3.01
+  },
+  {
+   "month": "2009-10",
+   "zone": "Çukurova",
+   "modis": 374,
+   "tested_max": 125,
+   "times_tested_max": 2.99
+  },
+  {
+   "month": "2011-09",
+   "zone": "İç Anadolu",
+   "modis": 2002,
+   "tested_max": 689,
+   "times_tested_max": 2.91
+  },
+  {
+   "month": "2005-06",
+   "zone": "Çukurova",
+   "modis": 851,
+   "tested_max": 298,
+   "times_tested_max": 2.86
+  },
+  {
+   "month": "2011-09",
+   "zone": "Ege-Akdeniz kıyısı",
+   "modis": 349,
+   "tested_max": 130,
+   "times_tested_max": 2.68
+  },
+  {
+   "month": "2009-09",
+   "zone": "Ege-Akdeniz kıyısı",
+   "modis": 343,
+   "tested_max": 130,
+   "times_tested_max": 2.64
+  },
+  {
+   "month": "2006-08",
+   "zone": "İç Anadolu",
+   "modis": 1162,
+   "tested_max": 475,
+   "times_tested_max": 2.45
+  },
+  {
+   "month": "2004-06",
+   "zone": "Çukurova",
+   "modis": 713,
+   "tested_max": 298,
+   "times_tested_max": 2.39
+  },
+  {
+   "month": "2010-08",
+   "zone": "İç Anadolu",
+   "modis": 940,
+   "tested_max": 475,
+   "times_tested_max": 1.98
+  },
+  {
+   "month": "2007-06",
+   "zone": "Çukurova",
+   "modis": 572,
+   "tested_max": 298,
+   "times_tested_max": 1.92
+  },
+  {
+   "month": "2011-09",
+   "zone": "Diğer",
+   "modis": 1261,
+   "tested_max": 688,
+   "times_tested_max": 1.83
+  },
+  {
+   "month": "2009-09",
+   "zone": "İç Anadolu",
+   "modis": 1217,
+   "tested_max": 689,
+   "times_tested_max": 1.77
+  },
+  {
+   "month": "2008-06",
+   "zone": "Çukurova",
+   "modis": 511,
+   "tested_max": 298,
+   "times_tested_max": 1.71
+  },
+  {
+   "month": "2009-08",
+   "zone": "Diğer",
+   "modis": 848,
+   "tested_max": 564,
+   "times_tested_max": 1.5
+  },
+  {
+   "month": "2011-10",
+   "zone": "Diğer",
+   "modis": 1123,
+   "tested_max": 764,
+   "times_tested_max": 1.47
+  },
+  {
+   "month": "2009-09",
+   "zone": "Güneydoğu",
+   "modis": 1650,
+   "tested_max": 1134,
+   "times_tested_max": 1.46
+  }
+ ],
+ "nov_2026": [
+  {
+   "h": 483.1,
+   "h_lo": 449.3,
+   "h_hi": 521.8,
+   "m": 60,
+   "v": 490
+  }
+ ],
+ "single_constant_coefficient": 3.251,
+ "effect_of_monthly_vs_constant_by_year_pct": {
+  "2002": 14.4,
+  "2003": -3.8,
+  "2004": 7.3,
+  "2005": 3.9,
+  "2006": 5.0,
+  "2007": 4.3,
+  "2008": 1.2,
+  "2009": 9.2,
+  "2010": 4.2,
+  "2011": 9.6,
+  "2012": 1.8
+ },
+ "method": "monthly",
+ "k_n20_used": 0.986
+}

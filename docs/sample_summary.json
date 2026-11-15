@@ -1,0 +1,731 @@
+{
+ "MODIS_SP": {
+  "rows": 189,
+  "columns": [
+   "latitude",
+   "longitude",
+   "brightness",
+   "scan",
+   "track",
+   "acq_date",
+   "acq_time",
+   "satellite",
+   "instrument",
+   "confidence",
+   "version",
+   "bright_t31",
+   "frp",
+   "daynight",
+   "type"
+  ],
+  "dtypes": {
+   "latitude": "float64",
+   "longitude": "float64",
+   "brightness": "float64",
+   "scan": "float64",
+   "track": "float64",
+   "acq_date": "str",
+   "acq_time": "str",
+   "satellite": "str",
+   "instrument": "str",
+   "confidence": "int64",
+   "version": "float64",
+   "bright_t31": "float64",
+   "frp": "float64",
+   "daynight": "str",
+   "type": "int64"
+  },
+  "satellite": {
+   "Aqua": 79,
+   "Terra": 110
+  },
+  "instrument": {
+   "MODIS": 189
+  },
+  "version": {
+   "61.03": 189
+  },
+  "daynight": {
+   "D": 160,
+   "N": 29
+  },
+  "type": {
+   "0": 161,
+   "2": 28
+  },
+  "confidence": {
+   "min": 0.0,
+   "median": 63.0,
+   "max": 100.0,
+   "lt30": 12,
+   "30to79": 132,
+   "ge80": 45
+  },
+  "frp": {
+   "min": 4.0,
+   "median": 15.8,
+   "max": 717.3
+  },
+  "scan": {
+   "min": 1.0,
+   "median": 1.4,
+   "max": 4.3
+  },
+  "track": {
+   "min": 1.0,
+   "median": 1.2,
+   "max": 1.9
+  },
+  "brightness": {
+   "min": 302.9,
+   "median": 326.4,
+   "max": 405.2
+  },
+  "bright_t31": {
+   "min": 288.3,
+   "median": 305.3,
+   "max": 322.8
+  },
+  "acq_time_examples": [
+   "0003",
+   "0003",
+   "0742"
+  ],
+  "utc_hour_by_daynight": {
+   "D": {
+    "6": 2,
+    "7": 46,
+    "8": 37,
+    "10": 5,
+    "11": 54,
+    "12": 16
+   },
+   "N": {
+    "0": 4,
+    "17": 1,
+    "18": 12,
+    "19": 12
+   }
+  },
+  "utc_hour_by_satellite": {
+   "Aqua": {
+    "0": 4,
+    "10": 5,
+    "11": 54,
+    "12": 16
+   },
+   "Terra": {
+    "6": 2,
+    "7": 46,
+    "8": 37,
+    "17": 1,
+    "18": 12,
+    "19": 12
+   }
+  },
+  "dates": [
+   "2025-08-01",
+   "2025-08-07"
+  ],
+  "lat_decimals": 4
+ },
+ "VIIRS_SNPP_SP": {
+  "rows": 1079,
+  "columns": [
+   "latitude",
+   "longitude",
+   "bright_ti4",
+   "scan",
+   "track",
+   "acq_date",
+   "acq_time",
+   "satellite",
+   "instrument",
+   "confidence",
+   "version",
+   "bright_ti5",
+   "frp",
+   "daynight",
+   "type"
+  ],
+  "dtypes": {
+   "latitude": "float64",
+   "longitude": "float64",
+   "bright_ti4": "float64",
+   "scan": "float64",
+   "track": "float64",
+   "acq_date": "str",
+   "acq_time": "str",
+   "satellite": "str",
+   "instrument": "str",
+   "confidence": "str",
+   "version": "int64",
+   "bright_ti5": "float64",
+   "frp": "float64",
+   "daynight": "str",
+   "type": "int64"
+  },
+  "satellite": {
+   "N": 1079
+  },
+  "instrument": {
+   "VIIRS": 1079
+  },
+  "version": {
+   "2": 1079
+  },
+  "daynight": {
+   "D": 394,
+   "N": 685
+  },
+  "type": {
+   "0": 577,
+   "2": 502
+  },
+  "confidence": {
+   "h": 47,
+   "l": 98,
+   "n": 934
+  },
+  "frp": {
+   "min": 0.33,
+   "median": 2.39,
+   "max": 104.26
+  },
+  "scan": {
+   "min": 0.32,
+   "median": 0.43,
+   "max": 0.78
+  },
+  "track": {
+   "min": 0.36,
+   "median": 0.48,
+   "max": 0.78
+  },
+  "bright_ti4": {
+   "min": 208.0,
+   "median": 316.76,
+   "max": 367.0
+  },
+  "bright_ti5": {
+   "min": 281.54,
+   "median": 296.59,
+   "max": 331.85
+  },
+  "acq_time_examples": [
+   "0012",
+   "0013",
+   "0013"
+  ],
+  "utc_hour_by_daynight": {
+   "D": {
+    "8": 7,
+    "9": 110,
+    "10": 165,
+    "11": 79,
+    "12": 33
+   },
+   "N": {
+    "0": 191,
+    "1": 1,
+    "21": 13,
+    "22": 173,
+    "23": 307
+   }
+  },
+  "utc_hour_by_satellite": {
+   "N": {
+    "0": 191,
+    "1": 1,
+    "8": 7,
+    "9": 110,
+    "10": 165,
+    "11": 79,
+    "12": 33,
+    "21": 13,
+    "22": 173,
+    "23": 307
+   }
+  },
+  "dates": [
+   "2025-08-01",
+   "2025-08-07"
+  ],
+  "lat_decimals": 5
+ },
+ "VIIRS_NOAA20_SP": {
+  "rows": 921,
+  "columns": [
+   "latitude",
+   "longitude",
+   "bright_ti4",
+   "scan",
+   "track",
+   "acq_date",
+   "acq_time",
+   "satellite",
+   "instrument",
+   "confidence",
+   "version",
+   "bright_ti5",
+   "frp",
+   "daynight",
+   "type"
+  ],
+  "dtypes": {
+   "latitude": "float64",
+   "longitude": "float64",
+   "bright_ti4": "float64",
+   "scan": "float64",
+   "track": "float64",
+   "acq_date": "str",
+   "acq_time": "str",
+   "satellite": "str",
+   "instrument": "str",
+   "confidence": "str",
+   "version": "int64",
+   "bright_ti5": "float64",
+   "frp": "float64",
+   "daynight": "str",
+   "type": "int64"
+  },
+  "satellite": {
+   "N20": 921
+  },
+  "instrument": {
+   "VIIRS": 921
+  },
+  "version": {
+   "2": 921
+  },
+  "daynight": {
+   "D": 315,
+   "N": 606
+  },
+  "type": {
+   "0": 460,
+   "2": 460,
+   "3": 1
+  },
+  "confidence": {
+   "h": 29,
+   "l": 112,
+   "n": 780
+  },
+  "frp": {
+   "min": 0.31,
+   "median": 2.47,
+   "max": 138.06
+  },
+  "scan": {
+   "min": 0.32,
+   "median": 0.44,
+   "max": 0.78
+  },
+  "track": {
+   "min": 0.36,
+   "median": 0.48,
+   "max": 0.78
+  },
+  "bright_ti4": {
+   "min": 297.96,
+   "median": 316.45,
+   "max": 367.0
+  },
+  "bright_ti5": {
+   "min": 269.65,
+   "median": 296.38,
+   "max": 338.43
+  },
+  "acq_time_examples": [
+   "0035",
+   "0036",
+   "0036"
+  ],
+  "utc_hour_by_daynight": {
+   "D": {
+    "9": 108,
+    "10": 126,
+    "11": 72,
+    "12": 9
+   },
+   "N": {
+    "0": 93,
+    "1": 21,
+    "21": 48,
+    "22": 142,
+    "23": 302
+   }
+  },
+  "utc_hour_by_satellite": {
+   "N20": {
+    "0": 93,
+    "1": 21,
+    "9": 108,
+    "10": 126,
+    "11": 72,
+    "12": 9,
+    "21": 48,
+    "22": 142,
+    "23": 302
+   }
+  },
+  "dates": [
+   "2025-08-01",
+   "2025-08-07"
+  ],
+  "lat_decimals": 5
+ },
+ "MODIS_NRT": {
+  "rows": 390,
+  "columns": [
+   "latitude",
+   "longitude",
+   "brightness",
+   "scan",
+   "track",
+   "acq_date",
+   "acq_time",
+   "satellite",
+   "instrument",
+   "confidence",
+   "version",
+   "bright_t31",
+   "frp",
+   "daynight"
+  ],
+  "dtypes": {
+   "latitude": "float64",
+   "longitude": "float64",
+   "brightness": "float64",
+   "scan": "float64",
+   "track": "float64",
+   "acq_date": "str",
+   "acq_time": "str",
+   "satellite": "str",
+   "instrument": "str",
+   "confidence": "int64",
+   "version": "str",
+   "bright_t31": "float64",
+   "frp": "float64",
+   "daynight": "str"
+  },
+  "satellite": {
+   "Aqua": 313,
+   "Terra": 77
+  },
+  "instrument": {
+   "MODIS": 390
+  },
+  "version": {
+   "6.1NRT": 390
+  },
+  "daynight": {
+   "D": 378,
+   "N": 12
+  },
+  "confidence": {
+   "min": 0.0,
+   "median": 61.0,
+   "max": 100.0,
+   "lt30": 19,
+   "30to79": 349,
+   "ge80": 22
+  },
+  "frp": {
+   "min": 3.34,
+   "median": 8.74,
+   "max": 114.72
+  },
+  "scan": {
+   "min": 1.0,
+   "median": 1.18,
+   "max": 4.79
+  },
+  "track": {
+   "min": 1.0,
+   "median": 1.08,
+   "max": 2.0
+  },
+  "brightness": {
+   "min": 300.05,
+   "median": 308.4,
+   "max": 370.1
+  },
+  "bright_t31": {
+   "min": 272.22,
+   "median": 293.59000000000003,
+   "max": 307.89
+  },
+  "acq_time_examples": [
+   "0646",
+   "0646",
+   "0646"
+  ],
+  "utc_hour_by_daynight": {
+   "D": {
+    "5": 5,
+    "6": 43,
+    "7": 18,
+    "11": 9,
+    "12": 198,
+    "13": 105
+   },
+   "N": {
+    "2": 1,
+    "16": 2,
+    "17": 9
+   }
+  },
+  "utc_hour_by_satellite": {
+   "Aqua": {
+    "2": 1,
+    "11": 9,
+    "12": 198,
+    "13": 105
+   },
+   "Terra": {
+    "5": 5,
+    "6": 43,
+    "7": 18,
+    "16": 2,
+    "17": 9
+   }
+  },
+  "dates": [
+   "2026-10-20",
+   "2026-10-26"
+  ],
+  "lat_decimals": 5
+ },
+ "VIIRS_SNPP_NRT": {
+  "rows": 2406,
+  "columns": [
+   "latitude",
+   "longitude",
+   "bright_ti4",
+   "scan",
+   "track",
+   "acq_date",
+   "acq_time",
+   "satellite",
+   "instrument",
+   "confidence",
+   "version",
+   "bright_ti5",
+   "frp",
+   "daynight"
+  ],
+  "dtypes": {
+   "latitude": "float64",
+   "longitude": "float64",
+   "bright_ti4": "float64",
+   "scan": "float64",
+   "track": "float64",
+   "acq_date": "str",
+   "acq_time": "str",
+   "satellite": "str",
+   "instrument": "str",
+   "confidence": "str",
+   "version": "str",
+   "bright_ti5": "float64",
+   "frp": "float64",
+   "daynight": "str"
+  },
+  "satellite": {
+   "N": 2406
+  },
+  "instrument": {
+   "VIIRS": 2406
+  },
+  "version": {
+   "2.0NRT": 2406
+  },
+  "daynight": {
+   "D": 1736,
+   "N": 670
+  },
+  "confidence": {
+   "h": 36,
+   "l": 93,
+   "n": 2277
+  },
+  "frp": {
+   "min": 0.0,
+   "median": 3.185,
+   "max": 100.11
+  },
+  "scan": {
+   "min": 0.32,
+   "median": 0.45,
+   "max": 0.8
+  },
+  "track": {
+   "min": 0.36,
+   "median": 0.44,
+   "max": 0.78
+  },
+  "bright_ti4": {
+   "min": 295.07,
+   "median": 332.545,
+   "max": 367.0
+  },
+  "bright_ti5": {
+   "min": 0.0,
+   "median": 296.11,
+   "max": 333.16
+  },
+  "acq_time_examples": [
+   "0120",
+   "0120",
+   "0120"
+  ],
+  "utc_hour_by_daynight": {
+   "D": {
+    "9": 246,
+    "10": 809,
+    "11": 647,
+    "12": 34
+   },
+   "N": {
+    "0": 152,
+    "1": 30,
+    "22": 137,
+    "23": 351
+   }
+  },
+  "utc_hour_by_satellite": {
+   "N": {
+    "0": 152,
+    "1": 30,
+    "9": 246,
+    "10": 809,
+    "11": 647,
+    "12": 34,
+    "22": 137,
+    "23": 351
+   }
+  },
+  "dates": [
+   "2026-10-20",
+   "2026-10-26"
+  ],
+  "lat_decimals": 5
+ },
+ "VIIRS_NOAA20_NRT": {
+  "rows": 2615,
+  "columns": [
+   "latitude",
+   "longitude",
+   "bright_ti4",
+   "scan",
+   "track",
+   "acq_date",
+   "acq_time",
+   "satellite",
+   "instrument",
+   "confidence",
+   "version",
+   "bright_ti5",
+   "frp",
+   "daynight"
+  ],
+  "dtypes": {
+   "latitude": "float64",
+   "longitude": "float64",
+   "bright_ti4": "float64",
+   "scan": "float64",
+   "track": "float64",
+   "acq_date": "str",
+   "acq_time": "str",
+   "satellite": "str",
+   "instrument": "str",
+   "confidence": "str",
+   "version": "str",
+   "bright_ti5": "float64",
+   "frp": "float64",
+   "daynight": "str"
+  },
+  "satellite": {
+   "N20": 2615
+  },
+  "instrument": {
+   "VIIRS": 2615
+  },
+  "version": {
+   "2.0NRT": 2615
+  },
+  "daynight": {
+   "D": 1864,
+   "N": 751
+  },
+  "confidence": {
+   "h": 57,
+   "l": 137,
+   "n": 2421
+  },
+  "frp": {
+   "min": 0.23,
+   "median": 3.03,
+   "max": 111.51
+  },
+  "scan": {
+   "min": 0.32,
+   "median": 0.42,
+   "max": 0.79
+  },
+  "track": {
+   "min": 0.36,
+   "median": 0.46,
+   "max": 0.78
+  },
+  "bright_ti4": {
+   "min": 275.83,
+   "median": 332.3,
+   "max": 367.0
+  },
+  "bright_ti5": {
+   "min": 263.42,
+   "median": 295.62,
+   "max": 318.69
+  },
+  "acq_time_examples": [
+   "0001",
+   "0001",
+   "0001"
+  ],
+  "utc_hour_by_daynight": {
+   "D": {
+    "9": 415,
+    "10": 658,
+    "11": 784,
+    "12": 7
+   },
+   "N": {
+    "0": 140,
+    "1": 19,
+    "21": 13,
+    "22": 185,
+    "23": 394
+   }
+  },
+  "utc_hour_by_satellite": {
+   "N20": {
+    "0": 140,
+    "1": 19,
+    "9": 415,
+    "10": 658,
+    "11": 784,
+    "12": 7,
+    "21": 13,
+    "22": 185,
+    "23": 394
+   }
+  },
+  "dates": [
+   "2026-10-20",
+   "2026-10-26"
+  ],
+  "lat_decimals": 5
+ }
+}

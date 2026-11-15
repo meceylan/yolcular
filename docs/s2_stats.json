@@ -1,0 +1,1493 @@
+{
+ "balkanlar": {
+  "modis_cal_total": 84970,
+  "viirs_cal_total": 309817,
+  "ratio": 3.65,
+  "modis_per_month_min": 675,
+  "ratio_by_year": {
+   "2012": 3.77,
+   "2013": 3.63,
+   "2014": 3.49,
+   "2015": 3.85,
+   "2016": 3.84,
+   "2017": 3.57,
+   "2018": 3.37,
+   "2019": 3.54,
+   "2020": 3.69,
+   "2021": 3.59,
+   "2022": 3.67,
+   "2023": 3.29,
+   "2024": 3.67,
+   "2025": 3.64
+  },
+  "options": {
+   "kendi aylık (12)": {
+    "month_weighted_abs_err_pct": 8.7,
+    "month_median_abs_err_pct": 10.4,
+    "year_mean_abs_err_pct": 3.1,
+    "year_max_abs_err_pct": 5.2,
+    "test_2023_2025_month_weighted_abs_err_pct": 15.9,
+    "test_2023_2025_total_err_pct": 3.8,
+    "test_2023_2025_year_err_pct": {
+     "2023": 11.6,
+     "2024": -0.5,
+     "2025": 1.3
+    },
+    "p16_p84": [
+     0.88,
+     1.27
+    ]
+   },
+   "kendi mevsimlik (4)": {
+    "month_weighted_abs_err_pct": 9.3,
+    "month_median_abs_err_pct": 12.3,
+    "year_mean_abs_err_pct": 3.5,
+    "year_max_abs_err_pct": 5.5,
+    "test_2023_2025_month_weighted_abs_err_pct": 17.4,
+    "test_2023_2025_total_err_pct": 5.1,
+    "test_2023_2025_year_err_pct": {
+     "2023": 12.6,
+     "2024": 1.2,
+     "2025": 2.5
+    },
+    "p16_p84": [
+     0.87,
+     1.4
+    ]
+   },
+   "kendi sabit (1)": {
+    "month_weighted_abs_err_pct": 10.3,
+    "month_median_abs_err_pct": 10.9,
+    "year_mean_abs_err_pct": 3.5,
+    "year_max_abs_err_pct": 8.9,
+    "test_2023_2025_month_weighted_abs_err_pct": 15.7,
+    "test_2023_2025_total_err_pct": 3.1,
+    "test_2023_2025_year_err_pct": {
+     "2023": 10.9,
+     "2024": -0.7,
+     "2025": 0.1
+    },
+    "p16_p84": [
+     0.9,
+     1.55
+    ]
+   },
+   "Türkiye aylık (0)": {
+    "month_weighted_abs_err_pct": 14.4,
+    "month_median_abs_err_pct": 20.0,
+    "year_mean_abs_err_pct": 4.9,
+    "year_max_abs_err_pct": 10.5,
+    "test_2023_2025_month_weighted_abs_err_pct": 14.3,
+    "test_2023_2025_total_err_pct": -0.7,
+    "test_2023_2025_year_err_pct": {
+     "2023": 8.8,
+     "2024": -3.7,
+     "2025": -5.9
+    },
+    "p16_p84": [
+     0.9,
+     1.84
+    ]
+   },
+   "Türkiye aylık × bölge ölçeği (1)": {
+    "month_weighted_abs_err_pct": 14.3,
+    "month_median_abs_err_pct": 20.5,
+    "year_mean_abs_err_pct": 5.0,
+    "year_max_abs_err_pct": 11.8,
+    "test_2023_2025_month_weighted_abs_err_pct": 14.2,
+    "test_2023_2025_total_err_pct": -1.3,
+    "test_2023_2025_year_err_pct": {
+     "2023": 8.1,
+     "2024": -4.3,
+     "2025": -6.4
+    },
+    "p16_p84": [
+     0.91,
+     1.85
+    ]
+   },
+   "kendi aylık, sabite çekilmiş λ=100": {
+    "month_weighted_abs_err_pct": 8.7,
+    "month_median_abs_err_pct": 10.6,
+    "year_mean_abs_err_pct": 3.1,
+    "year_max_abs_err_pct": 4.9,
+    "test_2023_2025_month_weighted_abs_err_pct": 15.8,
+    "test_2023_2025_total_err_pct": 3.7,
+    "test_2023_2025_year_err_pct": {
+     "2023": 11.4,
+     "2024": -0.5,
+     "2025": 1.2
+    },
+    "p16_p84": [
+     0.88,
+     1.28
+    ]
+   },
+   "kendi aylık, sabite çekilmiş λ=300": {
+    "month_weighted_abs_err_pct": 8.7,
+    "month_median_abs_err_pct": 10.9,
+    "year_mean_abs_err_pct": 3.0,
+    "year_max_abs_err_pct": 4.5,
+    "test_2023_2025_month_weighted_abs_err_pct": 15.7,
+    "test_2023_2025_total_err_pct": 3.6,
+    "test_2023_2025_year_err_pct": {
+     "2023": 11.2,
+     "2024": -0.6,
+     "2025": 1.2
+    },
+    "p16_p84": [
+     0.89,
+     1.31
+    ]
+   },
+   "kendi aylık, sabite çekilmiş λ=1000": {
+    "month_weighted_abs_err_pct": 8.7,
+    "month_median_abs_err_pct": 10.9,
+    "year_mean_abs_err_pct": 3.0,
+    "year_max_abs_err_pct": 5.1,
+    "test_2023_2025_month_weighted_abs_err_pct": 15.8,
+    "test_2023_2025_total_err_pct": 3.4,
+    "test_2023_2025_year_err_pct": {
+     "2023": 10.8,
+     "2024": -0.7,
+     "2025": 1.1
+    },
+    "p16_p84": [
+     0.89,
+     1.39
+    ]
+   }
+  },
+  "coef_monthly": {
+   "1": 5.76,
+   "2": 3.42,
+   "3": 3.71,
+   "4": 4.21,
+   "5": 4.28,
+   "6": 3.22,
+   "7": 3.68,
+   "8": 3.84,
+   "9": 3.57,
+   "10": 3.21,
+   "11": 3.5,
+   "12": 6.1
+  },
+  "coef_shrunk_300": {
+   "1": 5.11,
+   "2": 3.45,
+   "3": 3.71,
+   "4": 4.16,
+   "5": 4.11,
+   "6": 3.29,
+   "7": 3.68,
+   "8": 3.84,
+   "9": 3.57,
+   "10": 3.22,
+   "11": 3.5,
+   "12": 5.41
+  },
+  "coef_seasonal": {
+   "1": 4.34,
+   "2": 4.34,
+   "3": 3.88,
+   "4": 3.88,
+   "5": 3.88,
+   "6": 3.75,
+   "7": 3.75,
+   "8": 3.75,
+   "9": 3.41,
+   "10": 3.41,
+   "11": 3.41,
+   "12": 4.34
+  },
+  "noaa20": {
+   "own_constant": 0.994,
+   "by_year": {
+    "2023": 0.987,
+    "2024": 0.958,
+    "2025": 1.043
+   },
+   "month_weighted_abs_err_pct": {
+    "own (leave-one-year-out)": 7.6,
+    "1.000": 6.9,
+    "turkiye 0.986": 6.9,
+    "pooled": 7.5
+   }
+  },
+  "static_check": {
+   "viirs_land_total": 502110,
+   "static_share_pct": 18.2,
+   "static": {
+    "n": 91250,
+    "night_pct": 88.9,
+    "frp_median": 1.35,
+    "in_cells_ge30days_ge10calmonths_pct": 99.4,
+    "in_cells_ge10years_pct": 95.4,
+    "in_cells_le3days_pct": 0.0,
+    "median_days_of_cell": 1783.0,
+    "season": {
+     "share_pct": [
+      3.5,
+      4.1,
+      6.0,
+      7.9,
+      9.7,
+      11.5,
+      12.8,
+      12.8,
+      11.6,
+      9.8,
+      6.0,
+      4.3
+     ],
+     "peak_over_mean": 1.54
+    }
+   },
+   "fire_type0": {
+    "n": 407835,
+    "night_pct": 29.4,
+    "frp_median": 4.12,
+    "in_cells_ge30days_ge10calmonths_pct": 2.1,
+    "in_cells_ge10years_pct": 2.3,
+    "in_cells_le3days_pct": 60.6,
+    "median_days_of_cell": 3.0,
+    "season": {
+     "share_pct": [
+      1.2,
+      3.0,
+      7.8,
+      3.6,
+      1.1,
+      2.2,
+      16.2,
+      26.1,
+      18.1,
+      15.0,
+      4.4,
+      1.3
+     ],
+     "peak_over_mean": 3.13
+    }
+   },
+   "fire_kept": {
+    "n": 379434,
+    "night_pct": 31.6,
+    "frp_median": 4.09,
+    "in_cells_ge30days_ge10calmonths_pct": 2.2,
+    "in_cells_ge10years_pct": 2.3,
+    "in_cells_le3days_pct": 60.6,
+    "median_days_of_cell": 3.0,
+    "season": {
+     "share_pct": [
+      1.3,
+      3.2,
+      8.2,
+      3.7,
+      1.1,
+      2.1,
+      15.6,
+      25.5,
+      17.8,
+      15.5,
+      4.7,
+      1.4
+     ],
+     "peak_over_mean": 3.06
+    }
+   },
+   "static_nonpersistent": {
+    "n": 9,
+    "share_of_static_pct": 0.0,
+    "share_of_kept_fire_pct": 0.0,
+    "season": {
+     "share_pct": [
+      0.0,
+      0.0,
+      0.0,
+      11.1,
+      0.0,
+      33.3,
+      11.1,
+      11.1,
+      22.2,
+      11.1,
+      0.0,
+      0.0
+     ],
+     "peak_over_mean": 4.0
+    }
+   },
+   "kept_but_persistent": {
+    "n": 8342,
+    "share_of_kept_pct": 2.2,
+    "cells": 133,
+    "night_pct": 94.5
+   }
+  }
+ },
+ "kafkasya": {
+  "modis_cal_total": 47069,
+  "viirs_cal_total": 182045,
+  "ratio": 3.87,
+  "modis_per_month_min": 750,
+  "ratio_by_year": {
+   "2012": 3.83,
+   "2013": 4.07,
+   "2014": 4.12,
+   "2015": 3.52,
+   "2016": 3.82,
+   "2017": 3.71,
+   "2018": 3.79,
+   "2019": 4.05,
+   "2020": 3.97,
+   "2021": 3.96,
+   "2022": 4.04,
+   "2023": 3.68,
+   "2024": 3.79,
+   "2025": 3.95
+  },
+  "options": {
+   "kendi aylık (12)": {
+    "month_weighted_abs_err_pct": 12.0,
+    "month_median_abs_err_pct": 11.5,
+    "year_mean_abs_err_pct": 5.5,
+    "year_max_abs_err_pct": 16.6,
+    "test_2023_2025_month_weighted_abs_err_pct": 15.8,
+    "test_2023_2025_total_err_pct": 0.7,
+    "test_2023_2025_year_err_pct": {
+     "2023": 3.6,
+     "2024": 3.7,
+     "2025": -2.6
+    },
+    "p16_p84": [
+     0.87,
+     1.24
+    ]
+   },
+   "kendi mevsimlik (4)": {
+    "month_weighted_abs_err_pct": 14.3,
+    "month_median_abs_err_pct": 16.2,
+    "year_mean_abs_err_pct": 4.8,
+    "year_max_abs_err_pct": 14.5,
+    "test_2023_2025_month_weighted_abs_err_pct": 17.0,
+    "test_2023_2025_total_err_pct": 0.8,
+    "test_2023_2025_year_err_pct": {
+     "2023": 4.8,
+     "2024": 2.5,
+     "2025": -2.3
+    },
+    "p16_p84": [
+     0.85,
+     1.34
+    ]
+   },
+   "kendi sabit (1)": {
+    "month_weighted_abs_err_pct": 14.2,
+    "month_median_abs_err_pct": 15.8,
+    "year_mean_abs_err_pct": 4.3,
+    "year_max_abs_err_pct": 11.3,
+    "test_2023_2025_month_weighted_abs_err_pct": 17.9,
+    "test_2023_2025_total_err_pct": 0.9,
+    "test_2023_2025_year_err_pct": {
+     "2023": 5.1,
+     "2024": 2.2,
+     "2025": -2.1
+    },
+    "p16_p84": [
+     0.85,
+     1.33
+    ]
+   },
+   "Türkiye aylık (0)": {
+    "month_weighted_abs_err_pct": 17.5,
+    "month_median_abs_err_pct": 20.4,
+    "year_mean_abs_err_pct": 9.5,
+    "year_max_abs_err_pct": 18.8,
+    "test_2023_2025_month_weighted_abs_err_pct": 18.1,
+    "test_2023_2025_total_err_pct": -9.5,
+    "test_2023_2025_year_err_pct": {
+     "2023": -5.5,
+     "2024": -6.3,
+     "2025": -13.3
+    },
+    "p16_p84": [
+     0.94,
+     1.76
+    ]
+   },
+   "Türkiye aylık × bölge ölçeği (1)": {
+    "month_weighted_abs_err_pct": 19.1,
+    "month_median_abs_err_pct": 19.6,
+    "year_mean_abs_err_pct": 6.6,
+    "year_max_abs_err_pct": 12.4,
+    "test_2023_2025_month_weighted_abs_err_pct": 19.1,
+    "test_2023_2025_total_err_pct": -0.9,
+    "test_2023_2025_year_err_pct": {
+     "2023": 3.3,
+     "2024": 2.5,
+     "2025": -5.1
+    },
+    "p16_p84": [
+     0.85,
+     1.61
+    ]
+   },
+   "kendi aylık, sabite çekilmiş λ=100": {
+    "month_weighted_abs_err_pct": 12.0,
+    "month_median_abs_err_pct": 11.4,
+    "year_mean_abs_err_pct": 5.5,
+    "year_max_abs_err_pct": 16.4,
+    "test_2023_2025_month_weighted_abs_err_pct": 15.8,
+    "test_2023_2025_total_err_pct": 0.5,
+    "test_2023_2025_year_err_pct": {
+     "2023": 3.4,
+     "2024": 3.6,
+     "2025": -2.7
+    },
+    "p16_p84": [
+     0.87,
+     1.24
+    ]
+   },
+   "kendi aylık, sabite çekilmiş λ=300": {
+    "month_weighted_abs_err_pct": 11.9,
+    "month_median_abs_err_pct": 12.4,
+    "year_mean_abs_err_pct": 5.6,
+    "year_max_abs_err_pct": 16.1,
+    "test_2023_2025_month_weighted_abs_err_pct": 15.8,
+    "test_2023_2025_total_err_pct": 0.3,
+    "test_2023_2025_year_err_pct": {
+     "2023": 3.2,
+     "2024": 3.4,
+     "2025": -2.9
+    },
+    "p16_p84": [
+     0.87,
+     1.24
+    ]
+   },
+   "kendi aylık, sabite çekilmiş λ=1000": {
+    "month_weighted_abs_err_pct": 12.1,
+    "month_median_abs_err_pct": 13.4,
+    "year_mean_abs_err_pct": 5.6,
+    "year_max_abs_err_pct": 15.3,
+    "test_2023_2025_month_weighted_abs_err_pct": 15.7,
+    "test_2023_2025_total_err_pct": 0.1,
+    "test_2023_2025_year_err_pct": {
+     "2023": 3.1,
+     "2024": 3.0,
+     "2025": -3.2
+    },
+    "p16_p84": [
+     0.87,
+     1.26
+    ]
+   }
+  },
+  "coef_monthly": {
+   "1": 4.23,
+   "2": 3.36,
+   "3": 3.41,
+   "4": 4.24,
+   "5": 4.47,
+   "6": 3.8,
+   "7": 3.98,
+   "8": 4.13,
+   "9": 4.26,
+   "10": 3.38,
+   "11": 4.0,
+   "12": 5.41
+  },
+  "coef_shrunk_300": {
+   "1": 4.16,
+   "2": 3.4,
+   "3": 3.43,
+   "4": 4.21,
+   "5": 4.29,
+   "6": 3.81,
+   "7": 3.98,
+   "8": 4.12,
+   "9": 4.24,
+   "10": 3.41,
+   "11": 3.99,
+   "12": 5.02
+  },
+  "coef_seasonal": {
+   "1": 3.84,
+   "2": 3.84,
+   "3": 3.72,
+   "4": 3.72,
+   "5": 3.72,
+   "6": 4.02,
+   "7": 4.02,
+   "8": 4.02,
+   "9": 3.85,
+   "10": 3.85,
+   "11": 3.85,
+   "12": 3.84
+  },
+  "noaa20": {
+   "own_constant": 0.997,
+   "by_year": {
+    "2023": 0.949,
+    "2024": 1.001,
+    "2025": 1.023
+   },
+   "month_weighted_abs_err_pct": {
+    "own (leave-one-year-out)": 7.9,
+    "1.000": 7.5,
+    "turkiye 0.986": 7.5,
+    "pooled": 7.7
+   }
+  },
+  "static_check": {
+   "viirs_land_total": 266088,
+   "static_share_pct": 11.4,
+   "static": {
+    "n": 30459,
+    "night_pct": 90.7,
+    "frp_median": 1.1,
+    "in_cells_ge30days_ge10calmonths_pct": 97.4,
+    "in_cells_ge10years_pct": 82.2,
+    "in_cells_le3days_pct": 0.0,
+    "median_days_of_cell": 786.0,
+    "season": {
+     "share_pct": [
+      2.5,
+      2.3,
+      3.7,
+      7.9,
+      10.9,
+      14.2,
+      13.0,
+      15.3,
+      12.6,
+      9.2,
+      4.9,
+      3.5
+     ],
+     "peak_over_mean": 1.84
+    }
+   },
+   "fire_type0": {
+    "n": 235227,
+    "night_pct": 23.6,
+    "frp_median": 4.5,
+    "in_cells_ge30days_ge10calmonths_pct": 2.4,
+    "in_cells_ge10years_pct": 2.6,
+    "in_cells_le3days_pct": 59.8,
+    "median_days_of_cell": 3.0,
+    "season": {
+     "share_pct": [
+      2.8,
+      6.8,
+      15.1,
+      8.0,
+      1.7,
+      5.7,
+      13.2,
+      17.1,
+      11.3,
+      8.9,
+      7.0,
+      2.4
+     ],
+     "peak_over_mean": 2.06
+    }
+   },
+   "fire_kept": {
+    "n": 215674,
+    "night_pct": 25.7,
+    "frp_median": 4.47,
+    "in_cells_ge30days_ge10calmonths_pct": 2.6,
+    "in_cells_ge10years_pct": 2.7,
+    "in_cells_le3days_pct": 59.5,
+    "median_days_of_cell": 3.0,
+    "season": {
+     "share_pct": [
+      3.0,
+      7.3,
+      16.0,
+      8.3,
+      1.7,
+      5.3,
+      12.4,
+      15.7,
+      10.9,
+      9.4,
+      7.5,
+      2.6
+     ],
+     "peak_over_mean": 1.92
+    }
+   },
+   "static_nonpersistent": {
+    "n": 10,
+    "share_of_static_pct": 0.0,
+    "share_of_kept_fire_pct": 0.0,
+    "season": {
+     "share_pct": [
+      0.0,
+      0.0,
+      0.0,
+      10.0,
+      0.0,
+      40.0,
+      30.0,
+      20.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "peak_over_mean": 4.8
+    }
+   },
+   "kept_but_persistent": {
+    "n": 5608,
+    "share_of_kept_pct": 2.6,
+    "cells": 82,
+    "night_pct": 94.4
+   }
+  }
+ },
+ "dogu_akdeniz": {
+  "modis_cal_total": 13284,
+  "viirs_cal_total": 93966,
+  "ratio": 7.07,
+  "modis_per_month_min": 184,
+  "ratio_by_year": {
+   "2012": 6.55,
+   "2013": 6.43,
+   "2014": 8.03,
+   "2015": 6.89,
+   "2016": 6.63,
+   "2017": 8.94,
+   "2018": 10.25,
+   "2019": 7.83,
+   "2020": 5.02,
+   "2021": 7.12,
+   "2022": 8.65,
+   "2023": 6.21,
+   "2024": 6.67,
+   "2025": 4.6
+  },
+  "options": {
+   "kendi aylık (12)": {
+    "month_weighted_abs_err_pct": 23.9,
+    "month_median_abs_err_pct": 21.4,
+    "year_mean_abs_err_pct": 15.1,
+    "year_max_abs_err_pct": 45.6,
+    "test_2023_2025_month_weighted_abs_err_pct": 30.3,
+    "test_2023_2025_total_err_pct": 22.8,
+    "test_2023_2025_year_err_pct": {
+     "2023": 10.6,
+     "2024": 7.5,
+     "2025": 57.4
+    },
+    "p16_p84": [
+     0.78,
+     1.56
+    ]
+   },
+   "kendi mevsimlik (4)": {
+    "month_weighted_abs_err_pct": 24.8,
+    "month_median_abs_err_pct": 22.4,
+    "year_mean_abs_err_pct": 13.8,
+    "year_max_abs_err_pct": 46.8,
+    "test_2023_2025_month_weighted_abs_err_pct": 33.0,
+    "test_2023_2025_total_err_pct": 22.2,
+    "test_2023_2025_year_err_pct": {
+     "2023": 11.9,
+     "2024": 8.1,
+     "2025": 53.0
+    },
+    "p16_p84": [
+     0.77,
+     1.74
+    ]
+   },
+   "kendi sabit (1)": {
+    "month_weighted_abs_err_pct": 27.5,
+    "month_median_abs_err_pct": 25.3,
+    "year_mean_abs_err_pct": 16.0,
+    "year_max_abs_err_pct": 47.0,
+    "test_2023_2025_month_weighted_abs_err_pct": 38.5,
+    "test_2023_2025_total_err_pct": 22.5,
+    "test_2023_2025_year_err_pct": {
+     "2023": 13.9,
+     "2024": 6.0,
+     "2025": 53.9
+    },
+    "p16_p84": [
+     0.84,
+     2.21
+    ]
+   },
+   "Türkiye aylık (0)": {
+    "month_weighted_abs_err_pct": 52.9,
+    "month_median_abs_err_pct": 62.9,
+    "year_mean_abs_err_pct": 53.6,
+    "year_max_abs_err_pct": 69.4,
+    "test_2023_2025_month_weighted_abs_err_pct": 46.0,
+    "test_2023_2025_total_err_pct": -42.2,
+    "test_2023_2025_year_err_pct": {
+     "2023": -46.1,
+     "2024": -51.8,
+     "2025": -25.5
+    },
+    "p16_p84": [
+     1.83,
+     4.29
+    ]
+   },
+   "Türkiye aylık × bölge ölçeği (1)": {
+    "month_weighted_abs_err_pct": 30.5,
+    "month_median_abs_err_pct": 28.9,
+    "year_mean_abs_err_pct": 19.4,
+    "year_max_abs_err_pct": 52.3,
+    "test_2023_2025_month_weighted_abs_err_pct": 42.9,
+    "test_2023_2025_total_err_pct": 21.3,
+    "test_2023_2025_year_err_pct": {
+     "2023": 13.2,
+     "2024": 1.2,
+     "2025": 56.3
+    },
+    "p16_p84": [
+     0.86,
+     2.07
+    ]
+   },
+   "kendi aylık, sabite çekilmiş λ=100": {
+    "month_weighted_abs_err_pct": 23.4,
+    "month_median_abs_err_pct": 20.4,
+    "year_mean_abs_err_pct": 15.0,
+    "year_max_abs_err_pct": 44.3,
+    "test_2023_2025_month_weighted_abs_err_pct": 29.2,
+    "test_2023_2025_total_err_pct": 20.3,
+    "test_2023_2025_year_err_pct": {
+     "2023": 9.2,
+     "2024": 4.9,
+     "2025": 53.6
+    },
+    "p16_p84": [
+     0.82,
+     1.68
+    ]
+   },
+   "kendi aylık, sabite çekilmiş λ=300": {
+    "month_weighted_abs_err_pct": 23.7,
+    "month_median_abs_err_pct": 20.1,
+    "year_mean_abs_err_pct": 15.4,
+    "year_max_abs_err_pct": 43.6,
+    "test_2023_2025_month_weighted_abs_err_pct": 29.5,
+    "test_2023_2025_total_err_pct": 18.7,
+    "test_2023_2025_year_err_pct": {
+     "2023": 8.4,
+     "2024": 3.1,
+     "2025": 51.1
+    },
+    "p16_p84": [
+     0.87,
+     1.69
+    ]
+   },
+   "kendi aylık, sabite çekilmiş λ=1000": {
+    "month_weighted_abs_err_pct": 24.9,
+    "month_median_abs_err_pct": 21.6,
+    "year_mean_abs_err_pct": 15.7,
+    "year_max_abs_err_pct": 43.8,
+    "test_2023_2025_month_weighted_abs_err_pct": 31.1,
+    "test_2023_2025_total_err_pct": 18.4,
+    "test_2023_2025_year_err_pct": {
+     "2023": 8.9,
+     "2024": 2.4,
+     "2025": 50.1
+    },
+    "p16_p84": [
+     0.89,
+     1.94
+    ]
+   }
+  },
+  "coef_monthly": {
+   "1": 9.61,
+   "2": 11.77,
+   "3": 16.26,
+   "4": 17.85,
+   "5": 7.92,
+   "6": 5.86,
+   "7": 5.87,
+   "8": 6.99,
+   "9": 7.13,
+   "10": 6.32,
+   "11": 6.08,
+   "12": 8.39
+  },
+  "coef_shrunk_300": {
+   "1": 8.11,
+   "2": 9.07,
+   "3": 10.57,
+   "4": 11.94,
+   "5": 7.72,
+   "6": 6.04,
+   "7": 6.07,
+   "8": 7.0,
+   "9": 7.12,
+   "10": 6.39,
+   "11": 6.35,
+   "12": 7.73
+  },
+  "coef_seasonal": {
+   "1": 9.77,
+   "2": 9.77,
+   "3": 10.68,
+   "4": 10.68,
+   "5": 10.68,
+   "6": 6.21,
+   "7": 6.21,
+   "8": 6.21,
+   "9": 6.58,
+   "10": 6.58,
+   "11": 6.58,
+   "12": 9.77
+  },
+  "noaa20": {
+   "own_constant": 0.974,
+   "by_year": {
+    "2023": 0.988,
+    "2024": 0.988,
+    "2025": 0.941
+   },
+   "month_weighted_abs_err_pct": {
+    "own (leave-one-year-out)": 6.6,
+    "1.000": 6.7,
+    "turkiye 0.986": 6.4,
+    "pooled": 6.4
+   }
+  },
+  "static_check": {
+   "viirs_land_total": 239548,
+   "static_share_pct": 44.4,
+   "static": {
+    "n": 106369,
+    "night_pct": 92.4,
+    "frp_median": 1.32,
+    "in_cells_ge30days_ge10calmonths_pct": 99.4,
+    "in_cells_ge10years_pct": 86.5,
+    "in_cells_le3days_pct": 0.0,
+    "median_days_of_cell": 1552.0,
+    "season": {
+     "share_pct": [
+      6.5,
+      7.1,
+      8.4,
+      9.0,
+      9.3,
+      8.8,
+      8.2,
+      8.7,
+      8.5,
+      9.2,
+      8.6,
+      7.7
+     ],
+     "peak_over_mean": 1.12
+    }
+   },
+   "fire_type0": {
+    "n": 131759,
+    "night_pct": 37.0,
+    "frp_median": 3.16,
+    "in_cells_ge30days_ge10calmonths_pct": 13.5,
+    "in_cells_ge10years_pct": 11.4,
+    "in_cells_le3days_pct": 40.1,
+    "median_days_of_cell": 5.0,
+    "season": {
+     "share_pct": [
+      2.0,
+      2.5,
+      3.1,
+      4.5,
+      8.7,
+      11.1,
+      10.1,
+      11.0,
+      18.1,
+      21.7,
+      4.7,
+      2.5
+     ],
+     "peak_over_mean": 2.61
+    }
+   },
+   "fire_kept": {
+    "n": 117349,
+    "night_pct": 41.5,
+    "frp_median": 3.05,
+    "in_cells_ge30days_ge10calmonths_pct": 14.8,
+    "in_cells_ge10years_pct": 12.2,
+    "in_cells_le3days_pct": 39.1,
+    "median_days_of_cell": 5.0,
+    "season": {
+     "share_pct": [
+      2.2,
+      2.7,
+      3.4,
+      4.7,
+      8.5,
+      10.5,
+      9.6,
+      10.6,
+      17.4,
+      22.4,
+      5.2,
+      2.8
+     ],
+     "peak_over_mean": 2.69
+    }
+   },
+   "static_nonpersistent": {
+    "n": 17,
+    "share_of_static_pct": 0.0,
+    "share_of_kept_fire_pct": 0.0,
+    "season": {
+     "share_pct": [
+      23.5,
+      5.9,
+      0.0,
+      0.0,
+      23.5,
+      0.0,
+      23.5,
+      0.0,
+      0.0,
+      5.9,
+      5.9,
+      11.8
+     ],
+     "peak_over_mean": 2.82
+    }
+   },
+   "kept_but_persistent": {
+    "n": 17403,
+    "share_of_kept_pct": 14.8,
+    "cells": 237,
+    "night_pct": 93.8
+   },
+   "nile_delta": {
+    "static": {
+     "n": 19075,
+     "night_pct": 91.9,
+     "frp_median": 1.08,
+     "in_cells_ge30days_ge10calmonths_pct": 98.7,
+     "in_cells_ge10years_pct": 87.5,
+     "in_cells_le3days_pct": 0.0,
+     "median_days_of_cell": 619.0,
+     "season": {
+      "share_pct": [
+       6.3,
+       6.7,
+       8.1,
+       9.3,
+       9.0,
+       8.6,
+       8.7,
+       9.4,
+       9.3,
+       9.4,
+       7.7,
+       7.5
+      ],
+      "peak_over_mean": 1.13
+     }
+    },
+    "fire_type0": {
+     "n": 56696,
+     "night_pct": 27.8,
+     "frp_median": 2.94,
+     "in_cells_ge30days_ge10calmonths_pct": 15.6,
+     "in_cells_ge10years_pct": 13.5,
+     "in_cells_le3days_pct": 32.8,
+     "median_days_of_cell": 6.0,
+     "season": {
+      "share_pct": [
+       2.3,
+       2.6,
+       3.2,
+       3.7,
+       7.3,
+       4.4,
+       3.4,
+       7.4,
+       24.9,
+       34.7,
+       3.9,
+       2.3
+      ],
+      "peak_over_mean": 4.16
+     }
+    },
+    "static_share_pct": 24.9,
+    "share_of_region_static_pct": 17.9
+   },
+   "top_static_clusters_0.1deg": {
+    "29.8,32.1": {
+     "detections": 15243,
+     "cells": 4,
+     "max_days": 3953
+    },
+    "29.8,31.3": {
+     "detections": 14631,
+     "cells": 19,
+     "max_days": 3026
+    },
+    "29.0,31.2": {
+     "detections": 7257,
+     "cells": 6,
+     "max_days": 1603
+    },
+    "30.7,33.8": {
+     "detections": 7220,
+     "cells": 5,
+     "max_days": 2299
+    },
+    "30.7,33.9": {
+     "detections": 5442,
+     "cells": 2,
+     "max_days": 3116
+    },
+    "29.7,32.3": {
+     "detections": 5267,
+     "cells": 5,
+     "max_days": 1973
+    },
+    "31.4,30.3": {
+     "detections": 3959,
+     "cells": 6,
+     "max_days": 1552
+    },
+    "29.8,32.2": {
+     "detections": 3744,
+     "cells": 6,
+     "max_days": 1894
+    },
+    "32.9,35.1": {
+     "detections": 3173,
+     "cells": 4,
+     "max_days": 1403
+    },
+    "31.9,34.9": {
+     "detections": 3116,
+     "cells": 3,
+     "max_days": 2449
+    },
+    "30.4,30.6": {
+     "detections": 2811,
+     "cells": 5,
+     "max_days": 1040
+    },
+    "34.7,33.3": {
+     "detections": 2239,
+     "cells": 1,
+     "max_days": 1777
+    }
+   },
+   "static_in_top12_clusters_pct": 69.7
+  }
+ },
+ "turkiye": {
+  "modis_cal_total": 96147,
+  "viirs_cal_total": 312584,
+  "ratio": 3.25,
+  "modis_per_month_min": 1454,
+  "ratio_by_year": {
+   "2012": 3.46,
+   "2013": 3.37,
+   "2014": 3.32,
+   "2015": 3.0,
+   "2016": 3.32,
+   "2017": 3.3,
+   "2018": 3.19,
+   "2019": 3.48,
+   "2020": 3.59,
+   "2021": 2.98,
+   "2022": 2.95,
+   "2023": 3.23,
+   "2024": 3.13,
+   "2025": 3.01
+  },
+  "options": {
+   "kendi aylık (12)": {
+    "month_weighted_abs_err_pct": 11.8,
+    "month_median_abs_err_pct": 14.8,
+    "year_mean_abs_err_pct": 4.6,
+    "year_max_abs_err_pct": 11.3,
+    "test_2023_2025_month_weighted_abs_err_pct": 14.1,
+    "test_2023_2025_total_err_pct": 1.5,
+    "test_2023_2025_year_err_pct": {
+     "2023": 0.2,
+     "2024": 1.8,
+     "2025": 2.6
+    },
+    "p16_p84": [
+     0.85,
+     1.34
+    ]
+   },
+   "kendi mevsimlik (4)": {
+    "month_weighted_abs_err_pct": 22.8,
+    "month_median_abs_err_pct": 24.0,
+    "year_mean_abs_err_pct": 5.5,
+    "year_max_abs_err_pct": 11.6,
+    "test_2023_2025_month_weighted_abs_err_pct": 23.4,
+    "test_2023_2025_total_err_pct": 3.6,
+    "test_2023_2025_year_err_pct": {
+     "2023": 0.9,
+     "2024": 3.9,
+     "2025": 6.2
+    },
+    "p16_p84": [
+     0.73,
+     1.41
+    ]
+   },
+   "kendi sabit (1)": {
+    "month_weighted_abs_err_pct": 24.6,
+    "month_median_abs_err_pct": 21.1,
+    "year_mean_abs_err_pct": 6.0,
+    "year_max_abs_err_pct": 10.6,
+    "test_2023_2025_month_weighted_abs_err_pct": 26.7,
+    "test_2023_2025_total_err_pct": 4.0,
+    "test_2023_2025_year_err_pct": {
+     "2023": 0.7,
+     "2024": 3.8,
+     "2025": 7.8
+    },
+    "p16_p84": [
+     0.75,
+     1.43
+    ]
+   },
+   "Türkiye aylık (0)": {
+    "month_weighted_abs_err_pct": 10.5,
+    "month_median_abs_err_pct": 12.9,
+    "year_mean_abs_err_pct": 4.1,
+    "year_max_abs_err_pct": 10.6,
+    "test_2023_2025_month_weighted_abs_err_pct": 14.1,
+    "test_2023_2025_total_err_pct": 1.5,
+    "test_2023_2025_year_err_pct": {
+     "2023": 0.2,
+     "2024": 1.8,
+     "2025": 2.6
+    },
+    "p16_p84": [
+     0.87,
+     1.31
+    ]
+   },
+   "Türkiye aylık × bölge ölçeği (1)": {
+    "month_weighted_abs_err_pct": 10.8,
+    "month_median_abs_err_pct": 13.0,
+    "year_mean_abs_err_pct": 4.6,
+    "year_max_abs_err_pct": 11.5,
+    "test_2023_2025_month_weighted_abs_err_pct": 14.1,
+    "test_2023_2025_total_err_pct": 1.5,
+    "test_2023_2025_year_err_pct": {
+     "2023": 0.2,
+     "2024": 1.8,
+     "2025": 2.6
+    },
+    "p16_p84": [
+     0.87,
+     1.31
+    ]
+   },
+   "kendi aylık, sabite çekilmiş λ=100": {
+    "month_weighted_abs_err_pct": 11.8,
+    "month_median_abs_err_pct": 15.4,
+    "year_mean_abs_err_pct": 4.6,
+    "year_max_abs_err_pct": 11.4,
+    "test_2023_2025_month_weighted_abs_err_pct": 14.2,
+    "test_2023_2025_total_err_pct": 1.5,
+    "test_2023_2025_year_err_pct": {
+     "2023": 0.2,
+     "2024": 1.8,
+     "2025": 2.6
+    },
+    "p16_p84": [
+     0.85,
+     1.34
+    ]
+   },
+   "kendi aylık, sabite çekilmiş λ=300": {
+    "month_weighted_abs_err_pct": 11.7,
+    "month_median_abs_err_pct": 15.1,
+    "year_mean_abs_err_pct": 4.6,
+    "year_max_abs_err_pct": 11.4,
+    "test_2023_2025_month_weighted_abs_err_pct": 14.2,
+    "test_2023_2025_total_err_pct": 1.5,
+    "test_2023_2025_year_err_pct": {
+     "2023": 0.2,
+     "2024": 1.8,
+     "2025": 2.6
+    },
+    "p16_p84": [
+     0.86,
+     1.36
+    ]
+   },
+   "kendi aylık, sabite çekilmiş λ=1000": {
+    "month_weighted_abs_err_pct": 11.7,
+    "month_median_abs_err_pct": 13.8,
+    "year_mean_abs_err_pct": 4.9,
+    "year_max_abs_err_pct": 11.5,
+    "test_2023_2025_month_weighted_abs_err_pct": 14.3,
+    "test_2023_2025_total_err_pct": 1.6,
+    "test_2023_2025_year_err_pct": {
+     "2023": 0.2,
+     "2024": 1.8,
+     "2025": 2.8
+    },
+    "p16_p84": [
+     0.87,
+     1.37
+    ]
+   }
+  },
+  "coef_monthly": {
+   "1": 3.31,
+   "2": 3.24,
+   "3": 3.73,
+   "4": 4.48,
+   "5": 2.69,
+   "6": 1.98,
+   "7": 3.16,
+   "8": 3.91,
+   "9": 4.16,
+   "10": 3.69,
+   "11": 2.62,
+   "12": 3.13
+  },
+  "coef_shrunk_300": {
+   "1": 3.3,
+   "2": 3.24,
+   "3": 3.67,
+   "4": 4.27,
+   "5": 2.78,
+   "6": 2.0,
+   "7": 3.17,
+   "8": 3.89,
+   "9": 4.14,
+   "10": 3.68,
+   "11": 2.63,
+   "12": 3.14
+  },
+  "coef_seasonal": {
+   "1": 3.2,
+   "2": 3.2,
+   "3": 3.59,
+   "4": 3.59,
+   "5": 3.59,
+   "6": 2.91,
+   "7": 2.91,
+   "8": 2.91,
+   "9": 3.55,
+   "10": 3.55,
+   "11": 3.55,
+   "12": 3.2
+  },
+  "noaa20": {
+   "own_constant": 0.986,
+   "by_year": {
+    "2023": 0.981,
+    "2024": 0.956,
+    "2025": 1.033
+   },
+   "month_weighted_abs_err_pct": {
+    "own (leave-one-year-out)": 7.7,
+    "1.000": 7.1,
+    "turkiye 0.986": 7.1,
+    "pooled": 7.6
+   }
+  },
+  "static_check": {
+   "viirs_land_total": 605472,
+   "static_share_pct": 25.6,
+   "static": {
+    "n": 155074,
+    "night_pct": 92.7,
+    "frp_median": 1.24,
+    "in_cells_ge30days_ge10calmonths_pct": 99.5,
+    "in_cells_ge10years_pct": 95.3,
+    "in_cells_le3days_pct": 0.0,
+    "median_days_of_cell": 1797.0,
+    "season": {
+     "share_pct": [
+      3.7,
+      4.2,
+      5.5,
+      7.7,
+      9.7,
+      11.8,
+      12.1,
+      11.9,
+      11.6,
+      10.2,
+      7.0,
+      4.7
+     ],
+     "peak_over_mean": 1.45
+    }
+   },
+   "fire_type0": {
+    "n": 445519,
+    "night_pct": 26.6,
+    "frp_median": 4.41,
+    "in_cells_ge30days_ge10calmonths_pct": 3.0,
+    "in_cells_ge10years_pct": 11.0,
+    "in_cells_le3days_pct": 42.4,
+    "median_days_of_cell": 5.0,
+    "season": {
+     "share_pct": [
+      2.4,
+      1.8,
+      2.2,
+      1.9,
+      1.5,
+      11.4,
+      10.4,
+      17.4,
+      21.2,
+      16.1,
+      9.5,
+      4.2
+     ],
+     "peak_over_mean": 2.54
+    }
+   },
+   "fire_kept": {
+    "n": 395886,
+    "night_pct": 29.9,
+    "frp_median": 4.3,
+    "in_cells_ge30days_ge10calmonths_pct": 3.4,
+    "in_cells_ge10years_pct": 11.2,
+    "in_cells_le3days_pct": 42.2,
+    "median_days_of_cell": 5.0,
+    "season": {
+     "share_pct": [
+      2.7,
+      2.0,
+      2.4,
+      2.0,
+      1.5,
+      11.2,
+      10.0,
+      16.4,
+      20.0,
+      16.8,
+      10.5,
+      4.7
+     ],
+     "peak_over_mean": 2.4
+    }
+   },
+   "static_nonpersistent": {
+    "n": 21,
+    "share_of_static_pct": 0.0,
+    "share_of_kept_fire_pct": 0.0,
+    "season": {
+     "share_pct": [
+      0.0,
+      0.0,
+      0.0,
+      14.3,
+      0.0,
+      14.3,
+      19.0,
+      9.5,
+      33.3,
+      4.8,
+      0.0,
+      4.8
+     ],
+     "peak_over_mean": 4.0
+    }
+   },
+   "kept_but_persistent": {
+    "n": 13324,
+    "share_of_kept_pct": 3.4,
+    "cells": 224,
+    "night_pct": 96.3
+   }
+  }
+ },
+ "noaa20_pooled_k": 0.989,
+ "modis_start_turkiye": {
+  "all_rows_by_day_sat": {
+   "2002-07-01 Terra": 45,
+   "2002-07-02 Terra": 30,
+   "2002-07-03 Terra": 39,
+   "2002-07-04 Aqua": 23,
+   "2002-07-04 Terra": 27,
+   "2002-07-05 Aqua": 24,
+   "2002-07-05 Terra": 54,
+   "2002-07-06 Aqua": 38,
+   "2002-07-06 Terra": 18,
+   "2002-07-07 Aqua": 15,
+   "2002-07-07 Terra": 76,
+   "2002-07-08 Aqua": 12,
+   "2002-07-08 Terra": 9,
+   "2002-07-09 Aqua": 19,
+   "2002-07-09 Terra": 21,
+   "2002-07-10 Aqua": 28,
+   "2002-07-10 Terra": 28
+  },
+  "kept_before_0704": 53,
+  "kept_july_2002": 845
+ },
+ "overlap_with_turkiye": {
+  "balkanlar": {
+   "turkiye_cells_in_box": 219,
+   "modis_2002_2011_in_overlap": 8061,
+   "share_of_region_modis_pct": 8.3,
+   "share_of_turkiye_modis_pct": 8.4,
+   "h_with_turkiye_coef": 28462,
+   "h_with_region_monthly_coef": 28560,
+   "diff_region_vs_turkiye_pct": 0.3,
+   "diff_region_shrunk_vs_turkiye_pct": 0.1,
+   "diff_by_year_pct_min_max": [
+    -1.6,
+    74.0
+   ]
+  },
+  "kafkasya": {
+   "turkiye_cells_in_box": 146,
+   "modis_2002_2011_in_overlap": 1438,
+   "share_of_region_modis_pct": 3.5,
+   "share_of_turkiye_modis_pct": 1.5,
+   "h_with_turkiye_coef": 5402,
+   "h_with_region_monthly_coef": 5834,
+   "diff_region_vs_turkiye_pct": 8.0,
+   "diff_region_shrunk_vs_turkiye_pct": 7.5,
+   "diff_by_year_pct_min_max": [
+    2.3,
+    27.9
+   ]
+  },
+  "dogu_akdeniz": {
+   "turkiye_cells_in_box": 2,
+   "modis_2002_2011_in_overlap": 43,
+   "share_of_region_modis_pct": 0.5,
+   "share_of_turkiye_modis_pct": 0.0,
+   "h_with_turkiye_coef": 154,
+   "h_with_region_monthly_coef": 276,
+   "diff_region_vs_turkiye_pct": 79.2,
+   "diff_region_shrunk_vs_turkiye_pct": 82.2,
+   "diff_by_year_pct_min_max": [
+    71.3,
+    80.7
+   ]
+  }
+ }
+}

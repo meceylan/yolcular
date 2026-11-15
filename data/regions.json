@@ -1,0 +1,237 @@
+{
+  "_note": "Bölge ayarları. Yeni seviye = yeni satır. bbox derece (WGS84). cell_deg: ızgara boyutu (veri sözleşmesi K5). mask: 'country:<ISO3>' ise arşiv ülke sınırıyla kesilmiştir, API verisine aynı maske uygulanır (adım 22). mask 'land:<dosya>' ise (kutu bölgeleri) tüm satırlar Natural Earth kara poligonlarıyla test edilir (deniz dışarıda); in_country sütunu bu durumda 'karada' anlamına gelir. modis_first_date: bu tarihten önceki MODIS satırları atılır (Aqua başlangıcı). harmonize: bölgeye özel uyumlaştırma ayarları (adım 50, docs/harmonize_s2.md): modis_method monthly|shrunk, shrink_lambda, k_n20 (ortak sabit), quality (experimental = kaba tahmin, sayfada etiketlenmeli).",
+  "regions": [
+    {
+      "name": "turkiye",
+      "name_tr": "Türkiye",
+      "name_en": "Türkiye",
+      "level": 1,
+      "bbox": {
+        "south": 35.8,
+        "north": 42.2,
+        "west": 25.6,
+        "east": 44.9
+      },
+      "cell_deg": 0.25,
+      "mask": "country:TUR",
+      "first_month": "2002-07",
+      "archive": {
+        "MODIS_SP": "archive/DL_FIRE_M-C61_846928/fire_archive_M-C61_846928.csv",
+        "VIIRS_SNPP_SP": "archive/DL_FIRE_SV-C2_846929/fire_archive_SV-C2_846929.csv",
+        "years": [
+          2012,
+          2025
+        ]
+      },
+      "modis_first_date": "2002-07-04"
+    },
+    {
+      "name": "balkanlar",
+      "name_tr": "Balkanlar kutusu",
+      "name_en": "Balkans box",
+      "level": 2,
+      "bbox": {
+        "south": 34.5,
+        "north": 44.5,
+        "west": 19.0,
+        "east": 29.5
+      },
+      "cell_deg": 0.25,
+      "mask": "land:ne_10m_land",
+      "first_month": "2002-07",
+      "modis_first_date": "2002-07-04",
+      "archive": {
+        "MODIS_SP": "archive/balkanlar/DL_FIRE_M-C61_848441/fire_archive_M-C61_848441.csv",
+        "VIIRS_SNPP_SP": "archive/balkanlar/DL_FIRE_SV-C2_848442/fire_archive_SV-C2_848442.csv",
+        "years": {
+          "MODIS_SP": [
+            2002,
+            2025
+          ],
+          "VIIRS_SNPP_SP": [
+            2012,
+            2025
+          ]
+        }
+      },
+      "harmonize": {
+        "modis_method": "monthly",
+        "k_n20": 0.986
+      }
+    },
+    {
+      "name": "kafkasya",
+      "name_tr": "Kafkasya kutusu",
+      "name_en": "Caucasus box",
+      "level": 2,
+      "bbox": {
+        "south": 38.25,
+        "north": 43.75,
+        "west": 40.0,
+        "east": 50.5
+      },
+      "cell_deg": 0.25,
+      "mask": "land:ne_10m_land",
+      "first_month": "2002-07",
+      "modis_first_date": "2002-07-04",
+      "archive": {
+        "MODIS_SP": "archive/kafkasya/DL_FIRE_M-C61_848445/fire_archive_M-C61_848445.csv",
+        "VIIRS_SNPP_SP": "archive/kafkasya/DL_FIRE_SV-C2_848446/fire_archive_SV-C2_848446.csv",
+        "years": {
+          "MODIS_SP": [
+            2002,
+            2025
+          ],
+          "VIIRS_SNPP_SP": [
+            2012,
+            2025
+          ]
+        }
+      },
+      "harmonize": {
+        "modis_method": "monthly",
+        "k_n20": 0.986
+      }
+    },
+    {
+      "name": "dogu_akdeniz",
+      "name_tr": "Doğu Akdeniz kutusu",
+      "name_en": "Eastern Mediterranean box",
+      "level": 2,
+      "bbox": {
+        "south": 29.0,
+        "north": 36.0,
+        "west": 30.0,
+        "east": 36.5
+      },
+      "cell_deg": 0.25,
+      "mask": "land:ne_10m_land",
+      "first_month": "2002-07",
+      "modis_first_date": "2002-07-04",
+      "archive": {
+        "MODIS_SP": "archive/dogu_akdeniz/DL_FIRE_M-C61_848454/fire_archive_M-C61_848454.csv",
+        "VIIRS_SNPP_SP": "archive/dogu_akdeniz/DL_FIRE_SV-C2_848455/fire_archive_SV-C2_848455.csv",
+        "years": {
+          "MODIS_SP": [
+            2002,
+            2025
+          ],
+          "VIIRS_SNPP_SP": [
+            2012,
+            2025
+          ]
+        }
+      },
+      "harmonize": {
+        "modis_method": "shrunk",
+        "shrink_lambda": 300,
+        "k_n20": 0.986,
+        "quality": "experimental"
+      }
+    },
+    {
+      "name": "se_australia",
+      "name_tr": "Güneydoğu Avustralya kutusu",
+      "name_en": "Southeast Australia box",
+      "level": 3,
+      "bbox": {
+        "south": -38,
+        "north": -33,
+        "west": 146,
+        "east": 151
+      },
+      "cell_deg": 0.25,
+      "mask": "land:ne_10m_land",
+      "first_month": "2002-07",
+      "modis_first_date": "2002-07-04",
+      "archive": {
+        "MODIS_SP": "archive/se_australia/DL_FIRE_M-C61_849955/fire_archive_M-C61_849955.csv",
+        "VIIRS_SNPP_SP": "archive/se_australia/DL_FIRE_SV-C2_849956/fire_archive_SV-C2_849956.csv",
+        "years": {
+          "MODIS_SP": [
+            2002,
+            2025
+          ],
+          "VIIRS_SNPP_SP": [
+            2012,
+            2025
+          ]
+        }
+      },
+      "harmonize": {
+        "modis_method": "monthly",
+        "k_n20": 0.986,
+        "quality": "experimental",
+        "quality_note": "values before 2012 are rough: in quiet fire years the estimate can be about a third too high."
+      }
+    },
+    {
+      "name": "california",
+      "name_tr": "Kaliforniya kutusu",
+      "name_en": "California box",
+      "level": 3,
+      "bbox": {
+        "south": 36.5,
+        "north": 41.5,
+        "west": -123.5,
+        "east": -118.5
+      },
+      "cell_deg": 0.25,
+      "mask": "land:ne_10m_land",
+      "first_month": "2002-07",
+      "modis_first_date": "2002-07-04",
+      "archive": {
+        "MODIS_SP": "archive/california/DL_FIRE_M-C61_849965/fire_archive_M-C61_849965.csv",
+        "VIIRS_SNPP_SP": "archive/california/DL_FIRE_SV-C2_849966/fire_archive_SV-C2_849966.csv",
+        "years": {
+          "MODIS_SP": [
+            2002,
+            2025
+          ],
+          "VIIRS_SNPP_SP": [
+            2012,
+            2025
+          ]
+        }
+      },
+      "harmonize": {
+        "modis_method": "monthly",
+        "k_n20": 0.986
+      }
+    },
+    {
+      "name": "amazon_arc",
+      "name_tr": "Amazon yayı kutusu",
+      "name_en": "Amazon arc box",
+      "level": 3,
+      "bbox": {
+        "south": -12,
+        "north": -7,
+        "west": -57,
+        "east": -52
+      },
+      "cell_deg": 0.25,
+      "mask": "land:ne_10m_land",
+      "first_month": "2002-07",
+      "modis_first_date": "2002-07-04",
+      "archive": {
+        "MODIS_SP": "archive/amazon_arc/DL_FIRE_M-C61_849972/fire_archive_M-C61_849972.csv",
+        "VIIRS_SNPP_SP": "archive/amazon_arc/DL_FIRE_SV-C2_849973/fire_archive_SV-C2_849973.csv",
+        "years": {
+          "MODIS_SP": [
+            2002,
+            2025
+          ],
+          "VIIRS_SNPP_SP": [
+            2012,
+            2025
+          ]
+        }
+      },
+      "harmonize": {
+        "modis_method": "monthly",
+        "k_n20": 0.986
+      }
+    }
+  ]
+}
