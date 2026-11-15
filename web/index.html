@@ -12,34 +12,39 @@
   <meta property="og:description" content="Year-by-month calendar of MODIS and VIIRS fire detections (NASA FIRMS), harmonized into one comparable series, with this month compared to the typical month.">
   <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css?v=cr1">
+  <link rel="stylesheet" href="style.css?v=tr3">
 </head>
 <body>
   <header class="top wrap">
     <div class="brand">
-      <h1>Burn Calendar</h1>
-      <p class="lede">How many fires satellites saw each month since 2002, and whether this month is unusual.</p>
+      <div class="brand-row">
+        <h1 data-i18n="s.title">Burn Calendar</h1>
+        <div class="lang-switch" role="group" aria-label="Language" data-i18n-attr="aria-label:lang.label">
+          <button type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="true">EN</button><span aria-hidden="true">|</span><button type="button" data-lang="tr" lang="tr" aria-label="Türkçe" aria-pressed="false">TR</button>
+        </div>
+      </div>
+      <p class="lede" data-i18n="s.lede">How many fires satellites saw each month since 2002, and whether this month is unusual.</p>
     </div>
     <section class="howto" aria-labelledby="howto-title">
-      <h2 id="howto-title">How to read this</h2>
-      <p>One square = one month. Brighter = more fires.<br>Dashed = estimate, hatched = no data.</p>
+      <h2 id="howto-title" data-i18n="s.howto">How to read this</h2>
+      <p data-i18n-html="s.howtotext">One square = one month. Brighter = more fires.<br>Dashed = estimate, hatched = no data.</p>
     </section>
   </header>
 
   <main class="wrap">
     <p id="load-error" class="load-error" role="alert" hidden></p>
     <div class="ctx-bar">
-      <p id="cards-ctx" class="ctx" aria-live="polite">Loading data…</p>
+      <p id="cards-ctx" class="ctx" aria-live="polite" data-i18n="s.loading">Loading data…</p>
       <div class="share">
         <button id="copy-link" type="button" aria-describedby="copy-help">Copy link</button>
-        <span id="copy-help" class="sr-only">Copies a link to this view: region, area, period and selected month.</span>
+        <span id="copy-help" class="sr-only" data-i18n="s.copyhelp">Copies a link to this view: region, area, period and selected month.</span>
         <span id="copy-status" class="sub share-status" role="status" aria-live="polite"></span>
       </div>
     </div>
     <div class="top-grid">
-      <section class="cards" aria-label="Summary">
+      <section class="cards" aria-label="Summary" data-i18n-attr="aria-label:s.summary">
         <div class="card stat">
-          <label class="stat-pick"><span class="sr-only">Month to compare</span><select id="compare-month"></select></label>
+          <label class="stat-pick"><span class="sr-only" data-i18n="s.cmpmonth">Month to compare</span><select id="compare-month"></select></label>
           <div id="compare" role="status" aria-live="polite"></div>
         </div>
         <div id="card-partial" class="card stat"></div>
@@ -48,48 +53,48 @@
       </section>
 
       <section class="card panel area-panel" aria-labelledby="area-title">
-        <h2 id="area-title"><span class="step" aria-hidden="true">1</span> Choose area</h2>
-        <label class="field region-field">Region
+        <h2 id="area-title"><span class="step" aria-hidden="true">1</span> <span data-i18n="s.area">Choose area</span></h2>
+        <label class="field region-field"><span data-i18n="s.region">Region</span>
           <select id="region"></select>
         </label>
-        <p id="bbox-help" class="sub">Draw a rectangle on the map or type coordinates; the 0.25° grid cells whose centre is inside are added up.</p>
-        <div id="map" class="map" role="region" aria-label="Map for selecting an area. Drawing needs a pointer; keyboard and screen reader users can type the coordinates in the boxes instead." aria-describedby="bbox-help"></div>
+        <p id="bbox-help" class="sub" data-i18n="s.bboxhelp">Draw a rectangle on the map or type coordinates; the 0.25° grid cells whose centre is inside are added up.</p>
+        <div id="map" class="map" role="region" data-i18n-attr="aria-label:s.maparia" aria-label="Map for selecting an area. Drawing needs a pointer; keyboard and screen reader users can type the coordinates in the boxes instead." aria-describedby="bbox-help"></div>
         <div class="bbox-buttons">
           <button id="draw-btn" type="button" aria-pressed="false">Draw on map</button>
-          <button id="reset-btn" type="button">Whole region</button>
+          <button id="reset-btn" type="button" data-i18n="s.whole">Whole region</button>
         </div>
         <details class="coords">
-          <summary>Type coordinates</summary>
-          <form id="bbox-form" class="bbox-form" aria-label="Area coordinates (degrees)">
-            <label>North <input id="b-north" type="number" step="any" inputmode="decimal" required></label>
-            <label>South <input id="b-south" type="number" step="any" inputmode="decimal" required></label>
-            <label>West <input id="b-west" type="number" step="any" inputmode="decimal" required></label>
-            <label>East <input id="b-east" type="number" step="any" inputmode="decimal" required></label>
-            <button type="submit" class="primary">Apply</button>
+          <summary data-i18n="s.coords">Type coordinates</summary>
+          <form id="bbox-form" class="bbox-form" aria-label="Area coordinates (degrees)" data-i18n-attr="aria-label:s.coordsaria">
+            <label><span data-i18n="s.north">North</span> <input id="b-north" type="number" step="any" inputmode="decimal" required></label>
+            <label><span data-i18n="s.south">South</span> <input id="b-south" type="number" step="any" inputmode="decimal" required></label>
+            <label><span data-i18n="s.west">West</span> <input id="b-west" type="number" step="any" inputmode="decimal" required></label>
+            <label><span data-i18n="s.east">East</span> <input id="b-east" type="number" step="any" inputmode="decimal" required></label>
+            <button type="submit" class="primary" data-i18n="s.apply">Apply</button>
           </form>
         </details>
         <p id="bbox-status" class="sub status" role="status" aria-live="polite"></p>
       </section>
 
       <section class="card panel period-panel" aria-labelledby="period-title">
-        <h2 id="period-title"><span class="step" aria-hidden="true">2</span> Choose period</h2>
+        <h2 id="period-title"><span class="step" aria-hidden="true">2</span> <span data-i18n="s.period">Choose period</span></h2>
         <fieldset class="period">
-          <legend class="sr-only">Period</legend>
+          <legend class="sr-only" data-i18n="s.periodlegend">Period</legend>
           <div class="prow">
-            <span class="plabel" aria-hidden="true">From</span>
-            <label><span class="sr-only">From month</span><select id="from-month"></select></label>
-            <label><span class="sr-only">From year</span><select id="from-year"></select></label>
+            <span class="plabel" aria-hidden="true" data-i18n="s.from">From</span>
+            <label><span class="sr-only" data-i18n="s.frommonth">From month</span><select id="from-month"></select></label>
+            <label><span class="sr-only" data-i18n="s.fromyear">From year</span><select id="from-year"></select></label>
           </div>
           <div class="prow">
-            <span class="plabel" aria-hidden="true">To</span>
-            <label><span class="sr-only">To month</span><select id="to-month"></select></label>
-            <label><span class="sr-only">To year</span><select id="to-year"></select></label>
+            <span class="plabel" aria-hidden="true" data-i18n="s.to">To</span>
+            <label><span class="sr-only" data-i18n="s.tomonth">To month</span><select id="to-month"></select></label>
+            <label><span class="sr-only" data-i18n="s.toyear">To year</span><select id="to-year"></select></label>
           </div>
         </fieldset>
         <p id="period-note" class="sub status" role="status" aria-live="polite"></p>
         <div class="period-buttons">
-          <button id="period-reset" type="button">Full period</button>
-          <button id="csv-btn" type="button" class="primary">Download CSV</button>
+          <button id="period-reset" type="button" data-i18n="s.fullperiod">Full period</button>
+          <button id="csv-btn" type="button" class="primary" data-i18n="s.csv">Download CSV</button>
         </div>
         <p id="csv-status" class="sub status" role="status" aria-live="polite"></p>
       </section>
@@ -97,46 +102,46 @@
 
     <div class="charts">
       <section class="card panel heat" aria-labelledby="heat-title">
-        <h2 id="heat-title">Fire density on the map</h2>
+        <h2 id="heat-title" data-i18n="s.heat">Fire density on the map</h2>
         <div id="heat-controls" class="heat-controls">
-          <label class="check"><input id="heat-on" type="checkbox" checked> Show layer</label>
-          <label class="field inline">Show
+          <label class="check"><input id="heat-on" type="checkbox" checked> <span data-i18n="s.showlayer">Show layer</span></label>
+          <label class="field inline"><span data-i18n="s.show">Show</span>
             <select id="heat-mode">
-              <option value="month">Selected month</option>
-              <option value="period">Period total</option>
+              <option value="month" data-i18n="s.selmonth">Selected month</option>
+              <option value="period" data-i18n="s.periodtotal">Period total</option>
             </select>
           </label>
         </div>
-        <div class="heat-controls play" role="group" aria-label="Playback of the months in the selected period">
-          <button id="heat-prev" type="button" aria-label="Previous month">◀</button>
+        <div class="heat-controls play" role="group" aria-label="Playback of the months in the selected period" data-i18n-attr="aria-label:s.playaria">
+          <button id="heat-prev" type="button" aria-label="Previous month" data-i18n-attr="aria-label:s.prev">◀</button>
           <button id="heat-play" type="button" aria-label="Play the months of the selected period">Play</button>
-          <button id="heat-next" type="button" aria-label="Next month">▶</button>
-          <label class="field inline">Speed
+          <button id="heat-next" type="button" aria-label="Next month" data-i18n-attr="aria-label:s.next">▶</button>
+          <label class="field inline"><span data-i18n="s.speed">Speed</span>
             <select id="heat-speed">
-              <option value="slow">Slow</option>
-              <option value="normal" selected>Normal</option>
-              <option value="fast">Fast</option>
+              <option value="slow" data-i18n="s.slow">Slow</option>
+              <option value="normal" selected data-i18n="s.normal">Normal</option>
+              <option value="fast" data-i18n="s.fast">Fast</option>
             </select>
           </label>
         </div>
-        <p id="heat-motion" class="sub" hidden>Reduced motion is on: playback starts slow and never loops.</p>
+        <p id="heat-motion" class="sub" hidden data-i18n="s.motion">Reduced motion is on: playback starts slow and never loops.</p>
         <div id="heat-legend" class="heat-legend" role="group"></div>
-        <p id="heat-readout" class="sub status" role="status" aria-live="polite">Hover or tap a cell to see its count. With the keyboard, focus the map and use the arrow keys: the cell under the centre cross is read out.</p>
+        <p id="heat-readout" class="sub status" role="status" aria-live="polite" data-i18n="s.readout">Hover or tap a cell to see its count. With the keyboard, focus the map and use the arrow keys: the cell under the centre cross is read out.</p>
         <p id="heat-desc" class="sub heat-desc" aria-live="polite"></p>
         <details class="heat-more">
-          <summary><span id="heat-top-title">Most active cells</span></summary>
+          <summary><span id="heat-top-title" data-i18n="s.topcells">Most active cells</span></summary>
           <ol id="heat-top" class="heat-top" aria-labelledby="heat-top-title"></ol>
         </details>
       </section>
 
       <section class="card panel" aria-labelledby="line-title">
-        <h2 id="line-title">Month by month</h2>
+        <h2 id="line-title" data-i18n="s.line">Month by month</h2>
         <p id="line-sub" class="sub"></p>
         <div id="line-chart" class="chart"></div>
         <div id="line-legend" class="chart-legend"></div>
       </section>
       <section class="card panel" aria-labelledby="bar-title">
-        <h2 id="bar-title">Yearly totals</h2>
+        <h2 id="bar-title" data-i18n="s.bar">Yearly totals</h2>
         <p id="bar-sub" class="sub"></p>
         <div id="bar-chart" class="chart"></div>
         <div id="bar-legend" class="chart-legend"></div>
@@ -145,9 +150,9 @@
 
     <section class="card panel explore" aria-labelledby="chart-title">
       <div class="explore-head">
-        <h2 id="chart-title" tabindex="-1"><span class="step" aria-hidden="true">3</span> Explore</h2>
+        <h2 id="chart-title" tabindex="-1"><span class="step" aria-hidden="true">3</span> <span data-i18n="s.explore">Explore</span></h2>
         <div class="explore-tools">
-          <label class="field">Series
+          <label class="field"><span data-i18n="s.series">Series</span>
             <select id="series" aria-describedby="series-help">
               <option value="h">Harmonized (VIIRS S-NPP equivalent)</option>
               <option value="m">MODIS (raw, not harmonized)</option>
@@ -159,23 +164,23 @@
       </div>
       <p id="series-help" class="sub"></p>
       <p id="notice" class="notice" hidden></p>
-      <p id="exp-banner" class="exp-banner" role="note" hidden><strong>Experimental:</strong> values before 2012 are rough, and recent values may include some unflagged industrial sources.</p>
+      <p id="exp-banner" class="exp-banner" role="note" hidden data-i18n-html="s.exp"><strong>Experimental:</strong> <span id="exp-text">values before 2012 are rough, and recent values may include some unflagged industrial sources.</span></p>
       <section id="findings" class="findings" aria-labelledby="findings-title"></section>
       <div class="cal-wrap">
         <div id="calendar" class="calendar"><p class="loading">Loading data…</p></div>
         <div class="cal-side">
-          <div id="legend" class="legend" aria-label="Color legend"></div>
+          <div id="legend" class="legend" aria-label="Color legend" data-i18n-attr="aria-label:s.legendaria"></div>
           <section id="climate" class="climate" aria-labelledby="climate-title" hidden></section>
         </div>
       </div>
-      <p class="sub hint">Keyboard: Tab to the calendar, arrow keys move between months, Home and End jump within a year, Enter or Space selects a month to compare.</p>
+      <p class="sub hint" data-i18n="s.hint">Keyboard: Tab to the calendar, arrow keys move between months, Home and End jump within a year, Enter or Space selects a month to compare.</p>
       <div id="table-wrap" class="table-wrap" hidden></div>
     </section>
 
 
     <details class="card about">
-      <summary><h2>About the data</h2></summary>
-      <div id="about-body" class="about-body">
+      <summary><h2 data-i18n="s.about">About the data</h2></summary>
+      <div id="about-body" class="about-body" data-i18n-html="s.aboutbody">
         <h3>What is counted and how the series is made</h3>
         <p>Active fire detections (hot pixels seen during one satellite pass, not single fires) from MODIS (since July 2002) and VIIRS (S-NPP since 2012, then NOAA-20), from NASA FIRMS, added up per calendar month (UTC) on a 0.25° grid. <span id="about-filters"></span></p>
         <p>VIIRS sees several times more fires than MODIS, and the ratio is not universal: overall 3.25 in Türkiye, up to 7.07 in the Eastern Mediterranean box. So each region has its own factor for each calendar month: VIIRS total divided by MODIS total in 2012–2022 (days without data excluded). Before February 2012 the value is MODIS × factor (an estimate); from February 2012 it is the VIIRS S-NPP count itself; from November 2026 it is VIIRS NOAA-20 × 0.986 (same in all regions).</p>
@@ -214,19 +219,21 @@
   <div id="tooltip" class="tooltip" aria-hidden="true" hidden></div>
 
   <footer class="foot wrap">
-    <p id="ack"></p>
-    <p>Data are provided "as is" by NASA LANCE/FIRMS; not for tactical decisions or local-scale conditions.
+    <p id="ack" lang="en"></p>
+    <p class="ack-note" data-i18n="s.foot.ack"></p>
+    <p data-i18n-html="s.foot.disc">Data are provided "as is" by NASA LANCE/FIRMS; not for tactical decisions or local-scale conditions.
       <a href="https://firms.modaps.eosdis.nasa.gov/download/Readme.txt" rel="noopener">Full disclaimer</a> ·
       <a href="https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-policy" rel="noopener">Data use policy</a></p>
-    <p>Map: <a href="https://leafletjs.com" rel="noopener">Leaflet</a>; map data © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap</a> contributors.</p>
-    <p>About: built by team Yolcular for NASA Space Apps Challenge 2026. Code and documentation were generated with AI assistance (Claude, Anthropic).</p>
+    <p data-i18n-html="s.foot.map">Map: <a href="https://leafletjs.com" rel="noopener">Leaflet</a>; map data © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap</a> contributors.</p>
+    <p data-i18n-html="s.foot.about">About: built by team Yolcular for NASA Space Apps Challenge 2026. Code and documentation were generated with AI assistance (Claude, Anthropic).</p>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" crossorigin="anonymous"></script>
-  <script src="maplayer.js?v=cr1"></script>
-  <script src="share.js?v=cr1"></script>
-  <script src="findings.js?v=cr1"></script>
-  <script src="climate.js?v=cr1"></script>
-  <script src="app.js?v=cr1"></script>
+  <script src="i18n.js?v=tr1"></script>
+  <script src="maplayer.js?v=tr1"></script>
+  <script src="share.js?v=tr1"></script>
+  <script src="findings.js?v=tr1"></script>
+  <script src="climate.js?v=tr1"></script>
+  <script src="app.js?v=tr1"></script>
 </body>
 </html>

@@ -134,7 +134,7 @@ summary:hover { color: var(--ink); }
 .period { border: 0; margin: 0 0 8px; padding: 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .prow { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .prow label { display: block; }
-.plabel { font-size: 0.85rem; color: var(--ink-2); width: 40px; }
+.plabel { font-size: 0.85rem; color: var(--ink-2); min-width: 4.4em; }
 .period-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
 .period-buttons .primary { flex: 1 1 auto; }
 
@@ -325,3 +325,10 @@ th { color: var(--ink-2); font-weight: 600; }
 /* Touch targets: at least 24 px tall without moving the layout (negative margin offsets the padding). */
 .foot a, .about a { padding: 4px 0; }
 .heat-more summary, .coords summary { min-height: 24px; box-sizing: border-box; }
+
+/* language switch (EN | TR) */
+.brand-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px 20px; flex-wrap: wrap; }
+.lang-switch { display: inline-flex; align-items: center; gap: 4px; color: var(--muted); font-size: 0.85rem; margin-top: 6px; }
+.lang-switch button { min-height: 32px; min-width: 40px; padding: 2px 8px; font-size: 0.85rem; font-weight: 600; }
+.lang-switch button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent-hover); box-shadow: none; }
+.ack-note:empty { display: none; }
