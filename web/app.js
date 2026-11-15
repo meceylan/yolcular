@@ -9,8 +9,10 @@
 // Step 75: shareable link (share.js): the address follows the view and restores it.
 // Step 78: key findings box (findings.js), above the calendar.
 // Step 77: climate context box (climate.js), NASA POWER, next to the calendar legend.
+// Step 79: interface language EN/TR (i18n.js): every visible text goes through t().
 "use strict";
 
+// Month names follow the interface language (filled by setMonthNames() in i18n.js).
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const MONTHS_LONG = ["January", "February", "March", "April", "May", "June", "July", "August",
                      "September", "October", "November", "December"];
@@ -19,13 +21,8 @@ const MONTHS_LONG = ["January", "February", "March", "April", "May", "June", "Ju
 const INFERNO = ["#2b0b57", "#57106e", "#82206c", "#ad305d", "#d24644",
                  "#ee6a24", "#fb9706", "#f9cb35", "#f5f992"];
 const SRC_LABEL = { M: "MODIS", V: "VIIRS S-NPP", N: "VIIRS NOAA-20" };
-const SERIES_LABEL = { m: "MODIS only (raw)", v: "VIIRS only (raw)", h: "Consistent series" };
-const SERIES_HELP = {
-  h: "One comparable count for every year. Click a month to compare it with other years.",
-  m: "MODIS only, as detected. Click a month to compare it with other years.",
-  v: "VIIRS only, as detected (from 2012). Click a month to compare it with other years.",
-};
-const EXP_DEFAULT = "values before 2012 are rough, and recent values may include some unflagged industrial sources.";
+const SERIES_LABEL = new Proxy({}, { get: (_, k) => t(`series.${String(k)}`) });
+const SERIES_HELP = new Proxy({}, { get: (_, k) => t(`help.${String(k)}`) });
 const GAP_MIN = 3;   // days without satellite data before a month is flagged
 const SEL_COLOR = "#2b1d2f";   // drawn area on the map: dark plum, apart from the inferno fire colours
 
@@ -78,7 +75,8 @@ function inkOn(fill) {
   return lumOf(fill) > 0.25 ? "#1d1f23" : "#ffffff";
 }
 const cssVar = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-const fmt = (v) => (v == null ? "no data" : Math.round(v).toLocaleString("en-US"));
+const fmt = (v) => (v == null ? t("no data") : Math.round(v).toLocaleString(LOCALE));
+const fmtC = (v) => nf(v, 2);   // coordinate shown as text (inputs keep fmtDeg)
 const fmtDeg = (v) => (+v).toFixed(2);
 const monthName = (ym) => `${MONTHS_LONG[+ym.slice(5) - 1]} ${ym.slice(0, 4)}`;
 
@@ -93,15 +91,13 @@ async function getJSON(path) {
 function showLoadError(err, what) {
   const box = $("load-error");
   const local = location.protocol === "file:";
-  box.textContent = local
-    ? "The data could not be loaded because the page was opened as a file. Start a local web server (python -m http.server 8000 --directory web) and open http://localhost:8000."
-    : `The data for ${what} could not be loaded (${err.message}). Check your internet connection and reload the page.`;
+  box.textContent = local ? t("err.file") : t("err.load", { what, msg: err.message });
   box.hidden = false;
 }
-const regionNames = {};
+const regionNames = {}, regionIndex = {};
 
 async function loadRegion(id) {
-  $("cards-ctx").textContent = `Loading ${regionNames[id] || "data"}…`;
+  $("cards-ctx").textContent = t("loading", { what: regionNames[id] ? regionName(id) : t("loading.data") });
   document.querySelector("main").setAttribute("aria-busy", "true");
   if (typeof heatSetPlaying === "function" && heat.playing) heatSetPlaying(false);
   const [meta, monthly, grid] = await Promise.all([
@@ -111,12 +107,8 @@ async function loadRegion(id) {
   if (!meta.harmonized && state.series === "h" && !state._userPicked) state.series = "m";
   if (meta.harmonized && !state._userPicked) state.series = "h";
   $("series").value = state.series;
-  $("series").querySelector('option[value="h"]').textContent =
-    meta.harmonized ? "Consistent series (recommended)" : "Combined (raw, sensor switch 2012)";
-  $("about-filters").textContent = meta.filters || "";
-  $("exp-banner").hidden = meta.quality !== "experimental";
-  $("exp-banner").lastChild.textContent = " " + (meta.quality_note || EXP_DEFAULT);
-  $("ack").textContent = meta.acknowledgment || "";
+  relabelControls(false);
+  regionTexts();
   state.cmpIdx = monthly.months.indexOf(meta.last_complete_month);
   if (state.cmpIdx < 0) state.cmpIdx = monthly.months.length - 1;
   state.range = { from: 0, to: monthly.months.length - 1 };
@@ -132,6 +124,37 @@ async function loadRegion(id) {
 }
 
 const regionBbox = () => ({ ...state.meta.bbox });
+
+// Region-dependent texts outside the drawn parts (filters note, experimental banner, acknowledgment).
+function regionTexts() {
+  const meta = state.meta;
+  if (!meta) return;
+  const f = $("about-filters");
+  if (f) f.textContent = LANG === "tr" ? t("meta.filters") : (meta.filters || "");
+  $("exp-banner").hidden = meta.quality !== "experimental";
+  const et = $("exp-text");
+  if (et) et.textContent = qualityNote(meta);
+  $("ack").textContent = meta.acknowledgment || "";   // official English wording, never translated
+}
+
+// Labels of select options and toggle buttons in the current language (values stay the same).
+function relabelControls(selects = true) {
+  const sel = $("region");
+  if (typeof regionIndex !== "undefined")
+    sel.querySelectorAll("option").forEach((o) => {
+      const r = regionIndex[o.value];
+      o.textContent = regionName(o.value) + (r && r.quality === "experimental" ? t("experimental.suffix") : "");
+    });
+  const ser = $("series");
+  ser.querySelector('option[value="h"]').textContent = state.meta && !state.meta.harmonized ? t("series.opt.hraw") : t("series.opt.h");
+  ser.querySelector('option[value="m"]').textContent = t("series.opt.m");
+  ser.querySelector('option[value="v"]').textContent = t("series.opt.v");
+  $("toggle-table").textContent = state.table ? t("table.hide") : t("table.show");
+  const draw = $("draw-btn");
+  if (!map || !map.getContainer().classList.contains("drawing")) draw.textContent = t("draw.btn");
+  $("copy-link").textContent = t("share.copy");
+  if (selects && state.monthly) { fillPeriodSelects(); fillCompareSelect(); }
+}
 
 // ---------- selection (step 34) ----------
 function cellCenter(i, j, cell) { return [(i + 0.5) * cell - 90, (j + 0.5) * cell - 180]; }
@@ -187,13 +210,13 @@ function setBbox(b, full = false) {
   const S = seriesFor(b, full);
   const status = $("bbox-status");
   if (!full && S.nCells === 0) {
-    status.textContent = "No grid cell centre is inside this rectangle. Make it larger (at least 0.25° on each side).";
+    status.textContent = t("bbox.empty");
     return;
   }
   state.bbox = b; state.full = full; state.cur = S;
   ["north", "south", "west", "east"].forEach((k) => { $(`b-${k}`).value = fmtDeg(b[k]); });
-  status.textContent = full ? `Whole region: ${state.meta.name_en}.`
-    : `Selected ${S.nCells} grid cells: ${fmtDeg(b.south)}–${fmtDeg(b.north)}° N, ${fmtDeg(b.west)}–${fmtDeg(b.east)}° E.`;
+  status.textContent = full ? t("bbox.whole", { name: regionName(state.region) })
+    : t("bbox.sel", { n: nf(S.nCells), s: fmtC(b.south), n2: fmtC(b.north), w: fmtC(b.west), e: fmtC(b.east) });
   drawSelectionOnMap();
   render();
 }
@@ -203,7 +226,7 @@ let map = null, regionLayer = null, selLayer = null;
 function setupMap() {
   const R = regionBbox();
   const bounds = [[R.south, R.west], [R.north, R.east]];
-  if (!window.L) { $("map").textContent = "Map could not be loaded; use the coordinate boxes."; return; }
+  if (!window.L) { $("map").textContent = t("map.failed"); return; }
   if (!map) {
     map = L.map("map", { zoomSnap: 0.25, scrollWheelZoom: false, keyboard: true });
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -239,22 +262,22 @@ function setupDrawing() {
   let drawing = false, start = null, temp = null;
   const stop = () => {
     drawing = false; start = null;
-    btn.textContent = "Draw on map";
+    btn.textContent = t("draw.btn");
     el.classList.remove("drawing"); el.style.touchAction = "";
     map.dragging.enable();
   };
   btn.addEventListener("click", (ev) => {
     if (drawing) { stop(); return; }
     if (ev.detail === 0) {   // activated from the keyboard: drawing needs a pointer
-      $("bbox-status").textContent = "Drawing needs a mouse or touch. Type the four coordinates and press Apply.";
+      $("bbox-status").textContent = t("draw.kbd");
       $("b-north").focus();
       return;
     }
     drawing = true;
-    btn.textContent = "Cancel drawing";
+    btn.textContent = t("draw.cancel");
     el.classList.add("drawing"); el.style.touchAction = "none";
     map.dragging.disable();
-    $("bbox-status").textContent = "Press and drag on the map to draw a rectangle.";
+    $("bbox-status").textContent = t("draw.hint");
   });
   const ll = (ev) => map.mouseEventToLatLng(ev);
   el.addEventListener("pointerdown", (ev) => {
@@ -316,10 +339,10 @@ function onPeriodChange(which) {
   let b = monthIndex($("to-year").value, $("to-month").value);
   const asked = (p) => `${$(`${p}-year`).value}-${String($(`${p}-month`).value).padStart(2, "0")}`;
   if (months[a] !== asked("from") || months[b] !== asked("to"))
-    notes.push(`Data cover ${monthName(months[0])} to ${monthName(months[months.length - 1])}; the period was adjusted.`);
+    notes.push(t("period.adjusted", { a: monthName(months[0]), b: monthName(months[months.length - 1]) }));
   if (a > b) {
     if (which === "from") b = a; else a = b;
-    notes.push("The start cannot be after the end; the other end was moved to match.");
+    notes.push(t("period.swap"));
   }
   state.range = { from: a, to: b };
   state.mapMode = "period";   // a chosen period shows its total on the map
@@ -362,8 +385,7 @@ function render() {
   const notice = $("notice");
   notice.hidden = meta.harmonized && state.series === "h";
   notice.className = "notice";
-  notice.textContent = "Raw counts from one sensor: compare years only within this series." +
-    (meta.harmonized ? "" : " Industrial heat sources and low-confidence detections are still included.");
+  notice.textContent = t("notice.raw") + (meta.harmonized ? "" : t("notice.rawextra"));
   $("series-help").textContent = SERIES_HELP[state.series];
   drawCalendar();
   drawLegend();
@@ -394,9 +416,7 @@ function drawCalendar() {
   svg.setAttribute("role", "grid");
   svg.setAttribute("aria-rowcount", data.length + 1);
   svg.setAttribute("aria-colcount", 13);
-  svg.setAttribute("aria-label",
-    `Burn calendar, ${SERIES_LABEL[state.series]} detections per month, ${data[0].year} to ${data[data.length - 1].year}. ` +
-    `Highest month: ${fmt(sc.max)}. Arrow keys move between months, Enter selects a month to compare. "Show as table" gives exact values.`);
+  svg.setAttribute("aria-label", t("cal.aria", { series: SERIES_LABEL[state.series], y0: data[0].year, y1: data[data.length - 1].year, max: fmt(sc.max) }));
   // Roving tabindex: exactly one cell is in the Tab order.
   const visible = data.flatMap((r) => r.cells.filter(Boolean).map((c) => c.idx));
   if (state.focusIdx == null || !visible.includes(state.focusIdx))
@@ -514,26 +534,24 @@ function isGap(c) {
 function tooltipHTML(idx) {
   const M = state.cur, ym = M.months[idx];
   const [y, m] = ym.split("-");
-  const lines = [`<div><b>${MONTHS[+m - 1]} ${y}</b>${M.partial[idx] ? ` <span class="t-muted">(partial: days 1–${M.mtd ? M.mtd.through_day : "?"})</span>` : ""}</div>`];
+  const lines = [`<div><b>${MONTHS[+m - 1]} ${y}</b>${M.partial[idx] ? ` <span class="t-muted">${t("tip.partial", { d: M.mtd ? M.mtd.through_day : "?" })}</span>` : ""}</div>`];
   lines.push(`<div>${SERIES_LABEL[state.series]}: <b>${fmt(M[state.series][idx])}</b></div>`);
   if (state.series !== "m") lines.push(`<div class="t-muted">MODIS: ${fmt(M.m[idx])}</div>`);
   if (state.series !== "v") lines.push(`<div class="t-muted">VIIRS: ${fmt(M.v[idx])}</div>`);
   const src = M.src[idx];
   if (state.meta.harmonized && state.series === "h") {
-    const how = { V: "Measured: VIIRS S-NPP",
-                  M: "Estimate: MODIS × monthly factor",
-                  N: `Estimate: VIIRS NOAA-20 × ${state.meta.viirs_switch.k_n20}` }[src];
-    lines.push(`<div>Source: ${how}</div>`);
-    if (src !== "V" && M.h_lo) lines.push(`<div>Likely range: ${fmt(M.h_lo[idx])} – ${fmt(M.h_hi[idx])}</div>`);
+    const how = t(`tip.src.${src}`, { k: nf(state.meta.viirs_switch.k_n20, 3) });
+    lines.push(`<div>${t("tip.source", { how })}</div>`);
+    if (src !== "V" && M.h_lo) lines.push(`<div>${t("tip.range", { lo: fmt(M.h_lo[idx]), hi: fmt(M.h_hi[idx]) })}</div>`);
     if (M.out_of_range && M.out_of_range[idx])
-      lines.push(`<div>Fire activity above the tested level: probably overestimated, wide range.</div>`);
+      lines.push(`<div>${t("tip.oor")}</div>`);
     if (!M.full && src === "M")
-      lines.push(`<div class="t-muted">Small areas: estimates before 2012 are rough.</div>`);
+      lines.push(`<div class="t-muted">${t("tip.small")}</div>`);
   } else {
-    lines.push(`<div class="t-muted">VIIRS satellite this month: ${src === "M" ? "none (before Feb 2012)" : SRC_LABEL[src]}</div>`);
+    lines.push(`<div class="t-muted">${t("tip.viirs", { s: src === "M" ? t("tip.viirsnone") : SRC_LABEL[src] })}</div>`);
   }
   const g = (M.gap_days || [])[idx] || 0;
-  if (g) lines.push(`<div${g >= GAP_MIN ? "" : ' class="t-muted"'}>${g} day${g > 1 ? "s" : ""} without satellite data${g >= GAP_MIN ? "; value likely too low" : ""}.</div>`);
+  if (g) lines.push(`<div${g >= GAP_MIN ? "" : ' class="t-muted"'}>${t("tip.gap", { g, low: g >= GAP_MIN })}</div>`);
   return lines.join("");
 }
 
@@ -633,30 +651,30 @@ function drawLegend() {
   const vals = [];
   for (let p = Math.floor(sc.lo); p <= Math.ceil(sc.hi); p++) if (frac(10 ** p) > 0.04 && frac(10 ** p) < 0.96) vals.push(10 ** p);
   const apart = (v) => vals.every((u) => Math.abs(frac(u) - frac(v)) > 0.16);
-  const short = (v) => (v >= 1000 ? `${+(v / 1000).toFixed(1)}k` : `${Math.round(v)}`);
+  const short = shortNum;
   const tickHTML = [sc.min, ...vals, sc.max].filter((v, i, a) => (i > 0 && i < a.length - 1) || apart(v)).map((v) => {
     const left = ((Math.log10(v) - sc.lo) / (sc.hi - sc.lo)) * 100;
     return `<span style="position:absolute;left:${left}%;transform:translateX(-${left}%)">${short(v)}</span>`;
   }).join("");
   const partial = state.cur.partial.some((p, k) => p && inRange(k));
   L.setAttribute("role", "group");
-  L.setAttribute("aria-label", `Colour legend. Colour scale from ${fmt(sc.min)} (darkest) to ${fmt(sc.max)} (brightest) detections per month, log scale. A ring marks 0 detections, hatching marks no data.`);
+  L.setAttribute("aria-label", t("legend.aria", { min: fmt(sc.min), max: fmt(sc.max) }));
   L.innerHTML = `
     <div class="ramp">
-      <span>Fire detections per month<br><span class="t-muted">log scale</span></span>
+      <span>${t("legend.title")}<br><span class="t-muted">${t("legend.log")}</span></span>
       <div class="bar" style="background:linear-gradient(90deg,${stops})"></div>
       <div class="ticks" style="position:relative;height:1.2em">${tickHTML}</div>
     </div>
-    <span class="key"><svg width="14" height="14" aria-hidden="true"><rect x="0.5" y="0.5" width="13" height="13" rx="3" fill="${cssVar("--zero")}" stroke="${cssVar("--muted")}"/><circle cx="7" cy="7" r="2.5" fill="none" stroke="${inkOn(cssVar("--zero"))}" stroke-width="1.3"/></svg>0 detections</span>
-    <span class="key"><svg width="14" height="14" aria-hidden="true"><rect x="0.5" y="0.5" width="13" height="13" rx="3" fill="url(#hatch)" stroke="${cssVar("--muted")}"/></svg>No data</span>
-    ${partial ? `<span class="key"><svg width="14" height="14" aria-hidden="true"><path d="M5,0 L14,0 L14,9 Z" fill="${cssVar("--ink")}"/></svg>Partial month (days 1–${state.cur.mtd ? state.cur.mtd.through_day : "?"})</span>` : ""}
-    ${state.meta.harmonized && state.series === "h" ? `<span class="key"><svg width="14" height="14" aria-hidden="true"><rect width="14" height="14" rx="3" fill="${colorAt(0.5)}"/><rect x="2.5" y="2.5" width="9" height="9" rx="2" fill="none" stroke="${inkOn(colorAt(0.5))}" stroke-width="1.2" stroke-dasharray="3 2"/></svg><span>Estimate<br><span class="t-muted">before Feb 2012, from Nov 2026</span></span></span>` : ""}
-    <span class="key"><svg width="14" height="14" aria-hidden="true"><rect x="0.5" y="0.5" width="13" height="13" rx="3" fill="${cssVar("--zero")}" stroke="${cssVar("--line")}"/><path d="M1,5 L1,13 L9,13 Z" fill="${cssVar("--ink")}"/></svg>${GAP_MIN}+ days missing (likely too low)</span>`;
+    <span class="key"><svg width="14" height="14" aria-hidden="true"><rect x="0.5" y="0.5" width="13" height="13" rx="3" fill="${cssVar("--zero")}" stroke="${cssVar("--muted")}"/><circle cx="7" cy="7" r="2.5" fill="none" stroke="${inkOn(cssVar("--zero"))}" stroke-width="1.3"/></svg>${t("legend.zero")}</span>
+    <span class="key"><svg width="14" height="14" aria-hidden="true"><rect x="0.5" y="0.5" width="13" height="13" rx="3" fill="url(#hatch)" stroke="${cssVar("--muted")}"/></svg>${t("legend.nodata")}</span>
+    ${partial ? `<span class="key"><svg width="14" height="14" aria-hidden="true"><path d="M5,0 L14,0 L14,9 Z" fill="${cssVar("--ink")}"/></svg>${t("legend.partial", { d: state.cur.mtd ? state.cur.mtd.through_day : "?" })}</span>` : ""}
+    ${state.meta.harmonized && state.series === "h" ? `<span class="key"><svg width="14" height="14" aria-hidden="true"><rect width="14" height="14" rx="3" fill="${colorAt(0.5)}"/><rect x="2.5" y="2.5" width="9" height="9" rx="2" fill="none" stroke="${inkOn(colorAt(0.5))}" stroke-width="1.2" stroke-dasharray="3 2"/></svg><span>${t("legend.est")}<br><span class="t-muted">${t("legend.estwhen")}</span></span></span>` : ""}
+    <span class="key"><svg width="14" height="14" aria-hidden="true"><rect x="0.5" y="0.5" width="13" height="13" rx="3" fill="${cssVar("--zero")}" stroke="${cssVar("--line")}"/><path d="M1,5 L1,13 L9,13 Z" fill="${cssVar("--ink")}"/></svg>${t("legend.gap", { n: GAP_MIN })}</span>`;
 }
 
 function drawTable() {
   const data = rows();
-  const head = `<tr><th scope="col">Year</th>${MONTHS.map((m) => `<th scope="col">${m}</th>`).join("")}<th scope="col">Total</th></tr>`;
+  const head = `<tr><th scope="col">${t("table.year")}</th>${MONTHS.map((m) => `<th scope="col">${m}</th>`).join("")}<th scope="col">${t("table.total")}</th></tr>`;
   const body = data.map((r) => {
     let tot = 0;
     const tds = r.cells.map((c) => {
@@ -666,7 +684,7 @@ function drawTable() {
     }).join("");
     return `<tr><th scope="row">${r.year}</th>${tds}<td>${fmt(tot)}</td></tr>`;
   }).join("");
-  $("table-wrap").innerHTML = `<table><caption class="sub">${SERIES_LABEL[state.series]} detections per month. – = no data, e = estimate, ! = ${GAP_MIN}+ days without satellite data, * = partial month.</caption>${head}${body}</table>`;
+  $("table-wrap").innerHTML = `<table><caption class="sub">${t("table.caption", { series: SERIES_LABEL[state.series], n: GAP_MIN })}</caption>${head}${body}</table>`;
 }
 
 // ---------- comparison with the median (step 36) ----------
@@ -681,7 +699,7 @@ function fillCompareSelect() {
   const M = state.monthly, sel = $("compare-month");
   const opts = [];
   for (let k = state.range.to; k >= state.range.from; k--)
-    opts.push(`<option value="${k}">${monthName(M.months[k])}${M.partial[k] ? " (partial month)" : ""}</option>`);
+    opts.push(`<option value="${k}">${monthName(M.months[k])}${M.partial[k] ? t("opt.partial") : ""}</option>`);
   sel.innerHTML = opts.join("");
   sel.value = String(state.cmpIdx);
 }
@@ -717,7 +735,7 @@ function vsMedian(r) {
 
 // Collapsed "Details" block inside a card (native details/summary, works with the keyboard).
 const detailsHTML = (rows) => (rows.length
-  ? `<details class="more"><summary>Details</summary>${rows.map((n) => `<div class="row">${n}</div>`).join("")}</details>` : "");
+  ? `<details class="more"><summary>${t("details")}</summary>${rows.map((n) => `<div class="row">${n}</div>`).join("")}</details>` : "");
 
 // Re-render a card but keep its "Details" open (and focused) if the reader had opened it.
 function setCard(el, html) {
@@ -730,23 +748,23 @@ function setCard(el, html) {
 
 function cardHTML(title, r, idx) {
   const { med, few, pct } = vsMedian(r);
-  const dir = pct == null ? "" : pct >= 0 ? "above" : "below";
+  const dir = pct == null ? "" : pct >= 0 ? t("card.above") : t("card.below");
   const M = state.cur, rows = [];
   const years = r.others.map((o) => o.y);
-  rows.push(`This ${r.partial ? "period" : "month"}: <b>${fmt(r.value)}</b> · median: <b>${fmt(med)}</b> (${years.length} years${years.length ? `, ${years[0]}–${years[years.length - 1]}` : ""})`);
+  rows.push(`${r.partial ? t("card.thisperiod") : t("card.thismonth")}: <b>${fmt(r.value)}</b> · ${t("card.median")}: <b>${fmt(med)}</b> (${t("card.years", { n: years.length, span: years.length ? `${years[0]}–${years[years.length - 1]}` : "" })})`);
   if (state.series === "h") {
-    if (r.partial && r.lo != null) rows.push(`Estimate from NOAA-20 (likely ${fmt(r.lo)}–${fmt(r.hi)}).`);
-    else if (idx != null && M.src[idx] !== "V") rows.push(`This month is an estimate (likely ${fmt(M.h_lo[idx])}–${fmt(M.h_hi[idx])}).`);
-    if (r.others.some((o) => o.src === "M")) rows.push("The median includes years estimated from MODIS (before 2012).");
+    if (r.partial && r.lo != null) rows.push(t("card.estN20", { lo: fmt(r.lo), hi: fmt(r.hi) }));
+    else if (idx != null && M.src[idx] !== "V") rows.push(t("card.estmonth", { lo: fmt(M.h_lo[idx]), hi: fmt(M.h_hi[idx]) }));
+    if (r.others.some((o) => o.src === "M")) rows.push(t("card.medmodis"));
   }
-  if (idx != null && (M.gap_days || [])[idx] >= GAP_MIN) rows.push(`${M.gap_days[idx]} days without satellite data: value likely too low.`);
+  if (idx != null && (M.gap_days || [])[idx] >= GAP_MIN) rows.push(t("card.gap", { g: M.gap_days[idx] }));
   const full = state.range.from === 0 && state.range.to === state.monthly.months.length - 1;
-  if (!full) rows.push("The median uses only years inside the selected period.");
-  const what = `a typical ${MONTHS_LONG[+M.months[idx].slice(5) - 1]}${r.partial ? ` 1–${r.D}` : ""}`;
+  if (!full) rows.push(t("card.medperiod"));
+  const what = t("card.typical", { month: MONTHS_LONG[+M.months[idx].slice(5) - 1], days: r.partial ? r.D : 0 });
   const cls = pct == null ? "" : pct >= 0 ? " up" : " down";
   return `${title ? `<div class="label">${title}</div>` : ""}
-    <div class="big${cls}">${few ? "–" : pct == null ? "n/a" : `${pct >= 0 ? "+" : "−"}${Math.abs(pct).toFixed(0)}%`}</div>
-    <div class="row one">${few ? "Too few detections for a percentage." : pct == null ? "No other years to compare with." : `${dir} ${what}`}</div>
+    <div class="big${cls}">${few ? "–" : pct == null ? "n/a" : pctText(pct >= 0 ? "+" : "−", pctNum(pct))}</div>
+    <div class="row one">${few ? t("card.few") : pct == null ? t("card.noother") : t("card.cmp", { dir, what })}</div>
     ${detailsHTML(rows)}`;
 }
 
@@ -755,7 +773,7 @@ function drawCompare() {
   const M = state.cur, idx = state.cmpIdx;
   if (idx == null || idx < 0) { $("compare").innerHTML = ""; return; }
   const isPartial = M.partial[idx] && M.mtd;
-  setCard($("compare"), cardHTML(isPartial ? `So far (days 1–${M.mtd.through_day}) <span class="tag accent">partial</span>` : "",
+  setCard($("compare"), cardHTML(isPartial ? `${t("card.sofar", { d: M.mtd.through_day })} <span class="tag accent">${t("tag.partial")}</span>` : "",
     isPartial ? comparePartial() : compareFull(idx), idx));
 }
 
@@ -763,36 +781,36 @@ function drawCompare() {
 function drawSummary() {
   const M = state.cur, s = state.series, { from, to } = state.range;
   const lastShown = to === state.monthly.months.length - 1;
-  $("cards-ctx").textContent = `${state.full ? state.meta.name_en : "Selected area"} · ${SERIES_LABEL[s]} · ` +
-    `${monthName(M.months[from])} to ${monthName(M.months[to])}${lastShown ? ` · data through ${state.meta.data_through} (UTC)` : ""}`;
+  $("cards-ctx").textContent = `${state.full ? regionName(state.region) : t("ctx.sel")} · ${SERIES_LABEL[s]} · ` +
+    `${t("ctx.range", { a: monthName(M.months[from]), b: monthName(M.months[to]) })}${lastShown ? t("ctx.through", { d: state.meta.data_through }) : ""}`;
 
   const pk = M.partial.indexOf(true);
   setCard($("card-partial"), M.mtd && pk >= 0 && inRange(pk)
-    ? cardHTML(`${monthName(M.months[pk])} so far (days 1–${M.mtd.through_day})`, comparePartial(), pk)
-    : `<div class="label">Current month so far</div><div class="big text">–</div><div class="row one">Outside the selected period.</div>`);
+    ? cardHTML(t("card.partialtitle", { m: monthName(M.months[pk]), d: M.mtd.through_day }), comparePartial(), pk)
+    : `<div class="label">${t("card.curmonth")}</div><div class="big text">–</div><div class="row one">${t("card.outside")}</div>`);
 
   let peak = -1;
   for (let k = from; k <= to; k++) if (M[s][k] != null && (peak < 0 || M[s][k] > M[s][peak])) peak = k;
   const isEst = (k) => s === "h" && state.meta.harmonized && M.src[k] !== "V";
   if (peak < 0) {
-    setCard($("card-peak"), `<div class="label">Peak month</div><div class="big text">–</div><div class="row one">No data in the selected period.</div>`);
+    setCard($("card-peak"), `<div class="label">${t("card.peak")}</div><div class="big text">–</div><div class="row one">${t("card.nodata")}</div>`);
   } else {
     const rows = [], est = isEst(peak), modis = est && M.src[peak] === "M";
     let measured = "";
     if (est) {
       // Estimated peak: MODIS-based estimates of very active months (Aug–Oct 2009 and 2011) are probably too high.
       const oor = state.monthly.out_of_range && state.monthly.out_of_range[peak];
-      rows.push(`Estimated from ${modis ? "MODIS" : "NOAA-20"}, likely ${fmt(M.h_lo[peak])}–${fmt(M.h_hi[peak])}.`);
-      if (oor) rows.push("Fire activity was above the level the method was tested on.");
+      rows.push(t("card.peakest", { src: modis ? "MODIS" : "NOAA-20", lo: fmt(M.h_lo[peak]), hi: fmt(M.h_hi[peak]) }));
+      if (oor) rows.push(t("card.peakoor"));
       let mp = -1;
       for (let k = from; k <= to; k++) if (M.src[k] === "V" && M[s][k] != null && (mp < 0 || M[s][k] > M[s][mp])) mp = k;
-      if (mp >= 0) measured = `<div class="row one">Measured peak: <button type="button" class="textlink" data-idx="${mp}" aria-label="Measured peak: ${monthName(M.months[mp])}, ${fmt(M[s][mp])} detections. Show in the calendar">${monthName(M.months[mp])}</button> (${fmt(M[s][mp])})</div>`;
+      if (mp >= 0) measured = `<div class="row one">${t("card.measured")}: <button type="button" class="textlink" data-idx="${mp}" aria-label="${t("card.measuredaria", { m: monthName(M.months[mp]), v: fmt(M[s][mp]) })}">${monthName(M.months[mp])}</button> (${fmt(M[s][mp])})</div>`;
     }
-    setCard($("card-peak"), `<div class="label">Peak month</div>
+    setCard($("card-peak"), `<div class="label">${t("card.peak")}</div>
        <div class="big text">${monthName(M.months[peak])}</div>
-       <div class="row one"><b>${fmt(M[s][peak])}</b>${est ? (modis && state.monthly.out_of_range && state.monthly.out_of_range[peak] ? " · estimate, probably overestimated" : " · estimate") : " detections"}</div>
+       <div class="row one"><b>${fmt(M[s][peak])}</b>${est ? (modis && state.monthly.out_of_range && state.monthly.out_of_range[peak] ? t("card.estover") : t("card.estimate")) : t("card.detections")}</div>
        ${measured}
-       <button type="button" class="linkbtn" data-idx="${peak}" aria-label="Show ${monthName(M.months[peak])} in the calendar">Show in calendar</button>
+       <button type="button" class="linkbtn" data-idx="${peak}" aria-label="${t("card.showcalaria", { m: monthName(M.months[peak]) })}">${t("card.showcal")}</button>
        ${detailsHTML(rows)}`);
   }
 
@@ -804,17 +822,17 @@ function drawSummary() {
       if (state.monthly.out_of_range && state.monthly.out_of_range[k]) oor++;
     }
     const rows = [];
-    if (em) rows.push(`${em} before February 2012 (estimated from MODIS).`);
-    if (en) rows.push(`${en} from November 2026 (estimated from NOAA-20).`);
-    if (oor) rows.push(`${oor} of them had fire activity above the tested level: probably overestimated.`);
-    setCard($("card-est"), `<div class="label">Estimated months</div>
+    if (em) rows.push(t("card.em", { n: em }));
+    if (en) rows.push(t("card.en", { n: en }));
+    if (oor) rows.push(t("card.oor", { n: oor }));
+    setCard($("card-est"), `<div class="label">${t("card.estmonths")}</div>
       <div class="big">${em + en}</div>
-      <div class="row one">of ${n} months, dashed in the calendar</div>
+      <div class="row one">${t("card.ofmonths", { n })}</div>
       ${detailsHTML(rows)}`);
   } else {
-    setCard($("card-est"), `<div class="label">Estimated months</div><div class="big">0</div>
-      <div class="row one">Raw series: measurements only</div>
-      ${detailsHTML([`${n} months in the period.`, "MODIS and VIIRS raw counts are not comparable with each other."])}`);
+    setCard($("card-est"), `<div class="label">${t("card.estmonths")}</div><div class="big">0</div>
+      <div class="row one">${t("card.rawonly")}</div>
+      ${detailsHTML([t("card.nmonths", { n }), t("card.notcomparable")])}`);
   }
 }
 
@@ -831,7 +849,9 @@ function niceMax(v) {
   const p = 10 ** Math.floor(Math.log10(v)), f = v / p;
   return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p;
 }
-const shortNum = (v) => (v >= 1000 ? `${+(v / 1000).toFixed(1)}k` : `${Math.round(v)}`);
+const shortNum = (v) => (v < 1000 ? `${Math.round(v)}` : LANG === "tr"
+  ? new Intl.NumberFormat(LOCALE, { notation: "compact", maximumFractionDigits: 1 }).format(v)
+  : `${+(v / 1000).toFixed(1)}k`);
 const lineKey = (color, dash, w = 2) =>
   `<svg width="26" height="10" aria-hidden="true"><line x1="1" y1="5" x2="25" y2="5" stroke="${color}" stroke-width="${w}"${dash ? ` stroke-dasharray="${dash}"` : ""}/></svg>`;
 
@@ -867,9 +887,9 @@ function drawLine() {
   const harm = state.meta.harmonized, band = harm && M.h_lo;
   const f = chartFrame(host, 240), css = { a: cssVar("--accent"), m: cssVar("--down"), v: cssVar("--viirs") };
   const series = [
-    { key: "m", name: "MODIS (raw)", color: css.m, dash: "2 3", w: 1.5 },
-    { key: "v", name: "VIIRS (raw)", color: css.v, dash: "6 3", w: 1.5 },
-    { key: "h", name: harm ? "Consistent series" : "Combined (raw)", color: css.a, dash: "", w: 2.25 },
+    { key: "m", name: t("line.modis"), color: css.m, dash: "2 3", w: 1.5 },
+    { key: "v", name: t("line.viirs"), color: css.v, dash: "6 3", w: 1.5 },
+    { key: "h", name: harm ? t("line.h") : t("line.hraw"), color: css.a, dash: "", w: 2.25 },
   ];
   let ymax = 0;
   for (let k = from; k <= to; k++) for (const s of series) if (M[s.key][k] != null) ymax = Math.max(ymax, M[s.key][k]);
@@ -915,9 +935,8 @@ function drawLine() {
   const cursor = svgEl("line", { y1: f.T, y2: f.H - f.B, stroke: cssVar("--ink-2"), "stroke-width": 1, visibility: "hidden" }, f.svg);
   let pk = from;
   for (let k = from; k <= to; k++) if ((M.h[k] ?? -1) > (M.h[pk] ?? -1)) pk = k;
-  f.svg.setAttribute("aria-label", `Line chart of monthly fire detections, ${monthName(M.months[from])} to ${monthName(M.months[to])}: ` +
-    `${shown.map((s) => s.name).join(", ")}. Highest ${series[2].name} month: ${monthName(M.months[pk])}, ${fmt(M.h[pk])}. ` +
-    `"Show as table" and "Download CSV" give the exact values.`);
+  f.svg.setAttribute("aria-label", t("line.aria", { a: monthName(M.months[from]), b: monthName(M.months[to]),
+    names: shown.map((s) => s.name).join(", "), h: series[2].name, m: monthName(M.months[pk]), v: fmt(M.h[pk]) }));
   const tip = $("tooltip");
   f.svg.addEventListener("pointermove", (e) => {
     const r = f.svg.getBoundingClientRect(), sx = ((e.clientX - r.left) / r.width) * f.W;
@@ -928,11 +947,11 @@ function drawLine() {
   });
   f.svg.addEventListener("pointerleave", () => { tip.hidden = true; cursor.setAttribute("visibility", "hidden"); });
   host.replaceChildren(f.svg);
-  $("line-sub").textContent = `${state.full ? state.meta.name_en : "Selected area"}, fire detections per month. ` +
-    (harm ? "Compare years with the solid magenta line; the other lines show what each sensor saw." : "Raw counts, not comparable between sensors.");
-  $("line-legend").innerHTML = shown.map((s) => `<span class="key">${lineKey(s.color, s.dash, s.w)}${s.name}${s.key === "h" && harm ? " (recommended)" : ""}</span>`).join("") +
-    (band ? `<span class="key"><svg width="26" height="10" aria-hidden="true"><rect x="1" y="1" width="24" height="8" rx="2" fill="${css.a}" fill-opacity="0.22"/></svg>Likely range of estimates</span>` : "") +
-    `<span class="key">${lineKey(cssVar("--ink"), "3 3", 1)}Month selected in the calendar</span>`;
+  $("line-sub").textContent = t("line.sub", { where: state.full ? regionName(state.region) : t("ctx.sel") }) +
+    (harm ? t("line.subh") : t("line.subraw"));
+  $("line-legend").innerHTML = shown.map((s) => `<span class="key">${lineKey(s.color, s.dash, s.w)}${s.name}${s.key === "h" && harm ? t("line.rec") : ""}</span>`).join("") +
+    (band ? `<span class="key"><svg width="26" height="10" aria-hidden="true"><rect x="1" y="1" width="24" height="8" rx="2" fill="${css.a}" fill-opacity="0.22"/></svg>${t("line.band")}</span>` : "") +
+    `<span class="key">${lineKey(cssVar("--ink"), "3 3", 1)}${t("line.sel")}</span>`;
 }
 
 // Yearly totals of the series shown, inside the selected period.
@@ -951,7 +970,7 @@ function drawBars() {
     if (state.meta.harmonized && s === "h" && M.src[k] !== "V") o.est++;
   }
   const years = [...byYear.values()].filter((o) => o.missing < o.months);
-  if (!years.length) { host.textContent = "No data for this series in the selected period."; $("bar-legend").innerHTML = ""; return; }
+  if (!years.length) { host.textContent = t("bar.none"); $("bar-legend").innerHTML = ""; return; }
   const f = chartFrame(host, 240), accent = cssVar("--accent");
   const ymax = niceMax(Math.max(...years.map((o) => o.total)));
   yAxis(f, ymax);
@@ -969,10 +988,10 @@ function drawBars() {
       ...(k === "est" ? { stroke: accent, "stroke-width": 1, "stroke-dasharray": "3 2" } : {}) }, f.svg);
     bar.addEventListener("pointermove", (e) => {
       const notes = [];
-      if (o.est) notes.push(`${o.est} estimated month${o.est > 1 ? "s" : ""}`);
-      if (o.months < 12) notes.push(`only ${o.months} month${o.months > 1 ? "s" : ""} in the period`);
-      if (o.partial) notes.push("includes the current, unfinished month");
-      if (o.missing) notes.push(`${o.missing} month${o.missing > 1 ? "s" : ""} without data`);
+      if (o.est) notes.push(t("bar.estn", { n: o.est }));
+      if (o.months < 12) notes.push(t("bar.only", { n: o.months }));
+      if (o.partial) notes.push(t("bar.partial"));
+      if (o.missing) notes.push(t("bar.missing", { n: o.missing }));
       tip.innerHTML = `<div><b>${o.year}</b></div><div>${SERIES_LABEL[s]}: <b>${fmt(o.total)}</b></div>${notes.map((t) => `<div class="t-muted">${t}</div>`).join("")}`;
       placeTipAt(tip, e.clientX, e.clientY);
     });
@@ -982,15 +1001,15 @@ function drawBars() {
   });
   svgEl("line", { class: "axis", x1: f.L, x2: f.W - f.R, y1: f.H - f.B, y2: f.H - f.B }, f.svg);
   const full = years.filter((o) => kind(o) !== "inc"), top = (full.length ? full : years).reduce((a, b) => (b.total > a.total ? b : a));
-  f.svg.setAttribute("aria-label", `Bar chart of yearly totals, ${SERIES_LABEL[s]}, ${years[0].year} to ${years[years.length - 1].year}. ` +
-    `Highest ${full.length ? "complete " : ""}year: ${top.year}, ${fmt(top.total)} detections.`);
+  f.svg.setAttribute("aria-label", t("bar.aria", { series: SERIES_LABEL[s], y0: years[0].year, y1: years[years.length - 1].year,
+    complete: full.length > 0, top: top.year, v: fmt(top.total) }));
   host.replaceChildren(f.svg);
-  $("bar-sub").textContent = `${SERIES_LABEL[s]}, sum of the months in the selected period.`;
+  $("bar-sub").textContent = t("bar.sub", { series: SERIES_LABEL[s] });
   const sw = (fill, extra = "") => `<svg width="14" height="14" aria-hidden="true"><rect x="0.5" y="0.5" width="13" height="13" rx="3" fill="${fill}" ${extra}/></svg>`;
   const anyEst = years.some((o) => kind(o) === "est"), anyInc = years.some((o) => kind(o) === "inc");
-  $("bar-legend").innerHTML = `<span class="key">${sw(accent)}${anyEst ? "Measured year" : "Year total"}</span>` +
-    (anyEst ? `<span class="key">${sw(accent, `fill-opacity="0.55" stroke="${accent}" stroke-dasharray="3 2"`)}Includes estimates</span>` : "") +
-    (anyInc ? `<span class="key">${sw("url(#bar-hatch)", `stroke="${accent}"`)}Incomplete year (not comparable)</span>` : "");
+  $("bar-legend").innerHTML = `<span class="key">${sw(accent)}${anyEst ? t("bar.meas") : t("bar.total")}</span>` +
+    (anyEst ? `<span class="key">${sw(accent, `fill-opacity="0.55" stroke="${accent}" stroke-dasharray="3 2"`)}${t("bar.est")}</span>` : "") +
+    (anyInc ? `<span class="key">${sw("url(#bar-hatch)", `stroke="${accent}"`)}${t("bar.inc")}</span>` : "");
 }
 
 // ---------- CSV download (step 37) ----------
@@ -1026,7 +1045,7 @@ function buildCsv(today = new Date().toISOString().slice(0, 10)) {
   ];
   if (!state.full) comments.push("Small areas: estimates before 2012 are rough.");
   if (meta.quality === "experimental")
-    comments.splice(1, 0, "Experimental: " + (meta.quality_note || EXP_DEFAULT));
+    comments.splice(1, 0, "Experimental: " + (meta.quality_note || I18N.en["qnote.default"]));
   if (meta.box_region && meta.overlaps_turkiye !== false)
     comments.push("Boxes overlap Türkiye; for Turkish territory use the Türkiye view (pre-2012 estimates can differ between views).");
   const lines = ["sep=,", ...comments.map((c) => csvCell(`# ${c}`, true)),
@@ -1051,21 +1070,27 @@ function downloadCsv() {
   const url = URL.createObjectURL(blob), a = document.createElement("a");
   a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 2000);
-  $("csv-status").textContent = `Downloaded ${name} (${state.range.to - state.range.from + 1} months).`;
+  $("csv-status").textContent = t("csv.done", { name, n: state.range.to - state.range.from + 1 });
 }
 
 // ---------- wiring ----------
 async function init() {
+  setLang(langFromURL(), false);
+  document.querySelectorAll(".lang-switch button").forEach((b) => b.addEventListener("click", () => {
+    if (b.dataset.lang === LANG) return;
+    setLang(b.dataset.lang);
+    if (typeof shareWrite === "function") shareWrite();
+  }));
   try {
     const idx = await getJSON("data/index.json");
     const sel = $("region");
+    idx.regions.forEach((r) => { regionNames[r.id] = r.name_en; regionIndex[r.id] = r; });
     sel.innerHTML = idx.regions.map((r) =>
-      `<option value="${r.id}">${r.name_en}${r.quality === "experimental" ? " (experimental)" : ""}</option>`).join("");
-    idx.regions.forEach((r) => { regionNames[r.id] = r.name_en; });
+      `<option value="${r.id}">${regionName(r.id)}${r.quality === "experimental" ? t("experimental.suffix") : ""}</option>`).join("");
     sel.addEventListener("change", async () => {
       const want = sel.value;
       try { await loadRegion(want); } catch (err) {
-        showLoadError(err, regionNames[want] || want);
+        showLoadError(err, regionNames[want] ? regionName(want) : want);
         document.querySelector("main").removeAttribute("aria-busy");
         if (state.region) { sel.value = state.region; render(); }
       }
@@ -1074,7 +1099,7 @@ async function init() {
     $("toggle-table").addEventListener("click", (e) => {
       state.table = !state.table;
       e.target.setAttribute("aria-pressed", String(state.table));
-      e.target.textContent = state.table ? "Hide table" : "Show as table";
+      e.target.textContent = state.table ? t("table.hide") : t("table.show");
       $("table-wrap").hidden = !state.table;
       if (state.table) drawTable();
     });
@@ -1082,7 +1107,7 @@ async function init() {
       e.preventDefault();
       const v = (k) => parseFloat($(`b-${k}`).value);
       const b = { north: v("north"), south: v("south"), west: v("west"), east: v("east") };
-      if (Object.values(b).some(Number.isNaN)) { $("bbox-status").textContent = "Enter all four coordinates."; return; }
+      if (Object.values(b).some(Number.isNaN)) { $("bbox-status").textContent = t("bbox.enterall"); return; }
       setBbox(b);
     });
     $("reset-btn").addEventListener("click", () => setBbox(regionBbox(), true));
@@ -1093,8 +1118,8 @@ async function init() {
     $("csv-btn").addEventListener("click", downloadCsv);
     heatWire();
     shareWire();
-    let t;
-    window.addEventListener("resize", () => { clearTimeout(t); t = setTimeout(() => { drawCalendar(); drawCharts(); }, 150); });
+    let resizeTimer;
+    window.addEventListener("resize", () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { drawCalendar(); drawCharts(); }, 150); });
     $("card-peak").addEventListener("click", (e) => {
       const b = e.target.closest("button[data-idx]");
       if (!b) return;
@@ -1112,7 +1137,7 @@ async function init() {
     share.ready = true;
     shareWrite();
   } catch (err) {
-    showLoadError(err, "this page");
+    showLoadError(err, t("err.thispage"));
     document.querySelector("main").removeAttribute("aria-busy");
     $("calendar").textContent = "";
     $("cards-ctx").textContent = "";

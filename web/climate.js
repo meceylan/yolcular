@@ -27,20 +27,20 @@ function drawClimate() {
   box.hidden = false;
   const ym = state.monthly.months[state.cmpIdx], name = monthName(ym), cal = MONTHS_LONG[+ym.slice(5) - 1];
   const s = climateStats(C, ym);
-  const sign = (d, dec) => `${d >= 0 ? "+" : "−"}${Math.abs(d).toFixed(dec)}`;
+  const sign = (d, dec) => `${d >= 0 ? "+" : "−"}${nf(Math.abs(d), dec)}`;
   const rows = [];
   if (s.t != null && s.tAvg != null) {
     const d = s.t - s.tAvg;
-    rows.push(`<div class="cl-row"><span class="cl-k">Temperature</span> <b>${sign(d, 1)} °C</b> <span class="t-muted">vs. average (${s.t.toFixed(1)} °C; average ${s.tAvg.toFixed(1)} °C)</span></div>`);
+    rows.push(`<div class="cl-row"><span class="cl-k">${t("c.temp")}</span> <b>${sign(d, 1)} °C</b> <span class="t-muted">${t("c.vs", { v: `${nf(s.t, 1)} °C`, a: `${nf(s.tAvg, 1)} °C` })}</span></div>`);
   }
   if (s.p != null && s.pAvg != null) {
     const d = s.p - s.pAvg;
-    rows.push(`<div class="cl-row"><span class="cl-k">Precipitation</span> <b>${sign(d, 0)} mm</b> <span class="t-muted">vs. average (${Math.round(s.p)} mm; average ${Math.round(s.pAvg)} mm)</span></div>`);
+    rows.push(`<div class="cl-row"><span class="cl-k">${t("c.prec")}</span> <b>${sign(d, 0)} mm</b> <span class="t-muted">${t("c.vs", { v: `${nf(s.p)} mm`, a: `${nf(s.pAvg)} mm` })}</span></div>`);
   }
-  if (!rows.length) rows.push(`<div class="cl-row t-muted">No climate data for ${name} yet (available to ${monthName(C.months[C.months.length - 1])}).</div>`);
-  const local = state.full ? "" : " Not specific to the drawn area.";
-  box.innerHTML = `<h3 id="climate-title" class="cl-title">Climate context</h3>
-    <div class="cl-when">${name}, fire-weighted region average</div>
+  if (!rows.length) rows.push(`<div class="cl-row t-muted">${t("c.none", { m: name, last: monthName(C.months[C.months.length - 1]) })}</div>`);
+  const local = state.full ? "" : t("c.local");
+  box.innerHTML = `<h3 id="climate-title" class="cl-title">${t("c.title")}</h3>
+    <div class="cl-when">${t("c.when", { m: name })}</div>
     ${rows.join("")}
-    <p class="cl-note">Difference from the ${s.b0}–${s.b1} ${cal} average, region-wide: weighted average of ${(C.points || []).length || 5} points in the areas of ${state.meta.name_en} with the most fires in 2012–2025.${local} Shown alongside the fire counts, not a causal claim. Source: NASA POWER.</p>`;
+    <p class="cl-note">${t("c.note", { b0: s.b0, b1: s.b1, cal, n: (C.points || []).length || 5, name: regionName(state.region), local })}</p>`;
 }

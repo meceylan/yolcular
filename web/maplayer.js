@@ -133,22 +133,22 @@ function heatDraw() {
 }
 
 // ---------- text ----------
-const hemi = (v, pos, neg) => `${Math.abs(v).toFixed(2)}° ${v >= 0 ? pos : neg}`;
+const hemi = (v, pos, neg) => `${nf(Math.abs(v), 2)}° ${t(`dir.${v >= 0 ? pos : neg}`)}`;
 function cellPlace(i, j) {
   const cell = state.grid.cell_deg, la = i * cell - 90, lo = j * cell - 180;
-  return `${hemi(la, "N", "S")} to ${hemi(la + cell, "N", "S")}, ${hemi(lo, "E", "W")} to ${hemi(lo + cell, "E", "W")}`;
+  return t("map.cellrange", { a: hemi(la, "N", "S"), b: hemi(la + cell, "N", "S"), c: hemi(lo, "E", "W"), d: hemi(lo + cell, "E", "W") });
 }
 function cellCentreText(i, j) {
   const cell = state.grid.cell_deg;
   return `${hemi((i + 0.5) * cell - 90, "N", "S")}, ${hemi((j + 0.5) * cell - 180, "E", "W")}`;
 }
-const fmtCell = (v) => (v > 0 && v < 10 && v % 1 ? v.toFixed(1) : fmt(v));
+const fmtCell = (v) => (v > 0 && v < 10 && v % 1 ? nf(v, 1) : fmt(v));
 
 function heatWhen() {
   const V = heat.view, M = state.monthly;
   if (!V) return "";
   if (V.mode === "month") return monthName(M.months[V.k]);
-  return `${monthName(M.months[V.from])} – ${monthName(M.months[V.to])} total`;
+  return t("map.periodtotal", { a: monthName(M.months[V.from]), b: monthName(M.months[V.to]) });
 }
 
 // Notes about the values shown: estimated months, partial month, missing data.
@@ -158,15 +158,15 @@ function heatNotes() {
   let est = false;
   if (V.mode === "month") {
     const src = M.src[V.k];
-    if (harm && src === "M") { est = true; notes.push("Estimated: MODIS × monthly factor (before February 2012)."); }
-    else if (harm && src === "N") { est = true; notes.push(`Estimated: VIIRS NOAA-20 × ${state.meta.viirs_switch.k_n20}.`); }
-    if (M.partial[V.k]) notes.push(`Partial month: days 1–${M.mtd ? M.mtd.through_day : "?"}.`);
-    if (M[state.series][V.k] == null) notes.push("No data for this series in this month.");
-    if ((M.gap_days || [])[V.k] >= GAP_MIN) notes.push(`${M.gap_days[V.k]} days without satellite data: values likely too low.`);
+    if (harm && src === "M") { est = true; notes.push(t("map.estM")); }
+    else if (harm && src === "N") { est = true; notes.push(t("map.estN", { k: nf(state.meta.viirs_switch.k_n20, 3) })); }
+    if (M.partial[V.k]) notes.push(t("map.partial", { d: M.mtd ? M.mtd.through_day : "?" }));
+    if (M[state.series][V.k] == null) notes.push(t("map.nodata"));
+    if ((M.gap_days || [])[V.k] >= GAP_MIN) notes.push(t("map.gap", { g: M.gap_days[V.k] }));
   } else {
     let n = 0;
     for (let k = V.from; k <= V.to; k++) if (harm && M.src[k] !== "V") n++;
-    if (n) { est = true; notes.push(`Includes ${n} estimated month${n > 1 ? "s" : ""}.`); }
+    if (n) { est = true; notes.push(t("map.includes", { n })); }
   }
   return { est, notes };
 }
@@ -175,8 +175,8 @@ function heatTipHTML(i, j) {
   const ci = heat.cellAt.get(i * 10000 + j);
   const v = ci == null ? 0 : heat.view.vals.get(ci) || 0;
   const { est } = heatNotes();
-  return `<div><b>${fmtCell(v)}</b> fire detection${v === 1 ? "" : "s"}${est ? ' <span class="t-muted">(estimated)</span>' : ""}</div>` +
-    `<div class="t-muted">${heatWhen()}</div><div class="t-muted">Cell ${cellPlace(i, j)}</div>`;
+  return `<div>${t("map.tipcount", { v: fmtCell(v), one: v === 1, est })}</div>` +
+    `<div class="t-muted">${heatWhen()}</div><div class="t-muted">${t("map.cell", { p: cellPlace(i, j) })}</div>`;
 }
 const tipText = (i, j) => { const d = document.createElement("div"); d.innerHTML = heatTipHTML(i, j); return [...d.children].map((x) => x.textContent).join(". ") + "."; };
 
@@ -210,7 +210,7 @@ function heatTap(e) {
 function heatReadCentre() {
   if (!heat.on || !heat.view || !heat.map._loaded) return;
   const c = cellAtLatLng(heat.map.getCenter());
-  $("heat-readout").textContent = c ? `Map centre: ${tipText(c.i, c.j)}` : "Map centre is outside the region.";
+  $("heat-readout").textContent = c ? t("map.centre", { t: tipText(c.i, c.j) }) : t("map.outside");
   heat.hl = c; heat.pinned = !!c; heatDraw();
 }
 
@@ -218,7 +218,7 @@ function heatReadCentre() {
 function heatPanel() {
   const V = heat.view, { est, notes } = heatNotes(), sc = V.sc;
   const label = state.series === "h" ? "" : ` (${SERIES_LABEL[state.series]})`;
-  heat.badge.innerHTML = `<b>${heatWhen()}</b>${est ? '<span class="est">estimated</span>' : ""}`;
+  heat.badge.innerHTML = `<b>${heatWhen()}</b>${est ? `<span class="est">${t("map.estbadge")}</span>` : ""}`;
   heat.badge.hidden = !heat.on;
 
   // Top 5 cells inside the selected area (whole region by default).
@@ -228,32 +228,32 @@ function heatPanel() {
     return la >= b.south && la <= b.north && lo >= b.west && lo <= b.east;
   });
   const top = [...inSel].sort((a, c) => c[1] - a[1]).slice(0, 5);
-  const where = state.full ? state.meta.name_en : "the selected area";
-  $("heat-top-title").textContent = `Most active cells in ${where}`;
+  const where = state.full ? regionName(state.region) : t("map.selarea");
+  $("heat-top-title").textContent = t("map.toptitle", { where });
   $("heat-top").innerHTML = top.length
     ? top.map(([ci, v], r) => {
         const g = heat.cells[ci];
-        return `<li><button type="button" class="textlink" data-i="${g.i}" data-j="${g.j}" aria-label="Rank ${r + 1}: ${cellCentreText(g.i, g.j)}, ${fmtCell(v)} detections. Show on map">${cellCentreText(g.i, g.j)}</button> <b>${fmtCell(v)}</b></li>`;
+        return `<li><button type="button" class="textlink" data-i="${g.i}" data-j="${g.j}" aria-label="${t("map.toparia", { r: r + 1, p: cellCentreText(g.i, g.j), v: fmtCell(v) })}">${cellCentreText(g.i, g.j)}</button> <b>${fmtCell(v)}</b></li>`;
       }).join("")
-    : `<li class="none">No detections in ${where}.</li>`;
+    : `<li class="none">${t("map.nodet", { where })}</li>`;
 
   const total = inSel.reduce((s, [, v]) => s + v, 0);
-  const desc = `Map layer: fire detections per ${cell}° cell${label}, ${heatWhen()}. ` +
-    (top.length ? `${inSel.length} cells in ${where} have detections, ${fmtCell(total)} in total; the most active cell is at ${cellCentreText(heat.cells[top[0][0]].i, heat.cells[top[0][0]].j)} with ${fmtCell(top[0][1])}. `
-                : `No detections in ${where}. `) + notes.join(" ");
+  const desc = t("map.desc", { cell: nf(cell, 2), label, when: heatWhen() }) +
+    (top.length ? t("map.descn", { n: nf(inSel.length), where, total: fmtCell(total), p: cellCentreText(heat.cells[top[0][0]].i, heat.cells[top[0][0]].j), v: fmtCell(top[0][1]) })
+                : `${t("map.nodet", { where })} `) + notes.join(" ");
   const d = $("heat-desc");
   d.setAttribute("aria-live", heat.playing ? "off" : "polite");
   d.textContent = desc;
 
   // Legend: same inferno ramp as the calendar, its own range (detections per cell).
   const stops = Array.from({ length: 11 }, (_, i) => `${colorAt(i / 10)} ${i * 10}%`).join(",");
-  const short = (v) => (v >= 1000 ? `${+(v / 1000).toFixed(1)}k` : v < 10 && v % 1 ? v.toFixed(1) : `${Math.round(v)}`);
+  const short = (v) => (v < 10 && v % 1 ? nf(v, 1) : shortNum(v));
   const mid = 10 ** ((sc.lo + sc.hi) / 2);
-  $("heat-legend").innerHTML = `<span class="hl-title">Detections per cell${V.mode === "month" ? " per month" : ", period total"} <span class="t-muted">(log scale)</span></span>
+  $("heat-legend").innerHTML = `<span class="hl-title">${V.mode === "month" ? t("map.legmonth") : t("map.legperiod")} <span class="t-muted">${t("map.leglog")}</span></span>
     <div class="bar" style="background:linear-gradient(90deg,${stops});opacity:${HEAT_ALPHA}"></div>
     <div class="hl-ticks"><span>${short(sc.min)}</span><span>${short(mid)}</span><span>${short(sc.max)}</span></div>
-    <span class="t-muted">No colour = 0 detections${est ? ". Values are estimates" : ""}</span>`;
-  $("heat-legend").setAttribute("aria-label", `Map legend: colour from ${short(sc.min)} (darkest) to ${short(sc.max)} (brightest) detections per cell, log scale. No colour means 0.`);
+    <span class="t-muted">${t("map.legzero")}${est ? t("map.legest") : ""}</span>`;
+  $("heat-legend").setAttribute("aria-label", t("map.legaria", { min: short(sc.min), max: short(sc.max) }));
   $("heat-mode").value = V.mode;
 }
 
@@ -273,8 +273,8 @@ function heatSetPlaying(on) {
   clearTimeout(heat.timer);
   const btn = $("heat-play");
   btn.setAttribute("aria-pressed", String(on));
-  btn.textContent = on ? "Pause" : "Play";
-  btn.setAttribute("aria-label", on ? "Pause playback" : "Play the months of the selected period");
+  btn.textContent = on ? t("pause") : t("play");
+  btn.setAttribute("aria-label", on ? t("pause.aria") : t("play.aria"));
   $("heat-desc").setAttribute("aria-live", on ? "off" : "polite");
   if (!on) { if (heat.view) heatPanel(); return; }
   if (state.mapMode !== "month" || state.cmpIdx >= state.range.to || state.cmpIdx < state.range.from) {

@@ -21,6 +21,7 @@ function shareRead(regionIds) {
   const s = q.get("series");
   if (["h", "m", "v"].includes(s)) p.series = s;
   if (q.get("map") === "period") p.map = "period";
+  if (q.get("lang") === "tr") p.lang = "tr";
   return p;
 }
 
@@ -58,6 +59,7 @@ function shareURL() {
   if (state.cmpIdx != null && state.cmpIdx >= 0) q.set("ym", M[state.cmpIdx]);
   if (state.series !== (state.meta.harmonized ? "h" : "m")) q.set("series", state.series);
   if (state.mapMode === "period") q.set("map", "period");
+  if (LANG !== "en") q.set("lang", LANG);
   return `${location.origin}${location.pathname}?${q.toString().replace(/%2C/g, ",")}`;
 }
 
@@ -89,8 +91,8 @@ function shareWire() {
     const url = shareURL();
     const ok = await copyText(url);
     clearTimeout(share.timer);
-    btn.textContent = ok ? "Copied" : "Copy link";
-    status.textContent = ok ? "Link copied to the clipboard." : `Copy failed. Link: ${url}`;
-    share.timer = setTimeout(() => { btn.textContent = "Copy link"; if (ok) status.textContent = ""; }, 2500);
+    btn.textContent = ok ? t("share.copied") : t("share.copy");
+    status.textContent = ok ? t("share.ok") : t("share.fail", { url });
+    share.timer = setTimeout(() => { btn.textContent = t("share.copy"); if (ok) status.textContent = ""; }, 2500);
   });
 }
