@@ -1,7 +1,7 @@
 # Accessibility check (step 38)
 
 Colour numbers: `python scripts/check_a11y.py --write` → docs/accessibility_colors.md.
-All numbers below were measured with that script on the dark page (ui-redesign: one dark theme, inferno scale, controls with a 3:1 border).
+The findings below were first measured on the earlier dark page (inferno scale, controls with a 3:1 border). The page now uses a light theme; the script was re-run on it in step 76 and later and reports no problems, but the exact ratios in this table are from the dark page: run the script for current values.
 
 ## What was checked and what was changed
 

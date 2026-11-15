@@ -5,7 +5,7 @@ NASA Space Apps Challenge 2026, Challenge #8. A web app that turns NASA FIRMS MO
 - **Live site:** https://meceylan.github.io/yolcular/
 - **Example view** (Aegean and Mediterranean coast of Türkiye, August 2021): https://meceylan.github.io/yolcular/?region=turkiye&box=36.5,26,40,29.5&ym=2021-08
 
-![Burn Calendar, Aegean box, August 2021: summary cards, key findings, map layer, year-by-month calendar and climate context](docs/screenshots/ui-final.png)
+![Burn Calendar, Aegean box, August 2021: summary cards, key findings, map layer, year-by-month calendar and climate context](docs/screenshots/ui-final-v2.png)
 
 ## What it does
 
