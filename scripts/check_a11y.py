@@ -2,7 +2,8 @@
 """Colour accessibility check for the burn calendar (step 38).
 
 Tests the colour ramp, the "zero" and "no data" fills, the marker/outline colours and the controls
-(buttons, selects, focus ring) used in web/app.js and web/style.css. The page has one dark theme:
+(buttons, selects, focus ring) and the text colours used in web/app.js and web/style.css. The page has one light
+"crystal" theme (translucent white cards on a warm gradient; every text colour is tested on each card/page mix):
   - grayscale: lightness steps between neighbouring levels
   - colour-vision deficiency: deuteranopia, protanopia (and tritanopia), Machado et al. 2009, severity 1.0
   - contrast of markers/outlines against the cell colour (WCAG 1.4.11 asks for 3:1)
@@ -20,10 +21,14 @@ ROOT = Path(__file__).resolve().parent.parent
 INFERNO = ["#2b0b57", "#57106e", "#82206c", "#ad305d", "#d24644",
            "#ee6a24", "#fb9706", "#f9cb35", "#f5f992"]
 THEMES = {   # values copied from web/style.css (:root) and the ramp() function in web/app.js
-    "dark": dict(surface="#161a21", ink="#eceef1", muted="#9aa0a9", zero="#2a2e34", ramp=INFERNO,
-                 control_bg="#2a313d", control_bg_hover="#364050", control_border="#7e8796", control_border_hover="#b4bac4",
-                 accent="#ff7a1a", accent_ink="#1a0f05", primary_border="#ffb27a", focus="#ffd0a1"),
+    "light": dict(surface="#fdf7f5", ink="#2b1d2f", ink2="#47364c", muted="#65546b", zero="#e4dce6", ramp=INFERNO,
+                  control_bg="#ffffff", control_bg_hover="#f7edf2", control_border="#8a7790", control_border_hover="#5b4862",
+                  accent="#ad305d", accent_hover="#93214c", accent_ink="#ffffff", accent_purple="#57106e", focus="#57106e",
+                  up="#a8410c", down="#3b4a9c", viirs="#b4510b", notice_bg="#fff0d9", notice_ink="#5a3500", tooltip="#fffbfa"),
 }
+# Page gradient stops (body background) and the card fill: white at 62 % opacity on top of the page.
+PAGE_STOPS = ["#fff7ec", "#ffe6d8", "#fbdfe8", "#ece4f8"]
+CARD_ALPHA = 0.62
 # Design criteria (our own, stated so the result can be judged): neighbouring levels of a 7-level ramp
 # differ by dE2000 >= 6 (clearly different side by side) and by >= 8 L* in lightness, in every view,
 # with lightness always changing in the same direction.
@@ -182,10 +187,34 @@ def report():
                 ("hovered control: border against its fill", contrast(c["control_border_hover"], c["control_bg_hover"]), 3),
                 ("control text on the control fill", contrast(ink, c["control_bg"]), 4.5),
                 ("control text on the hovered fill", contrast(ink, c["control_bg_hover"]), 4.5),
-                ("orange button against the card", contrast(c["accent"], surf), 3),
-                ("orange button text", contrast(c["accent_ink"], c["accent"]), 4.5),
+                ("magenta button against the card", contrast(c["accent"], surf), 3),
+                ("magenta button text", contrast(c["accent_ink"], c["accent"]), 4.5),
                 ("focus ring against the card", contrast(c["focus"], surf), 3),
-                ("focus ring against the page", contrast(c["focus"], hex_rgb("#0d0f13")), 3),
+            ]
+            pages = [hex_rgb(h) for h in PAGE_STOPS]
+            cards = [CARD_ALPHA * np.ones(3) + (1 - CARD_ALPHA) * pg for pg in pages]   # card colour over each page stop
+            backs = cards + [surf]
+            worst = lambda col: min(contrast(col, b) for b in backs)
+            checks += [
+                ("focus ring against the page (worst gradient stop)", min(contrast(c["focus"], pg) for pg in pages), 3),
+                ("focus ring against a card (worst)", worst(c["focus"]), 3),
+                ("control border against a card (worst)", worst(c["control_border"]), 3),
+                ("main text on a card (worst)", worst(ink), 4.5),
+                ("secondary text on a card (worst)", worst(c["ink2"]), 4.5),
+                ("muted text on a card (worst)", worst(muted), 4.5),
+                ("muted text on the page (header lede, footer)", min(contrast(muted, pg) for pg in pages), 4.5),
+                ("magenta links and tags on a card (worst)", worst(c["accent"]), 4.5),
+                ("purple text on a card (worst)", worst(c["accent_purple"]), 4.5),
+                ("'above' percentage text (worst)", worst(c["up"]), 4.5),
+                ("'below' percentage text (worst)", worst(c["down"]), 4.5),
+                ("chart line: consistent series", worst(c["accent"]), 3),
+                ("chart line: MODIS", worst(c["down"]), 3),
+                ("chart line: VIIRS", worst(c["viirs"]), 3),
+                ("white text on the hovered magenta button", contrast(c["accent_ink"], c["accent_hover"]), 4.5),
+                ("pressed button text (purple on soft magenta)", contrast(c["accent_purple"], 0.91 * c["control_bg"] + 0.09 * c["accent"]), 4.5),
+                ("notice text", contrast(c["notice_ink"], c["notice_bg"]), 4.5),
+                ("tooltip text", contrast(ink, c["tooltip"]), 4.5),
+                ("tooltip border against the page", min(contrast(c["control_border"], pg) for pg in pages), 3),
             ]
             out.append("\nControls (buttons, selects, inputs):\n")
             out.append("| what | contrast | needs |")

@@ -27,7 +27,7 @@ const SERIES_HELP = {
 };
 const EXP_DEFAULT = "values before 2012 are rough, and recent values may include some unflagged industrial sources.";
 const GAP_MIN = 3;   // days without satellite data before a month is flagged
-const SEL_COLOR = "#ff7a1a";
+const SEL_COLOR = "#2b1d2f";   // drawn area on the map: dark plum, apart from the inferno fire colours
 
 const state = {
   region: null, meta: null, monthly: null, grid: null,
@@ -214,7 +214,7 @@ function setupMap() {
     if (typeof heatInit === "function") heatInit(map);
   }
   if (regionLayer) regionLayer.remove();
-  regionLayer = L.rectangle(bounds, { color: "#c3c7ce", weight: 1, dashArray: "4 4", fill: false, interactive: false }).addTo(map);
+  regionLayer = L.rectangle(bounds, { color: "#65546b", weight: 1, dashArray: "4 4", fill: false, interactive: false }).addTo(map);
   // Fit after layout settles (the container may still be resizing on first load).
   requestAnimationFrame(() => { map.invalidateSize(); map.fitBounds(bounds, { padding: [8, 8] }); });
 }
@@ -386,7 +386,7 @@ function drawCalendar() {
   const surfaceHex = cssVar("--surface");
   const W = Math.max(320, host.clientWidth || 600);
   const labelW = 40, headH = 18;
-  const cw = (W - labelW) / 12, ch = 14;
+  const cw = (W - labelW) / 12, ch = Math.max(14, Math.min(20, cw * 0.3));
   const H = headH + data.length * ch;
   const NS = "http://www.w3.org/2000/svg";
   const svg = document.createElementNS(NS, "svg");
@@ -929,7 +929,7 @@ function drawLine() {
   f.svg.addEventListener("pointerleave", () => { tip.hidden = true; cursor.setAttribute("visibility", "hidden"); });
   host.replaceChildren(f.svg);
   $("line-sub").textContent = `${state.full ? state.meta.name_en : "Selected area"}, fire detections per month. ` +
-    (harm ? "Compare years with the orange line; the other lines show what each sensor saw." : "Raw counts, not comparable between sensors.");
+    (harm ? "Compare years with the solid magenta line; the other lines show what each sensor saw." : "Raw counts, not comparable between sensors.");
   $("line-legend").innerHTML = shown.map((s) => `<span class="key">${lineKey(s.color, s.dash, s.w)}${s.name}${s.key === "h" && harm ? " (recommended)" : ""}</span>`).join("") +
     (band ? `<span class="key"><svg width="26" height="10" aria-hidden="true"><rect x="1" y="1" width="24" height="8" rx="2" fill="${css.a}" fill-opacity="0.22"/></svg>Likely range of estimates</span>` : "") +
     `<span class="key">${lineKey(cssVar("--ink"), "3 3", 1)}Month selected in the calendar</span>`;
