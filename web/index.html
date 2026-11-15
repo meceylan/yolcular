@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
+  <meta name="color-scheme" content="light">
   <title>Burn Calendar – monthly satellite fire detections since 2002</title>
   <meta name="description" content="How many fires satellites saw each month since 2002 (MODIS and VIIRS, NASA FIRMS), harmonized into one comparable series, and whether this month is unusual.">
   <meta property="og:type" content="website">
@@ -12,7 +12,7 @@
   <meta property="og:description" content="Year-by-month calendar of MODIS and VIIRS fire detections (NASA FIRMS), harmonized into one comparable series, with this month compared to the typical month.">
   <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css?v=tt1">
+  <link rel="stylesheet" href="style.css?v=cr1">
 </head>
 <body>
   <header class="top wrap">
@@ -36,144 +36,141 @@
         <span id="copy-status" class="sub share-status" role="status" aria-live="polite"></span>
       </div>
     </div>
-    <section class="cards" aria-label="Summary">
-      <div class="card stat">
-        <label class="stat-pick"><span class="sr-only">Month to compare</span><select id="compare-month"></select></label>
-        <div id="compare" role="status" aria-live="polite"></div>
-      </div>
-      <div id="card-partial" class="card stat"></div>
-      <div id="card-peak" class="card stat"></div>
-      <div id="card-est" class="card stat"></div>
-    </section>
+    <div class="top-grid">
+      <section class="cards" aria-label="Summary">
+        <div class="card stat">
+          <label class="stat-pick"><span class="sr-only">Month to compare</span><select id="compare-month"></select></label>
+          <div id="compare" role="status" aria-live="polite"></div>
+        </div>
+        <div id="card-partial" class="card stat"></div>
+        <div id="card-peak" class="card stat"></div>
+        <div id="card-est" class="card stat"></div>
+      </section>
 
-    <div class="layout">
-      <div class="side">
-        <section class="card panel" aria-labelledby="area-title">
-          <h2 id="area-title"><span class="step" aria-hidden="true">1</span> Choose area</h2>
-          <label class="field region-field">Region
-            <select id="region"></select>
+      <section class="card panel area-panel" aria-labelledby="area-title">
+        <h2 id="area-title"><span class="step" aria-hidden="true">1</span> Choose area</h2>
+        <label class="field region-field">Region
+          <select id="region"></select>
+        </label>
+        <p id="bbox-help" class="sub">Draw a rectangle on the map or type coordinates; the 0.25° grid cells whose centre is inside are added up.</p>
+        <div id="map" class="map" role="region" aria-label="Map for selecting an area. Drawing needs a pointer; keyboard and screen reader users can type the coordinates in the boxes instead." aria-describedby="bbox-help"></div>
+        <div class="bbox-buttons">
+          <button id="draw-btn" type="button" aria-pressed="false">Draw on map</button>
+          <button id="reset-btn" type="button">Whole region</button>
+        </div>
+        <details class="coords">
+          <summary>Type coordinates</summary>
+          <form id="bbox-form" class="bbox-form" aria-label="Area coordinates (degrees)">
+            <label>North <input id="b-north" type="number" step="any" inputmode="decimal" required></label>
+            <label>South <input id="b-south" type="number" step="any" inputmode="decimal" required></label>
+            <label>West <input id="b-west" type="number" step="any" inputmode="decimal" required></label>
+            <label>East <input id="b-east" type="number" step="any" inputmode="decimal" required></label>
+            <button type="submit" class="primary">Apply</button>
+          </form>
+        </details>
+        <p id="bbox-status" class="sub status" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="card panel period-panel" aria-labelledby="period-title">
+        <h2 id="period-title"><span class="step" aria-hidden="true">2</span> Choose period</h2>
+        <fieldset class="period">
+          <legend class="sr-only">Period</legend>
+          <div class="prow">
+            <span class="plabel" aria-hidden="true">From</span>
+            <label><span class="sr-only">From month</span><select id="from-month"></select></label>
+            <label><span class="sr-only">From year</span><select id="from-year"></select></label>
+          </div>
+          <div class="prow">
+            <span class="plabel" aria-hidden="true">To</span>
+            <label><span class="sr-only">To month</span><select id="to-month"></select></label>
+            <label><span class="sr-only">To year</span><select id="to-year"></select></label>
+          </div>
+        </fieldset>
+        <p id="period-note" class="sub status" role="status" aria-live="polite"></p>
+        <div class="period-buttons">
+          <button id="period-reset" type="button">Full period</button>
+          <button id="csv-btn" type="button" class="primary">Download CSV</button>
+        </div>
+        <p id="csv-status" class="sub status" role="status" aria-live="polite"></p>
+      </section>
+    </div>
+
+    <div class="charts">
+      <section class="card panel heat" aria-labelledby="heat-title">
+        <h2 id="heat-title">Fire density on the map</h2>
+        <div id="heat-controls" class="heat-controls">
+          <label class="check"><input id="heat-on" type="checkbox" checked> Show layer</label>
+          <label class="field inline">Show
+            <select id="heat-mode">
+              <option value="month">Selected month</option>
+              <option value="period">Period total</option>
+            </select>
           </label>
-          <p id="bbox-help" class="sub">Draw a rectangle on the map or type coordinates; the 0.25° grid cells whose centre is inside are added up.</p>
-          <div id="map" class="map" role="region" aria-label="Map for selecting an area. Drawing needs a pointer; keyboard and screen reader users can type the coordinates in the boxes instead." aria-describedby="bbox-help"></div>
-          <div class="bbox-buttons">
-            <button id="draw-btn" type="button" aria-pressed="false">Draw on map</button>
-            <button id="reset-btn" type="button">Whole region</button>
-          </div>
-          <details class="coords">
-            <summary>Type coordinates</summary>
-            <form id="bbox-form" class="bbox-form" aria-label="Area coordinates (degrees)">
-              <label>North <input id="b-north" type="number" step="any" inputmode="decimal" required></label>
-              <label>South <input id="b-south" type="number" step="any" inputmode="decimal" required></label>
-              <label>West <input id="b-west" type="number" step="any" inputmode="decimal" required></label>
-              <label>East <input id="b-east" type="number" step="any" inputmode="decimal" required></label>
-              <button type="submit" class="primary">Apply</button>
-            </form>
-          </details>
-          <p id="bbox-status" class="sub status" role="status" aria-live="polite"></p>
-        </section>
+        </div>
+        <div class="heat-controls play" role="group" aria-label="Playback of the months in the selected period">
+          <button id="heat-prev" type="button" aria-label="Previous month">◀</button>
+          <button id="heat-play" type="button" aria-label="Play the months of the selected period">Play</button>
+          <button id="heat-next" type="button" aria-label="Next month">▶</button>
+          <label class="field inline">Speed
+            <select id="heat-speed">
+              <option value="slow">Slow</option>
+              <option value="normal" selected>Normal</option>
+              <option value="fast">Fast</option>
+            </select>
+          </label>
+        </div>
+        <p id="heat-motion" class="sub" hidden>Reduced motion is on: playback starts slow and never loops.</p>
+        <div id="heat-legend" class="heat-legend" role="group"></div>
+        <p id="heat-readout" class="sub status" role="status" aria-live="polite">Hover or tap a cell to see its count. With the keyboard, focus the map and use the arrow keys: the cell under the centre cross is read out.</p>
+        <p id="heat-desc" class="sub heat-desc" aria-live="polite"></p>
+        <details class="heat-more">
+          <summary><span id="heat-top-title">Most active cells</span></summary>
+          <ol id="heat-top" class="heat-top" aria-labelledby="heat-top-title"></ol>
+        </details>
+      </section>
 
-        <section class="card panel" aria-labelledby="period-title">
-          <h2 id="period-title"><span class="step" aria-hidden="true">2</span> Choose period</h2>
-          <fieldset class="period">
-            <legend class="sr-only">Period</legend>
-            <div class="prow">
-              <span class="plabel" aria-hidden="true">From</span>
-              <label><span class="sr-only">From month</span><select id="from-month"></select></label>
-              <label><span class="sr-only">From year</span><select id="from-year"></select></label>
-            </div>
-            <div class="prow">
-              <span class="plabel" aria-hidden="true">To</span>
-              <label><span class="sr-only">To month</span><select id="to-month"></select></label>
-              <label><span class="sr-only">To year</span><select id="to-year"></select></label>
-            </div>
-          </fieldset>
-          <p id="period-note" class="sub status" role="status" aria-live="polite"></p>
-          <div class="period-buttons">
-            <button id="period-reset" type="button">Full period</button>
-            <button id="csv-btn" type="button" class="primary">Download CSV</button>
-          </div>
-          <p id="csv-status" class="sub status" role="status" aria-live="polite"></p>
-        </section>
+      <section class="card panel" aria-labelledby="line-title">
+        <h2 id="line-title">Month by month</h2>
+        <p id="line-sub" class="sub"></p>
+        <div id="line-chart" class="chart"></div>
+        <div id="line-legend" class="chart-legend"></div>
+      </section>
+      <section class="card panel" aria-labelledby="bar-title">
+        <h2 id="bar-title">Yearly totals</h2>
+        <p id="bar-sub" class="sub"></p>
+        <div id="bar-chart" class="chart"></div>
+        <div id="bar-legend" class="chart-legend"></div>
+      </section>
+    </div>
 
-        <section class="card panel heat" aria-labelledby="heat-title">
-          <h2 id="heat-title">Fire density on the map</h2>
-          <div id="heat-controls" class="heat-controls">
-            <label class="check"><input id="heat-on" type="checkbox" checked> Show layer</label>
-            <label class="field inline">Show
-              <select id="heat-mode">
-                <option value="month">Selected month</option>
-                <option value="period">Period total</option>
-              </select>
-            </label>
-          </div>
-          <div class="heat-controls play" role="group" aria-label="Playback of the months in the selected period">
-            <button id="heat-prev" type="button" aria-label="Previous month">◀</button>
-            <button id="heat-play" type="button" aria-label="Play the months of the selected period">Play</button>
-            <button id="heat-next" type="button" aria-label="Next month">▶</button>
-            <label class="field inline">Speed
-              <select id="heat-speed">
-                <option value="slow">Slow</option>
-                <option value="normal" selected>Normal</option>
-                <option value="fast">Fast</option>
-              </select>
-            </label>
-          </div>
-          <p id="heat-motion" class="sub" hidden>Reduced motion is on: playback starts slow and never loops.</p>
-          <div id="heat-legend" class="heat-legend" role="group"></div>
-          <p id="heat-readout" class="sub status" role="status" aria-live="polite">Hover or tap a cell to see its count. With the keyboard, focus the map and use the arrow keys: the cell under the centre cross is read out.</p>
-          <p id="heat-desc" class="sub heat-desc" aria-live="polite"></p>
-          <details class="heat-more">
-            <summary><span id="heat-top-title">Most active cells</span></summary>
-            <ol id="heat-top" class="heat-top" aria-labelledby="heat-top-title"></ol>
-          </details>
-        </section>
-      </div>
-
-      <div class="main-col">
-        <section class="card panel explore" aria-labelledby="chart-title">
-          <div class="explore-head">
-            <h2 id="chart-title" tabindex="-1"><span class="step" aria-hidden="true">3</span> Explore</h2>
-            <div class="explore-tools">
-              <label class="field">Series
-                <select id="series" aria-describedby="series-help">
-                  <option value="h">Harmonized (VIIRS S-NPP equivalent)</option>
-                  <option value="m">MODIS (raw, not harmonized)</option>
-                  <option value="v">VIIRS (raw, not harmonized)</option>
-                </select>
-              </label>
-              <button id="toggle-table" type="button" aria-pressed="false">Show as table</button>
-            </div>
-          </div>
-          <p id="series-help" class="sub"></p>
-          <p id="notice" class="notice" hidden></p>
-          <p id="exp-banner" class="exp-banner" role="note" hidden><strong>Experimental:</strong> values before 2012 are rough, and recent values may include some unflagged industrial sources.</p>
-          <section id="findings" class="findings" aria-labelledby="findings-title"></section>
-          <div class="cal-wrap">
-            <div id="calendar" class="calendar"><p class="loading">Loading data…</p></div>
-            <div class="cal-side">
-              <div id="legend" class="legend" aria-label="Color legend"></div>
-              <section id="climate" class="climate" aria-labelledby="climate-title" hidden></section>
-            </div>
-          </div>
-          <p class="sub hint">Keyboard: Tab to the calendar, arrow keys move between months, Home and End jump within a year, Enter or Space selects a month to compare.</p>
-          <div id="table-wrap" class="table-wrap" hidden></div>
-        </section>
-        <div class="charts">
-          <section class="card panel" aria-labelledby="line-title">
-            <h2 id="line-title">Month by month</h2>
-            <p id="line-sub" class="sub"></p>
-            <div id="line-chart" class="chart"></div>
-            <div id="line-legend" class="chart-legend"></div>
-          </section>
-          <section class="card panel" aria-labelledby="bar-title">
-            <h2 id="bar-title">Yearly totals</h2>
-            <p id="bar-sub" class="sub"></p>
-            <div id="bar-chart" class="chart"></div>
-            <div id="bar-legend" class="chart-legend"></div>
-          </section>
+    <section class="card panel explore" aria-labelledby="chart-title">
+      <div class="explore-head">
+        <h2 id="chart-title" tabindex="-1"><span class="step" aria-hidden="true">3</span> Explore</h2>
+        <div class="explore-tools">
+          <label class="field">Series
+            <select id="series" aria-describedby="series-help">
+              <option value="h">Harmonized (VIIRS S-NPP equivalent)</option>
+              <option value="m">MODIS (raw, not harmonized)</option>
+              <option value="v">VIIRS (raw, not harmonized)</option>
+            </select>
+          </label>
+          <button id="toggle-table" type="button" aria-pressed="false">Show as table</button>
         </div>
       </div>
-    </div>
+      <p id="series-help" class="sub"></p>
+      <p id="notice" class="notice" hidden></p>
+      <p id="exp-banner" class="exp-banner" role="note" hidden><strong>Experimental:</strong> values before 2012 are rough, and recent values may include some unflagged industrial sources.</p>
+      <section id="findings" class="findings" aria-labelledby="findings-title"></section>
+      <div class="cal-wrap">
+        <div id="calendar" class="calendar"><p class="loading">Loading data…</p></div>
+        <div class="cal-side">
+          <div id="legend" class="legend" aria-label="Color legend"></div>
+          <section id="climate" class="climate" aria-labelledby="climate-title" hidden></section>
+        </div>
+      </div>
+      <p class="sub hint">Keyboard: Tab to the calendar, arrow keys move between months, Home and End jump within a year, Enter or Space selects a month to compare.</p>
+      <div id="table-wrap" class="table-wrap" hidden></div>
+    </section>
 
 
     <details class="card about">
@@ -226,10 +223,10 @@
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" crossorigin="anonymous"></script>
-  <script src="maplayer.js?v=a11y1"></script>
-  <script src="share.js?v=sl1"></script>
-  <script src="findings.js?v=kf1"></script>
-  <script src="climate.js?v=pf1"></script>
-  <script src="app.js?v=fp1"></script>
+  <script src="maplayer.js?v=cr1"></script>
+  <script src="share.js?v=cr1"></script>
+  <script src="findings.js?v=cr1"></script>
+  <script src="climate.js?v=cr1"></script>
+  <script src="app.js?v=cr1"></script>
 </body>
 </html>
